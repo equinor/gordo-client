@@ -1,0 +1,80 @@
+[tool.poetry]
+name = "gordo-client"
+version = "v0.0.1"
+description = "Gordo client"
+authors = ["Equinor ASA <fg_gpl@equinor.com>"]
+license = "AGPL-3.0"
+readme = "README.md"
+homepage = "https://github.com/equinor/gordo-client"
+repository = "https://github.com/equinor/gordo-client"
+keywords = ["gordo-client"]
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.7",
+]
+include = [
+    "LICENSE",
+]
+packages = [
+    { include = "gordo_client" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pandas = "~=1.0"
+wrapt = "~=1.11"
+cachetools = "~=4.0"
+scikit-learn = "~=0.23"
+gordo-dataset = "~=2.2"
+tensorflow-estimator = "~=2.1.0"
+
+[tool.poetry.dev-dependencies]
+black = "^20.8b1"
+mypy = "^0.790"
+isort = "<5"
+pytest = "^6.1.2"
+pytest-cov = "^2.10.1"
+mock = "^4.0.2"
+pytest-mock = "^3.3.1"
+docker = "~=4.0"
+responses = "~=0.10"
+invoke = "^1.4.1"
+safety = "^1.9.0"
+wemake-python-styleguide = "^0.14.1"
+
+[tool.isort]
+line_length = 120
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+skip = [".cache", ".venv"]
+
+[tool.black]
+line-length = 120
+target-version = ['py37']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | \.cache
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
