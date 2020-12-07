@@ -4,12 +4,6 @@ from typing import List
 
 from invoke import Exit, Failure, Result, UnexpectedExit, task
 
-DEPENDENCIES_CACHE = ".cache/dependencies"
-
-DOCKER_IMAGE_NAME = "omnia-prevent-data-service"
-DOCKER_PROJECT = "omnia-prevent"
-DOCKER_REGISTRY = "auroradevacr.azurecr.io"
-DOCKER_IMAGE = f"{ DOCKER_REGISTRY }/{ DOCKER_PROJECT }/{ DOCKER_IMAGE_NAME }"
 SAFETY_IGNORE = ()
 
 
@@ -44,7 +38,7 @@ def test(ctx):
     """Run tests."""
     # Note: use commandline arguments instead of using `adopts` in `setup.cfg`,
     # since pytest-cov breaks Intellij IDEA debugger.
-    ctx.run("poetry run pytest --cov=app -vv .", pty=True)
+    ctx.run("poetry run pytest --cov=gordo_client -vv .", pty=True)
 
 
 @task
