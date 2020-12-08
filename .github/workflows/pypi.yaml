@@ -16,6 +16,9 @@ jobs:
         id: vars
         run: echo ::set-output name=tag::${GITHUB_REF:11}
 
+      - name: Fetch tags
+        run: git fetch origin "+refs/tags/*:refs/tags/*"
+
       - name : Set up Python 3.7
         uses: actions/setup-python@v1
         with:
