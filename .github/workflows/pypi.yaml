@@ -57,12 +57,11 @@ jobs:
           release_name: ${{ steps.versioning.outputs.tag }}
           prerelease: true
 
-#      - name: Set tag version
-#        run: make version=${{ steps.vars.outputs.tag }} version
-#
-#      - name: Build
-#        run: poetry build
-#
-#      - name: Pypi Publish
-#        run: poetry publish -u __token__ -p ${{ secrets.PYPI_TOKEN }}
+      - name: Set tag version
+        run: poetry version ${{ steps.vars.outputs.tag }}
 
+      - name: Build
+        run: poetry build
+
+      - name: Pypi Publish
+        run: poetry publish -u __token__ -p ${{ secrets.PYPI_TOKEN }}
