@@ -7,7 +7,7 @@ on:
     tags:
       - '*'
 jobs:
-  publish-to-pypi:
+  versioning:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
