@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "gordo-client"
-version = "v0.0.1"
+name = "gordo.client"
+version = "0.1.0"
 description = "Gordo client"
 authors = ["Equinor ASA <fg_gpl@equinor.com>"]
 license = "AGPL-3.0"
@@ -18,17 +18,11 @@ include = [
     "LICENSE",
 ]
 packages = [
-    { include = "gordo_client" }
+    { include = "gordo/client" }
 ]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-pandas = "~=1.0"
-wrapt = "~=1.11"
-cachetools = "~=4.0"
-scikit-learn = "~=0.23"
-gordo-dataset = "~=2.2"
-tensorflow-estimator = "~=2.1.0"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
