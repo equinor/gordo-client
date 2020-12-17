@@ -86,8 +86,9 @@ class Machine(BaseModel):
     dataset: Dict[str, Any] = Field(...)
     metadata: Optional[Metadata] = Field(default_factory=Metadata)
     runtime: Dict[str, Any] = None
-    evaluation: Optional[Dict[str, Any]] = None
+    evaluation: Optional[Dict[str, Any]] = Field(default_factory=dict(cv_mode="full_build"))
 
     def __init__(self, **data):
         super().__init__(**data)
         self.host = f"gordoserver-{self.project_name}-{self.name}"
+

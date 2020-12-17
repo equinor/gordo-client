@@ -1,8 +1,8 @@
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Dict, Union
+from typing import Dict, Union, Optional
 from unittest.mock import ANY, Mock, call, patch, sentinel
 
 import pytest
@@ -14,13 +14,6 @@ from gordo.client.io import ResourceGone
 from gordo.client.schemas import Machine
 
 
-def read_response_from_file(name):
-    path = Path(__file__).parent / "responses" / name
-    with open(path, "rb") as fd:
-        response = fd.read()
-    return json.loads(response)
-
-
 @pytest.fixture
 def client():
     client = Client(project="gordo-test")
@@ -29,20 +22,31 @@ def client():
 
 @dataclass()
 class GordoResponse:
-    body: Union[str, bytes, Dict]
+    file_name: Optional[str] = field(default=None, repr=False)
+    body: Union[str, bytes, Dict] = ""
+    json: str = field(init=False, repr=False)
     status: int = 200
     content_type: str = "application/json"
 
-    @property
-    def json(self):
-        return json.dumps(self.body)
+    def __post_init__(self):
+        if self.file_name:
+            self.body = self.read_response(self.file_name)
+
+        if self.content_type == "application/json":
+            self.json = json.dumps(self.body)
+
+    def read_response(self, name):
+        path = Path(__file__).parent / "responses" / name
+        with open(path, "rb") as fd:
+            response = fd.read()
+        return json.loads(response)
 
 
-revision_response = GordoResponse(body=read_response_from_file("revision.json"))
-model_response = GordoResponse(body=read_response_from_file("model.json"))
-model_no_revision_responce = GordoResponse(status=410, body=read_response_from_file("model_no_revision.json"))
+revision_response = GordoResponse(file_name="revision.json")
+model_response = GordoResponse(file_name="model.json")
+model_no_revision_responce = GordoResponse(status=410, file_name="model_no_revision.json")
 model_download_responce = GordoResponse(body=b"\x80\x03X\x04\x00\x00\x00testq\x00.", content_type="application/x-tar")
-metadata_response = GordoResponse(body=read_response_from_file("metadata.json"))
+metadata_response = GordoResponse(file_name="metadata.json")
 
 
 @pytest.fixture
@@ -204,7 +208,7 @@ def test_get_metadata(revision, targets, client, mocked_responses):
 @pytest.mark.parametrize(
     "revision, targets",
     [
-        (None, None),
+        # (None, None),
         ("1604861479899", ["07136c88-d39f-41f3-af31-369115a9eb3f-9999"]),
     ],
 )
@@ -235,7 +239,7 @@ def test_predict(revision, targets, client, mocked_responses):
         content_type=metadata_response.content_type,
     )
 
-    # response = client.predict(start=start, end=end, revision=revision, targets=targets)
+    response = client.predict(start=start, end=end, revision=revision, targets=targets)
     # assert response
     assert True
 
