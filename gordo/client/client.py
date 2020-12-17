@@ -515,6 +515,7 @@ class Client:
             config.update(self.enforced_dataset_kwargs[config["type"]])
 
         # TODO: Fixme
+        # return machine.dataset.from_dict(config)
         return config
 
     def _raw_data(self, machine: Machine, start: datetime, end: datetime) -> typing.Tuple[pd.DataFrame, pd.DataFrame]:
@@ -534,8 +535,9 @@ class Client:
         Tuple[pandas.core.DataFrame, pandas.core.DataFrame]
             The dataframes representing X and y.
         """
-        # TODO: Fixme
         dataset = self._get_dataset(machine, start, end)
+        # TODO: Fixme
+        # return dataset.get_data()
         return dataset
 
     @staticmethod
