@@ -7,7 +7,7 @@ license = "AGPL-3.0"
 readme = "README.md"
 homepage = "https://github.com/equinor/gordo-client"
 repository = "https://github.com/equinor/gordo-client"
-keywords = ["gordo-client"]
+keywords = ["gordo.client"]
 classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: GNU Affero General Public License v3",
@@ -23,6 +23,17 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
+pandas = "~=1.0"
+wrapt = "~=1.11"
+cachetools = "~=4.0"
+scikit-learn = "~=0.23"
+gordo-dataset = "~=2.3.0"
+tensorflow-estimator = "~=2.1.0"
+pydantic = "^1.7.3"
+requests = "~=2.20"
+influxdb = "^5.3.1"
+pyarrow = "^0.17.1"
+numpy = "~=1.18"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
