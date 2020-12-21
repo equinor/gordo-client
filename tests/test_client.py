@@ -13,86 +13,60 @@ from gordo.client.schemas import Machine
 from gordo.client.utils import PredictionResult
 
 
-@dataclass()
-class GordoResponse:
-    file_name: Optional[str] = field(default=None, repr=False)
-    body: Union[str, bytes, Dict] = ""
-    json: str = field(init=False, repr=False)
-    status: int = 200
-    content_type: str = "application/json"
-    method: str = "GET"
-
-    def __post_init__(self):
-        if self.file_name:
-            self.body = self._read_response(self.file_name)
-
-        if self.content_type == "application/json":
-            self.json = json.dumps(self.body)
-
-    def _read_response(self, name):
-        path = Path(__file__).parent / "responses" / name
-        with open(path, "rb") as fd:
-            response = fd.read()
-        return json.loads(response)
-
-
-revision_response = GordoResponse(file_name="revision.json")
-model_response = GordoResponse(file_name="model.json")
-model_no_revision_responce = GordoResponse(status=410, file_name="model_no_revision.json")
-model_download_responce = GordoResponse(body=b"\x80\x03X\x04\x00\x00\x00testq\x00.", content_type="application/x-tar")
-metadata_response = GordoResponse(file_name="metadata.json")
-anomaly_response = GordoResponse(file_name="anomaly.json", method="POST")
-
-
 def test_machine(machine):
     assert machine.host == "gordoserver-project-name-gordo-test"
 
 
-def test_get_revisions(client, mocked_responses):
+def test_get_revisions(client, mocked_responses, gordo_responses):
+    revision = gordo_responses["revision"]
     mocked_responses.add(
-        responses.GET,
+        revision.method,
         "https://localhost:443/gordo/v0/gordo-test/revisions",
-        body=revision_response.json,
-        status=revision_response.status,
-        content_type=revision_response.content_type,
+        body=revision.json,
+        status=revision.status,
+        content_type=revision.content_type,
     )
 
     response = client.get_revisions()
 
-    assert response == revision_response.body
+    assert response == revision.body
 
 
 @pytest.mark.parametrize("revision", [None, "1604861479899"])
-def test_get_available_machines(revision, client, mocked_responses):
+def test_get_available_machines(revision, client, mocked_responses, gordo_responses):
     if revision is None:
+        revision_response = gordo_responses["revision"]
         mocked_responses.add(
-            responses.GET,
+            revision_response.method,
             "https://localhost:443/gordo/v0/gordo-test/revisions",
             body=revision_response.json,
             status=revision_response.status,
             content_type=revision_response.content_type,
         )
+    model = gordo_responses["model"]
     mocked_responses.add(
-        responses.GET,
+        model.method,
         "https://localhost:443/gordo/v0/gordo-test/models",
-        body=model_response.json,
-        status=model_response.status,
-        content_type=model_response.content_type,
+        body=model.json,
+        status=model.status,
+        content_type=model.content_type,
     )
 
     response = client.get_available_machines(revision=revision)
 
-    assert response == model_response.body
+    assert response == model.body
 
 
-def test_get_available_machines_no_revision(client, mocked_responses):
+def test_get_available_machines_no_revision(client, mocked_responses, gordo_responses):
     revision = "no_revision"
+    model = gordo_responses["model_no_revision"]
+
     mocked_responses.add(
-        responses.GET,
+        model.method,
         "https://localhost:443/gordo/v0/gordo-test/models",
-        body=model_no_revision_responce.json,
-        status=model_no_revision_responce.status,
-        content_type=model_no_revision_responce.content_type,
+        body=model.json,
+        status=model.status,
+        content_type=model.content_type,
     )
 
     with pytest.raises(ResourceGone):
@@ -100,17 +74,19 @@ def test_get_available_machines_no_revision(client, mocked_responses):
 
 
 @pytest.mark.parametrize("revision", [None, "1604861479899"])
-def test_get_machine_names(revision, client, mocked_responses):
+def test_get_machine_names(revision, client, mocked_responses, gordo_responses):
     if revision is None:
+        revision_response = gordo_responses["revision"]
         mocked_responses.add(
-            responses.GET,
+            revision_response.method,
             "https://localhost:443/gordo/v0/gordo-test/revisions",
             body=revision_response.json,
             status=revision_response.status,
             content_type=revision_response.content_type,
         )
+    model_response = gordo_responses["model"]
     mocked_responses.add(
-        responses.GET,
+        model_response.method,
         "https://localhost:443/gordo/v0/gordo-test/models",
         body=model_response.json,
         status=model_response.status,
@@ -129,28 +105,31 @@ def test_get_machine_names(revision, client, mocked_responses):
         ("1604861479899", ["07136c88-d39f-41f3-af31-369115a9eb3f-9999"]),
     ],
 )
-def test_download_model(revision, targets, client, mocked_responses):
+def test_download_model(revision, targets, client, mocked_responses, gordo_responses):
     if revision is None:
+        revision_response = gordo_responses["revision"]
         mocked_responses.add(
-            responses.GET,
+            revision_response.method,
             "https://localhost:443/gordo/v0/gordo-test/revisions",
             body=revision_response.json,
             status=revision_response.status,
             content_type=revision_response.content_type,
         )
+        model_response = gordo_responses["model"]
         mocked_responses.add(
-            responses.GET,
+            model_response.method,
             "https://localhost:443/gordo/v0/gordo-test/models?revision=1604861479899",
             body=model_response.json,
             status=model_response.status,
             content_type=model_response.content_type,
         )
+    model_download_response = gordo_responses["model_download"]
     mocked_responses.add(
-        responses.GET,
+        model_download_response.method,
         "https://localhost:443/gordo/v0/gordo-test/07136c88-d39f-41f3-af31-369115a9eb3f-9999/download-model",
-        body=model_download_responce.body,
-        status=model_download_responce.status,
-        content_type=model_download_responce.content_type,
+        body=model_download_response.body,
+        status=model_download_response.status,
+        content_type=model_download_response.content_type,
     )
 
     response = client.download_model(revision=revision, targets=targets)
@@ -167,24 +146,27 @@ def test_download_model(revision, targets, client, mocked_responses):
         ("1604861479899", ["07136c88-d39f-41f3-af31-369115a9eb3f-9999"]),
     ],
 )
-def test_get_metadata(revision, targets, client, mocked_responses):
+def test_get_metadata(revision, targets, client, mocked_responses, gordo_responses):
     if revision is None:
+        revision_response = gordo_responses["revision"]
         mocked_responses.add(
-            responses.GET,
+            revision_response.method,
             "https://localhost:443/gordo/v0/gordo-test/revisions",
             body=revision_response.json,
             status=revision_response.status,
             content_type=revision_response.content_type,
         )
+        model_response = gordo_responses["model"]
         mocked_responses.add(
-            responses.GET,
+            model_response.method,
             "https://localhost:443/gordo/v0/gordo-test/models?revision=1604861479899",
             body=model_response.json,
             status=model_response.status,
             content_type=model_response.content_type,
         )
+    metadata_response = gordo_responses["metadata"]
     mocked_responses.add(
-        responses.GET,
+        metadata_response.method,
         "https://localhost:443/gordo/v0/gordo-test/07136c88-d39f-41f3-af31-369115a9eb3f-9999/metadata?revision=1604861479899",
         body=metadata_response.json,
         status=metadata_response.status,
@@ -198,11 +180,49 @@ def test_get_metadata(revision, targets, client, mocked_responses):
     }
 
 
-def test_predict_single_machine(client, mocked_responses, machine):
+# @pytest.mark.parametrize(
+#     "revision, targets",
+#     [
+#         # (None, None),
+#         ("1604861479899", ["07136c88-d39f-41f3-af31-369115a9eb3f-9999"]),
+#     ],
+# )
+# def test_predict(revision, targets, client, mocked_responses, gordo_responses):
+#     end = datetime.now(tz=UTC)
+#     start = end - timedelta(days=7)
+#
+#     if revision is None:
+#         mocked_responses.add(
+#             responses.GET,
+#             "https://localhost:443/gordo/v0/gordo-test/revisions",
+#             body=revision_response.json,
+#             status=revision_response.status,
+#             content_type=revision_response.content_type,
+#         )
+#         mocked_responses.add(
+#             responses.GET,
+#             "https://localhost:443/gordo/v0/gordo-test/models?revision=1604861479899",
+#             body=model_response.json,
+#             status=model_response.status,
+#             content_type=model_response.content_type,
+#         )
+#     mocked_responses.add(
+#         responses.GET,
+#         "https://localhost:443/gordo/v0/gordo-test/07136c88-d39f-41f3-af31-369115a9eb3f-9999/metadata?revision=1604861479899",
+#         body=metadata_response.json,
+#         status=metadata_response.status,
+#         content_type=metadata_response.content_type,
+#     )
+#
+#     response = client.predict(start=start, end=end, revision=revision, targets=targets)
+#     assert response
+
+
+def test_predict_single_machine(client, mocked_responses, machine, gordo_responses):
     revision = "1604861479899"
     end = datetime.now(tz=UTC)
     start = end - timedelta(days=7)
-
+    anomaly_response = gordo_responses["anomaly"]
     mocked_responses.add(
         anomaly_response.method,
         "https://localhost:443/gordo/v0/gordo-test/gordo-test/anomaly/prediction?format=json&revision=1604861479899",
