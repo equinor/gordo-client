@@ -234,8 +234,6 @@ class Client:
             resp = self.session.get(f"{self.base_url}/gordo/v0/{self.project_name}/{machine_name}/download-model")
             content = _handle_response(resp, resource_name=f"Model download for model {machine_name}")
             if isinstance(content, bytes):
-                # TODO: change - check it later
-                # models[machine_name] = serializer.loads(content)
                 models[machine_name] = pickle.loads(content)
             else:
                 raise ValueError(
@@ -514,9 +512,7 @@ class Client:
         if config["type"] in self.enforced_dataset_kwargs:
             config.update(self.enforced_dataset_kwargs[config["type"]])
 
-        # TODO: Fixme
-        # return machine.dataset.from_dict(config)
-        return config
+        return GordoBaseDataset.from_dict(config)
 
     def _raw_data(self, machine: Machine, start: datetime, end: datetime) -> typing.Tuple[pd.DataFrame, pd.DataFrame]:
         """
@@ -536,9 +532,7 @@ class Client:
             The dataframes representing X and y.
         """
         dataset = self._get_dataset(machine, start, end)
-        # TODO: Fixme
-        # return dataset.get_data()
-        return dataset
+        return dataset.get_data()
 
     @staticmethod
     def _adjust_for_offset(dt: datetime, resolution: str, n_intervals: int = 100):
