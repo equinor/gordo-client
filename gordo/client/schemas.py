@@ -40,8 +40,8 @@ class Machine(BaseModel):
     host: Optional[str]
     model: Dict[str, Any] = Field(...)
     dataset: Dict[str, Any] = Field(...)
-    metadata: Optional[Metadata] = Field(default_factory=Metadata)
-    runtime: Dict[str, Any] = None
+    metadata: Metadata = Field(default_factory=Metadata)
+    runtime: Dict[str, Any] = Field(default_factory=dict)
     evaluation: Optional[Dict[str, Any]] = Field(default=dict(cv_mode="full_build"))
 
     def __init__(self, **data):

@@ -2,11 +2,10 @@
 import itertools
 import logging
 import pickle
-import typing
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from time import sleep
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, Callable, Dict, Iterable, List, Optional, Tuple, Union
 
 import pandas as pd
 import requests
@@ -53,9 +52,9 @@ class Client:
         host: str = "localhost",
         port: int = 443,
         scheme: str = "https",
-        metadata: typing.Optional[dict] = None,
-        data_provider: typing.Optional[GordoBaseDataProvider] = None,
-        prediction_forwarder: typing.Optional[Callable[[pd.DataFrame, Machine, dict, pd.DataFrame], None]] = None,
+        metadata: Optional[dict] = None,
+        data_provider: Optional[GordoBaseDataProvider] = None,
+        prediction_forwarder: Optional[Callable[[pd.DataFrame, Machine, dict, pd.DataFrame], None]] = None,
         batch_size: int = 100000,
         parallelism: int = 10,
         forward_resampled_sensors: bool = False,
@@ -220,7 +219,7 @@ class Client:
         else:
             raise NotFound(f"Machine {name} not found")
 
-    def download_model(self, revision=None, targets: Optional[List[str]] = None) -> typing.Dict[str, BaseEstimator]:
+    def download_model(self, revision=None, targets: Optional[List[str]] = None) -> Dict[str, BaseEstimator]:
         """
         Download the actual model(s) from the ML server /download-model
 
@@ -242,9 +241,7 @@ class Client:
                 )
         return models
 
-    def get_metadata(
-        self, revision: Optional[str] = None, targets: Optional[List[str]] = None
-    ) -> typing.Dict[str, Metadata]:
+    def get_metadata(self, revision: Optional[str] = None, targets: Optional[List[str]] = None) -> Dict[str, Metadata]:
         """
         Get the machine metadata for provided machines, or all if no machine names are
         provided.
@@ -263,7 +260,7 @@ class Client:
         Dict[str, Metadata]
             Mapping of target names to their metadata
         """
-
+        #  Value expression in dictionary comprehension has incompatible type "Optional[Metadata]"; expected type "Metadata"
         machines = self._get_machines(revision=revision, machine_names=targets)
         return {ep.name: ep.metadata for ep in machines}
 
@@ -273,7 +270,7 @@ class Client:
         end: datetime,
         targets: Optional[List[str]] = None,
         revision: Optional[str] = None,
-    ) -> typing.Iterable[typing.Tuple[str, pd.DataFrame, typing.List[str]]]:
+    ) -> Iterable[Tuple[str, pd.DataFrame, List[str]]]:
         """
         Start the prediction process.
 
@@ -370,7 +367,7 @@ class Client:
     def _send_prediction_request(
         self,
         X: pd.DataFrame,
-        y: typing.Optional[pd.DataFrame],
+        y: Optional[pd.DataFrame],
         chunk: slice,
         machine: Machine,
         start: datetime,
@@ -514,7 +511,7 @@ class Client:
 
         return GordoBaseDataset.from_dict(config)
 
-    def _raw_data(self, machine: Machine, start: datetime, end: datetime) -> typing.Tuple[pd.DataFrame, pd.DataFrame]:
+    def _raw_data(self, machine: Machine, start: datetime, end: datetime) -> Tuple[pd.DataFrame, pd.DataFrame]:
         """
         Fetch the required raw data in this time range which would
         satisfy this machine's /prediction POST
@@ -566,7 +563,7 @@ class Client:
         return dt - (pd.Timedelta(resolution) * n_intervals)
 
     @staticmethod
-    def dataframe_from_response(response: typing.Union[dict, bytes]) -> pd.DataFrame:
+    def dataframe_from_response(response: Union[dict, bytes]) -> pd.DataFrame:
         """
         The response from the server, parsed as either JSON / dict or raw bytes,
         of which would be expected to be loadable from :func:`server.utils.dataframe_from_parquet_bytes`
