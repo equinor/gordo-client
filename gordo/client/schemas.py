@@ -37,7 +37,6 @@ class Metadata(BaseModel):
 class Machine(BaseModel):
     name: str
     project_name: str
-    host: Optional[str]
     model: Dict[str, Any] = Field(...)
     dataset: Dict[str, Any] = Field(...)
     metadata: Metadata = Field(default_factory=Metadata)
