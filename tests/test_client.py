@@ -57,8 +57,6 @@ def _mock_response(mocked_responses, url, response_name):
     return client_response
 
 
-
-
 def test_get_revisions(client, mocked_responses):
     revision_response = _mock_response(mocked_responses, "/gordo/v0/gordo-test/revisions", "revision")
 
