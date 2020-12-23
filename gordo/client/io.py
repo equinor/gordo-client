@@ -44,7 +44,8 @@ class NotFound(Exception):
 
 def _handle_response(resp: requests.Response, resource_name: Optional[str] = None) -> Union[dict, bytes]:
     """
-    Handles the response from the server.
+    Handle the response from the server.
+
     Either returning the parsed json (if it is json), the pure bytestream of the content, or raise an exception
     if something went wrong.
 
@@ -77,22 +78,21 @@ def _handle_response(resp: requests.Response, resource_name: Optional[str] = Non
     if 200 <= resp.status_code <= 299:
         is_json = resp.headers["content-type"] == "application/json"
         return resp.json() if is_json else resp.content
-    else:
-        if resource_name:
-            msg = (
-                f"We failed to get response while fetching resource: {resource_name}. "
-                f"Return code: {resp.status_code}. Return content: {resp.content!r}"
-            )
-        else:
-            msg = f"Failed to get response: {resp.status_code}: {resp.content!r}"
 
-        if resp.status_code == 422:
-            raise HttpUnprocessableEntity(msg)
-        elif resp.status_code == 410:
-            raise ResourceGone(msg)
-        elif resp.status_code == 404:
-            raise NotFound(msg)
-        elif 400 <= resp.status_code <= 499:
-            raise BadGordoRequest(msg)
-        else:
-            raise IOError(msg)
+    if resource_name:
+        msg = (
+            f"We failed to get response while fetching resource: {resource_name}. "
+            f"Return code: {resp.status_code}. Return content: {resp.content!r}"
+        )
+    else:
+        msg = f"Failed to get response: {resp.status_code}: {resp.content!r}"
+
+    if resp.status_code == 422:
+        raise HttpUnprocessableEntity(msg)
+    elif resp.status_code == 410:
+        raise ResourceGone(msg)
+    elif resp.status_code == 404:
+        raise NotFound(msg)
+    elif 400 <= resp.status_code <= 499:
+        raise BadGordoRequest(msg)
+    raise IOError(msg)
