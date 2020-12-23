@@ -163,8 +163,7 @@ class Client:
         return model_response
 
     def get_available_machines(self, revision: Optional[str] = None):
-        """Returns a dict representing the /models endpoint of the project for the given
-        revision.
+        """Returns a dict representing the /models endpoint of the project for the given revision.
 
         Contains at least a key `models` which contains the name of the models the
         server can serve for that revision, and a key `revision` containing the
@@ -179,8 +178,8 @@ class Client:
 
     def _get_machines(self, revision: Optional[str] = None, machine_names: Optional[List[str]] = None) -> List[Machine]:
         """
-        Returns a list of :class:`gordo.workflow.config_elements.machine.Machine`
-        elements served by the server for the provided machine names.
+        Returns a list of :class:`gordo.workflow.config_elements.machine.Machine` elements served by the server for
+        the provided machine names.
 
         Parameters
         ----------
@@ -221,7 +220,7 @@ class Client:
 
     def download_model(self, revision=None, targets: Optional[List[str]] = None) -> Dict[str, BaseEstimator]:
         """
-        Download the actual model(s) from the ML server /download-model
+        Download the actual model(s) from the ML server /download-model.
 
         Returns
         -------
@@ -243,8 +242,7 @@ class Client:
 
     def get_metadata(self, revision: Optional[str] = None, targets: Optional[List[str]] = None) -> Dict[str, Metadata]:
         """
-        Get the machine metadata for provided machines, or all if no machine names are
-        provided.
+        Get the machine metadata for provided machines, or all if no machine names are provided.
 
         Parameters
         ----------
@@ -297,13 +295,13 @@ class Client:
               2nd element is a list of error messages (if any) for running the predictions
         """
 
-        _revision = revision or self._get_latest_revision()
-        machines = self._get_machines(revision=_revision, machine_names=targets)
+        revision = revision or self._get_latest_revision()
+        machines = self._get_machines(revision=revision, machine_names=targets)
 
         # For every machine, start making predictions for the time range
         with ThreadPoolExecutor(max_workers=self.parallelism) as executor:
             jobs = executor.map(
-                lambda ep: self.predict_single_machine(machine=ep, start=start, end=end, revision=_revision),
+                lambda ep: self.predict_single_machine(machine=ep, start=start, end=end, revision=revision),
                 machines,
             )
             return [(j.name, j.predictions, j.error_messages) for j in jobs]
@@ -312,7 +310,7 @@ class Client:
         self, machine: Machine, start: datetime, end: datetime, revision: str
     ) -> PredictionResult:
         """
-        Get predictions based on the /prediction POST machine of Gordo ML Servers
+        Get predictions based on the /prediction POST machine of Gordo ML Servers.
 
         Parameters
         ----------
@@ -354,8 +352,8 @@ class Client:
             )
 
             # Accumulate the batched predictions
-            prediction_dfs = list()
-            error_messages: List[str] = list()
+            prediction_dfs = []
+            error_messages: List[str] = []
             for prediction_result in jobs:
                 if prediction_result.predictions is not None:
                     prediction_dfs.append(prediction_result.predictions)
@@ -375,7 +373,7 @@ class Client:
         revision: str,
     ):
         """
-        Post a slice of data to the machine
+        Post a slice of data to the machine.
 
         Parameters
         ----------
@@ -463,9 +461,7 @@ class Client:
 
             # Process response and return if no exception
             else:
-
                 predictions = self.dataframe_from_response(resp)
-
                 # Forward predictions to any other consumer if registered.
                 if self.prediction_forwarder is not None:
                     self.prediction_forwarder(  # type: ignore
@@ -475,7 +471,7 @@ class Client:
 
     def _get_dataset(self, machine: Machine, start: datetime, end: datetime) -> GordoBaseDataset:
         """
-        Apply client setting to machine dataset
+        Apply client setting to machine dataset.
 
         Parameters
         ----------
@@ -500,11 +496,11 @@ class Client:
         # data provider and changing the dates of data we want.
         config = machine.dataset
         config.update(
-            dict(
-                data_provider=self.data_provider,
-                train_start_date=start,
-                train_end_date=end,
-            )
+            {
+                "data_provider": self.data_provider,
+                "train_start_date": start,
+                "train_end_date": end,
+            }
         )
         if config["type"] in self.enforced_dataset_kwargs:
             config.update(self.enforced_dataset_kwargs[config["type"]])
@@ -513,8 +509,7 @@ class Client:
 
     def _raw_data(self, machine: Machine, start: datetime, end: datetime) -> Tuple[pd.DataFrame, pd.DataFrame]:
         """
-        Fetch the required raw data in this time range which would
-        satisfy this machine's /prediction POST
+        Fetch the required raw data in this time range which would satisfy this machine's /prediction POST.
 
         Parameters
         ----------
@@ -534,8 +529,9 @@ class Client:
     @staticmethod
     def _adjust_for_offset(dt: datetime, resolution: str, n_intervals: int = 100):
         """
-        Adjust the given date by multiplying ``n_intervals`` by ``resolution``. Such that
-        a date of 12:00:00 with ``n_intervals=2`` and ``resolution='10m'`` (10 minutes)
+        Adjust the given date by multiplying ``n_intervals`` by ``resolution``.
+
+        Such that a date of 12:00:00 with ``n_intervals=2`` and ``resolution='10m'`` (10 minutes)
         would result in 11:40
 
         Parameters
@@ -565,6 +561,8 @@ class Client:
     @staticmethod
     def dataframe_from_response(response: Union[dict, bytes]) -> pd.DataFrame:
         """
+        Convert response from server into dataframe.
+
         The response from the server, parsed as either JSON / dict or raw bytes,
         of which would be expected to be loadable from :func:`server.utils.dataframe_from_parquet_bytes`
 
@@ -578,15 +576,14 @@ class Client:
         pandas.DataFrame
         """
         if isinstance(response, dict):
-            predictions = dataframe_from_dict(response["data"])
-        else:
-            predictions = dataframe_from_parquet_bytes(response)
-        return predictions
+            return dataframe_from_dict(response["data"])
+        return dataframe_from_parquet_bytes(response)
 
 
 def make_date_ranges(start: datetime, end: datetime, max_interval_days: int, freq: str = "H"):
     """
     Split start and end datetimes into a list of datetime intervals.
+
     If the interval between start and end is less than ``max_interval_days`` then
     the resulting list will contain the original start & end. ie. [(start, end)]
 
@@ -609,5 +606,4 @@ def make_date_ranges(start: datetime, end: datetime, max_interval_days: int, fre
         # Split into 1hr data ranges
         date_range = pd.date_range(start, end, freq=freq)
         return [(date_range[i], date_range[i + 1]) for i in range(0, len(date_range) - 1)]
-    else:
-        return [(start, end)]
+    return [(start, end)]

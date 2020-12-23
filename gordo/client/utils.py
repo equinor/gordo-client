@@ -10,7 +10,7 @@ PredictionResult = namedtuple("PredictionResult", "name predictions error_messag
 
 def _parse_influx_uri(uri: str) -> Tuple[str, str, str, str, str, str]:
     """
-    Parse an influx URI
+    Parse an influx URI.
 
     Parameters
     ----------
@@ -36,7 +36,7 @@ def influx_client_from_uri(
     proxies: Dict[str, str] = {"https": "", "http": ""},
 ) -> Union[InfluxDBClient, DataFrameClient]:
     """
-    Get a InfluxDBClient or DataFrameClient from a SqlAlchemy like URI
+    Get a InfluxDBClient or DataFrameClient from a SqlAlchemy like URI.
 
     Parameters
     ----------
@@ -57,7 +57,6 @@ def influx_client_from_uri(
     -------
     Union[InfluxDBClient, DataFrameClient]
     """
-
     username, password, host, port, path, db_name = _parse_influx_uri(uri)
 
     Client = DataFrameClient if dataframe_client else InfluxDBClient

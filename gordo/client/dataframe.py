@@ -1,6 +1,5 @@
 """Gordo client dataframes methods."""
 import io
-from typing import List
 
 import dateutil
 import pandas as pd
@@ -49,8 +48,9 @@ def dataframe_from_parquet_bytes(buf: bytes) -> pd.DataFrame:
 
 def dataframe_to_dict(df: pd.DataFrame) -> dict:
     """
-    Convert a dataframe can have a :class:`pandas.MultiIndex` as columns into a dict
-    where each key is the top level column name, and the value is the array
+    Convert a dataframe can have a :class:`pandas.MultiIndex` as columns into a dict.
+
+    Each key is the top level column name, and the value is the array
     of columns under the top level name. If it's a simple dataframe, :meth:`pandas.core.DataFrame.to_dict`
     will be used.
 
@@ -137,8 +137,8 @@ def dataframe_from_dict(data: dict) -> pd.DataFrame:
     """
 
     if isinstance(data, dict) and any(isinstance(val, dict) for val in data.values()):
+        keys = data.keys()
         try:
-            keys = data.keys()
             df: pd.DataFrame = pd.concat((pd.DataFrame.from_dict(data[key]) for key in keys), axis=1, keys=keys)
         except (ValueError, AttributeError):
             df = pd.DataFrame.from_dict(data)

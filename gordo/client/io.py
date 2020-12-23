@@ -44,8 +44,8 @@ class NotFound(Exception):
 
 def _handle_response(resp: requests.Response, resource_name: Optional[str] = None) -> Union[dict, bytes]:
     """
-    Handles the response from the server by either returning the parsed json
-    (if it is json), the pure bytestream of the content, or raise an exception
+    Handles the response from the server.
+    Either returning the parsed json (if it is json), the pure bytestream of the content, or raise an exception
     if something went wrong.
 
 
