@@ -57,8 +57,6 @@ def _mock_response(mocked_responses, url, response_name):
     return client_response
 
 
-def test_machine(machine):
-    assert machine.host == "gordoserver-project-name-gordo-test"
 
 
 def test_get_revisions(client, mocked_responses):
