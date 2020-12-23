@@ -13,7 +13,7 @@ class CrossValidationMetaData(BaseModel):
 class ModelBuildMetadata(BaseModel):
     model_offset: int = 0
     model_creation_date: Optional[str] = None
-    model_builder_version: str = "1.1.0"
+    model_builder_version: Optional[str] = None
     cross_validation: CrossValidationMetaData = Field(default_factory=CrossValidationMetaData)
     model_training_duration_sec: Optional[float] = None
     model_meta: Dict[str, Any] = Field(default_factory=dict)
