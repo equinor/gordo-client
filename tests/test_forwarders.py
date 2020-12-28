@@ -1,5 +1,4 @@
 """Tests for gordo.client."""
-# TODO: Move those tests to gordo.client project.
 
 import logging
 from typing import List
