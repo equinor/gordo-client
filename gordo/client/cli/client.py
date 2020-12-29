@@ -45,7 +45,7 @@ from gordo.client.forwarders import ForwardPredictionsIntoInflux
     + "authentication parameters such as header keys. ie. --session-config {'headers': {'API-KEY': 'foo-bar'}}",
 )
 @click.pass_context
-def client_cli(ctx: click.Context, *args, **kwargs):
+def gordo_client(ctx: click.Context, *args, **kwargs):
     """Entry sub-command for client related activities."""
     # Setup the session with any attributes set by the user
     session_config = kwargs.pop("session_config", None)
@@ -131,10 +131,10 @@ def predict(
         }
     )
 
-    gordo_client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
+    client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
 
     if influx_uri is not None:
-        gordo_client.prediction_forwarder = ForwardPredictionsIntoInflux(  # type: ignore
+        client.prediction_forwarder = ForwardPredictionsIntoInflux(  # type: ignore
             destination_influx_uri=influx_uri,
             destination_influx_api_key=influx_api_key,
             destination_influx_recreate=influx_recreate_db,
@@ -142,9 +142,7 @@ def predict(
         )
 
     # Fire off getting predictions
-    predictions = gordo_client.predict(
-        start, end, targets=target
-    )  # type: Iterable[Tuple[str, pd.DataFrame, List[str]]]
+    predictions = client.predict(start, end, targets=target)  # type: Iterable[Tuple[str, pd.DataFrame, List[str]]]
 
     # Loop over all error messages for each result and log them
     click.secho(f"\n{'-' * 20} Summary of failed predictions (if any) {'-' * 20}")
@@ -181,10 +179,10 @@ def metadata(
     target: List[str],
 ):
     """Get metadata from a given endpoint."""
-    gordo_client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
+    client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
     target_metadata = {
         k: v.dict()  # type: ignore
-        for k, v in gordo_client.get_metadata(targets=target).items()  # type: ignore
+        for k, v in client.get_metadata(targets=target).items()  # type: ignore
     }
     if output_file:
         json.dump(target_metadata, output_file)
@@ -205,8 +203,8 @@ def metadata(
 @click.pass_context
 def download_model(ctx: click.Context, output_dir: str, target: List[str]):
     """Download the actual model from the target and write to an output directory."""
-    gordo_client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
-    models = gordo_client.download_model(targets=target)
+    client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
+    models = client.download_model(targets=target)
 
     # Iterate over mapping of models and save into their own sub dirs of the output_dir
     for model_name, model in models.items():
@@ -227,6 +225,6 @@ def _dump_model(obj: object, dest_dir: Union[os.PathLike, str], model_metadata: 
             simplejson.dump(model_metadata, f, default=str)
 
 
-client_cli.add_command(predict)
-client_cli.add_command(metadata)
-client_cli.add_command(download_model)
+gordo_client.add_command(predict)
+gordo_client.add_command(metadata)
+gordo_client.add_command(download_model)
