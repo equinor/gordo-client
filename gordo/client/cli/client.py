@@ -1,4 +1,4 @@
-"""Click command."""
+"""Gordo-client click command."""
 import json
 import os
 import pickle  # noqa:S403
