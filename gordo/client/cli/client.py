@@ -1,18 +1,20 @@
+"""Click command."""
 import json
 import os
-import pickle
+import pickle  # noqa:S403
 import sys
-import typing
 from datetime import datetime
 from pprint import pprint
+from typing import Iterable, List, Optional, Tuple, Union
+from typing.io import IO
 
 import click
-import pandas as pd  # noqa
+import pandas as pd
 import simplejson
 import yaml
 from gordo_dataset.data_provider import providers
-from requests import Session
 from pkg_resources import get_distribution
+from requests import Session
 
 from gordo.client import Client
 from gordo.client.cli.custom_types import DataProviderParam, IsoFormatDateTime, key_value_par
@@ -20,7 +22,7 @@ from gordo.client.forwarders import ForwardPredictionsIntoInflux
 
 
 @click.group("client")
-@click.version_option(version=get_distribution('gordo.client').version, prog_name="gordo-client")
+@click.version_option(version=get_distribution("gordo.client").version, prog_name="gordo-client")
 @click.option("--project", help="The project to target")
 @click.option("--host", help="The host the server is running on", default="localhost")
 @click.option("--port", help="Port the server is running on", default=443)
@@ -33,20 +35,18 @@ from gordo.client.forwarders import ForwardPredictionsIntoInflux
     multiple=True,
     default=(),
     help="Key-Value pair to be entered as metadata labels, may use this option multiple times. "
-    "to be separated by a comma. ie: --metadata key,val --metadata some key,some value",
+    + "to be separated by a comma. ie: --metadata key,val --metadata some key,some value",
 )
 @click.option(
     "--session-config",
     type=yaml.safe_load,
-    default="{}",
+    default="{}",  # noqa:P103
     help="Config json/yaml to set on the requests.Session object. Useful when needing to supply"
-    "authentication parameters such as header keys. ie. --session-config {'headers': {'API-KEY': 'foo-bar'}}",
+    + "authentication parameters such as header keys. ie. --session-config {'headers': {'API-KEY': 'foo-bar'}}",
 )
 @click.pass_context
 def client(ctx: click.Context, *args, **kwargs):
-    """
-    Entry sub-command for client related activities
-    """
+    """Entry sub-command for client related activities."""
     # Setup the session with any attributes set by the user
     session_config = kwargs.pop("session_config", None)
     if session_config:
@@ -63,7 +63,7 @@ def client(ctx: click.Context, *args, **kwargs):
 @click.argument("end", type=IsoFormatDateTime())
 @click.option(
     "--target",
-    help="A list of machines to target. If not provided then target all machines in the" " project",
+    help="A list of machines to target. If not provided then target all machines in the project",
     default=[],
     multiple=True,
 )
@@ -71,7 +71,7 @@ def client(ctx: click.Context, *args, **kwargs):
     "--data-provider",
     type=DataProviderParam(),
     envvar="DATA_PROVIDER",
-    help="DataProvider dict encoded as json. Must contain a 'type' key with the name of" " a DataProvider as value.",
+    help="DataProvider dict encoded as json. Must contain a 'type' key with the name of a DataProvider as value.",
 )
 @click.option(
     "--output-dir",
@@ -111,7 +111,7 @@ def predict(
     ctx: click.Context,
     start: datetime,
     end: datetime,
-    target: typing.List[str],
+    target: List[str],
     data_provider: providers.GordoBaseDataProvider,
     output_dir: str,
     influx_uri: str,
@@ -121,9 +121,7 @@ def predict(
     n_retries: int,
     parquet: bool,
 ):
-    """
-    Run some predictions against the target
-    """
+    """Run some predictions against the target."""
     ctx.obj["kwargs"].update(
         {
             "data_provider": data_provider,
@@ -133,10 +131,10 @@ def predict(
         }
     )
 
-    client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
+    gordo_client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
 
     if influx_uri is not None:
-        client.prediction_forwarder = ForwardPredictionsIntoInflux(  # type: ignore
+        gordo_client.prediction_forwarder = ForwardPredictionsIntoInflux(  # type: ignore
             destination_influx_uri=influx_uri,
             destination_influx_api_key=influx_api_key,
             destination_influx_recreate=influx_recreate_db,
@@ -144,9 +142,9 @@ def predict(
         )
 
     # Fire off getting predictions
-    predictions = client.predict(
+    predictions = gordo_client.predict(
         start, end, targets=target
-    )  # type: typing.Iterable[typing.Tuple[str, pd.DataFrame, typing.List[str]]]
+    )  # type: Iterable[Tuple[str, pd.DataFrame, List[str]]]
 
     # Loop over all error messages for each result and log them
     click.secho(f"\n{'-' * 20} Summary of failed predictions (if any) {'-' * 20}")
@@ -172,47 +170,43 @@ def predict(
 )
 @click.option(
     "--target",
-    help="A list of machines to target. If not provided then target all machines in the" " project",
+    help="A list of machines to target. If not provided then target all machines in the project",
     default=[],
     multiple=True,
 )
 @click.pass_context
 def metadata(
     ctx: click.Context,
-    output_file: typing.Optional[typing.IO[str]],
-    target: typing.List[str],
+    output_file: Optional[IO[str]],
+    target: List[str],
 ):
-    """
-    Get metadata from a given endpoint
-    """
-    client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
-    metadata = {
+    """Get metadata from a given endpoint."""
+    gordo_client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
+    target_metadata = {
         k: v.dict()  # type: ignore
-        for k, v in client.get_metadata(targets=target).items()  # type: ignore
+        for k, v in gordo_client.get_metadata(targets=target).items()  # type: ignore
     }
     if output_file:
-        json.dump(metadata, output_file)
+        json.dump(target_metadata, output_file)
         click.secho(f"Saved metadata json to file: '{output_file}'")
     else:
-        pprint(metadata)
-    return metadata
+        pprint(target_metadata)
+    return target_metadata
 
 
 @click.command("download-model")
 @click.argument("output-dir", type=click.Path(exists=True))
 @click.option(
     "--target",
-    help="A list of machines to target. If not provided then target all machines in the" " project",
+    help="A list of machines to target. If not provided then target all machines in the project",
     default=[],
     multiple=True,
 )
 @click.pass_context
-def download_model(ctx: click.Context, output_dir: str, target: typing.List[str]):
-    """
-    Download the actual model from the target and write to an output directory
-    """
-    client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
-    models = client.download_model(targets=target)
+def download_model(ctx: click.Context, output_dir: str, target: List[str]):
+    """Download the actual model from the target and write to an output directory."""
+    gordo_client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
+    models = gordo_client.download_model(targets=target)
 
     # Iterate over mapping of models and save into their own sub dirs of the output_dir
     for model_name, model in models.items():
@@ -220,17 +214,17 @@ def download_model(ctx: click.Context, output_dir: str, target: typing.List[str]
         os.mkdir(model_out_dir)
         click.secho(f"Writing model '{model_name}' to directory: '{model_out_dir}'...", nl=False)
         _dump_model(model, model_out_dir)
-        click.secho(f"done")
+        click.secho("done")
 
     click.secho(f"Wrote all models to directory: {output_dir}", fg="green")
 
 
-def _dump_model(obj: object, dest_dir: typing.Union[os.PathLike, str], metadata: dict = None):
+def _dump_model(obj: object, dest_dir: Union[os.PathLike, str], model_metadata: dict = None):
     with open(os.path.join(dest_dir, "model.pkl"), "wb") as m:
         pickle.dump(obj, m)
-    if metadata is not None:
+    if model_metadata is not None:
         with open(os.path.join(dest_dir, "metadata.json"), "w") as f:
-            simplejson.dump(metadata, f, default=str)
+            simplejson.dump(model_metadata, f, default=str)
 
 
 client.add_command(predict)
