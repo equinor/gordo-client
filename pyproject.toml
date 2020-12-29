@@ -50,7 +50,7 @@ safety = "^1.9.0"
 wemake-python-styleguide = "^0.14.1"
 
 [tool.poetry.scripts]
-gordo-client = 'gordo.client.cli.client:client'
+gordo-client = 'gordo.client.cli.client:client_cli'
 
 [tool.isort]
 line_length = 120
