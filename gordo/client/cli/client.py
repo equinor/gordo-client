@@ -120,24 +120,27 @@ def predict(
     parquet: bool,
 ):
     """Run some predictions against the target."""
+    if influx_uri is None:
+        prediction_forwarder = None
+    else:
+        prediction_forwarder = ForwardPredictionsIntoInflux(
+            destination_influx_uri=influx_uri,
+            destination_influx_api_key=influx_api_key,
+            destination_influx_recreate=influx_recreate_db,
+            n_retries=n_retries,
+        )
+
     ctx.obj["kwargs"].update(
         {
             "data_provider": data_provider,
             "forward_resampled_sensors": forward_resampled_sensors,
             "n_retries": n_retries,
             "use_parquet": parquet,
+            "prediction_forwarder": prediction_forwarder,
         }
     )
 
     client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
-
-    if influx_uri is not None:
-        client.prediction_forwarder = ForwardPredictionsIntoInflux(  # type: ignore
-            destination_influx_uri=influx_uri,
-            destination_influx_api_key=influx_api_key,
-            destination_influx_recreate=influx_recreate_db,
-            n_retries=n_retries,
-        )
 
     # Fire off getting predictions
     predictions = client.predict(start, end, targets=target)  # type: Iterable[Tuple[str, pd.DataFrame, List[str]]]
