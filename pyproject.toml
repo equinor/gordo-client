@@ -27,12 +27,13 @@ pandas = "~=1.0"
 wrapt = "~=1.11"
 cachetools = "~=4.0"
 scikit-learn = "~=0.23"
-gordo-dataset = "~=2.3.0"
 pydantic = "^1.7.3"
 requests = "~=2.20"
 influxdb = "^5.3.0"
 pyarrow = "^0.17.1"
 numpy = "~=1.18"
+gordo-dataset = "~=2.3.0"
+simplejson = "^3.17.2"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
@@ -47,6 +48,9 @@ responses = "~=0.10"
 invoke = "^1.4.1"
 safety = "^1.9.0"
 wemake-python-styleguide = "^0.14.1"
+
+[tool.poetry.scripts]
+gordo-client = 'gordo.client.cli.client:gordo_client'
 
 [tool.isort]
 line_length = 120
