@@ -1,12 +1,14 @@
 import json
 import tempfile
+from datetime import datetime
 
 import pytest
+from click.exceptions import BadParameter
 from click.testing import CliRunner
 from gordo_dataset.data_provider import providers
 
 from gordo.client.cli.client import gordo_client
-from gordo.client.cli.custom_types import DataProviderParam
+from gordo.client.cli.custom_types import DataProviderParam, IsoFormatDateTime
 
 
 @pytest.fixture
@@ -48,3 +50,28 @@ def test_data_provider_click_param(config, sensors_str):
 
         provider = DataProviderParam()(config_file.name)
         assert isinstance(provider, getattr(providers, expected_provider_type))
+
+
+@pytest.mark.parametrize(
+    "date",
+    (
+        "2020-01-01",
+        "2020-01-01T12:00:00+00:00",
+        "2020-01-01T08:00:00.0",
+    ),
+)
+def test_iso_date_click_param(date):
+    result = IsoFormatDateTime()(date)
+    assert type(result) == datetime
+
+
+@pytest.mark.parametrize(
+    "date",
+    (
+        "test",
+        "2018-01-02 test",
+    ),
+)
+def test_iso_date_click_param_not_date(date):
+    with pytest.raises(BadParameter):
+        IsoFormatDateTime()(date)
