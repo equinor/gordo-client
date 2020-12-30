@@ -68,6 +68,7 @@ def test_iso_date_click_param(date):
 @pytest.mark.parametrize(
     "date",
     (
+        "",
         "test",
         "2018-01-02 test",
     ),
