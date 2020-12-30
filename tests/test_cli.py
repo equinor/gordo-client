@@ -3,7 +3,6 @@ import tempfile
 
 import pytest
 from click.testing import CliRunner
-
 from gordo_dataset.data_provider import providers
 
 from gordo.client.cli.client import gordo_client
@@ -25,7 +24,6 @@ def test_version(runner):
 
     assert result.exit_code == 0
     assert result.output.startswith("gordo-client, version")
-
 
 
 @pytest.mark.parametrize(
