@@ -45,10 +45,8 @@ from gordo.client.forwarders import ForwardPredictionsIntoInflux
     + "authentication parameters such as header keys. ie. --session-config {'headers': {'API-KEY': 'foo-bar'}}",
 )
 @click.pass_context
-def gordo_client(ctx: click.Context, *args, **kwargs):
+def gordo_client(ctx: click.Context, *args, session_config=None, **kwargs):
     """Entry sub-command for client related activities."""
-    # Setup the session with any attributes set by the user
-    session_config = kwargs.pop("session_config", None)
     if session_config:
         session = Session()
         for key, value in session_config.items():
