@@ -13,16 +13,15 @@ import pandas as pd
 import simplejson
 import yaml
 from gordo_dataset.data_provider import providers
-from pkg_resources import get_distribution
 from requests import Session
 
-from gordo.client import Client
+from gordo.client import Client, __version__
 from gordo.client.cli.custom_types import DataProviderParam, IsoFormatDateTime, key_value_par
 from gordo.client.forwarders import ForwardPredictionsIntoInflux
 
 
 @click.group("client")
-@click.version_option(version=get_distribution("gordo.client").version, prog_name="gordo-client")
+@click.version_option(version=__version__, prog_name="gordo-client")
 @click.option("--project", help="The project to target")
 @click.option("--host", help="The host the server is running on", default="localhost")
 @click.option("--port", help="Port the server is running on", default=443)
