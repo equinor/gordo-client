@@ -35,6 +35,7 @@ DEFAULT_ENFORCED_DATASET_KWARGS = {
         "filter_periods": {},
         "low_threshold": None,
         "high_threshold": None,
+        "process_metadata": False
     }
 }
 
