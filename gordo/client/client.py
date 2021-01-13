@@ -35,6 +35,7 @@ DEFAULT_ENFORCED_DATASET_KWARGS = {
         "filter_periods": {},
         "low_threshold": None,
         "high_threshold": None,
+        "process_metadata": False,
     }
 }
 
@@ -151,9 +152,7 @@ class Client:
     @cached(TTLCache(maxsize=64, ttl=30))
     def _get_available_machines(self, revision):
         req = requests.Request(
-            "GET",
-            f"{self.base_url}/gordo/v0/{self.project_name}/models",
-            params={"revision": revision},
+            "GET", f"{self.base_url}/gordo/v0/{self.project_name}/models", params={"revision": revision}
         )
         resp = self.session.send(req.prepare())
         model_response = _handle_response(resp=resp, resource_name=f"Model name listing for revision {revision}")
@@ -209,8 +208,7 @@ class Client:
     @cached(LRUCache(maxsize=25000))
     def _machine_from_server(self, name: str, revision: str) -> Machine:
         resp = self.session.get(
-            f"{self.base_url}/gordo/v0/{self.project_name}/{name}/metadata",
-            params={"revision": revision},
+            f"{self.base_url}/gordo/v0/{self.project_name}/{name}/metadata", params={"revision": revision}
         )
         metadata = _handle_response(resp=resp, resource_name=f"Machine metadata for {name}")
         if isinstance(metadata, dict) and metadata.get("metadata", None):
@@ -263,11 +261,7 @@ class Client:
         return {ep.name: ep.metadata for ep in machines}
 
     def predict(
-        self,
-        start: datetime,
-        end: datetime,
-        targets: Optional[List[str]] = None,
-        revision: Optional[str] = None,
+        self, start: datetime, end: datetime, targets: Optional[List[str]] = None, revision: Optional[str] = None
     ) -> Iterable[Tuple[str, pd.DataFrame, List[str]]]:
         """
         Start the prediction process.
@@ -301,8 +295,7 @@ class Client:
         # For every machine, start making predictions for the time range
         with ThreadPoolExecutor(max_workers=self.parallelism) as executor:
             jobs = executor.map(
-                lambda ep: self.predict_single_machine(machine=ep, start=start, end=end, revision=revision),
-                machines,
+                lambda ep: self.predict_single_machine(machine=ep, start=start, end=end, revision=revision), machines
             )
             return [(j.name, j.predictions, j.error_messages) for j in jobs]
 
@@ -426,12 +419,7 @@ class Client:
                     kwargs["url"] = f"{self.base_url}/gordo/v0/{self.project_name}/{machine.name}{self.prediction_path}"
                     resp = _handle_response(self.session.post(**kwargs))
             # If it was an IO or TimeoutError, we can retry
-            except (
-                IOError,
-                TimeoutError,
-                requests.ConnectionError,
-                requests.HTTPError,
-            ) as exc:
+            except (IOError, TimeoutError, requests.ConnectionError, requests.HTTPError) as exc:
                 if current_attempt <= self.n_retries:
                     time_to_sleep = min(2 ** (current_attempt + 2), 300)
                     logger.warning(
@@ -495,13 +483,7 @@ class Client:
         # Re-create the machine's dataset but updating to use the client's
         # data provider and changing the dates of data we want.
         config = machine.dataset
-        config.update(
-            {
-                "data_provider": self.data_provider,
-                "train_start_date": start,
-                "train_end_date": end,
-            }
-        )
+        config.update({"data_provider": self.data_provider, "train_start_date": start, "train_end_date": end})
         if config["type"] in self.enforced_dataset_kwargs:
             config.update(self.enforced_dataset_kwargs[config["type"]])
 

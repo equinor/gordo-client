@@ -70,38 +70,14 @@ def gordo_client(ctx: click.Context, *args, session_config=None, **kwargs):
     envvar="DATA_PROVIDER",
     help="DataProvider dict encoded as json. Must contain a 'type' key with the name of a DataProvider as value.",
 )
-@click.option(
-    "--output-dir",
-    type=click.Path(exists=True),
-    help="Save output prediction dataframes in a directory",
-)
-@click.option(
-    "--influx-uri",
-    help="Format: <username>:<password>@<host>:<port>/<optional-path>/<db_name>",
-)
+@click.option("--output-dir", type=click.Path(exists=True), help="Save output prediction dataframes in a directory")
+@click.option("--influx-uri", help="Format: <username>:<password>@<host>:<port>/<optional-path>/<db_name>")
 @click.option("--influx-api-key", help="Key to provide to the destination influx")
+@click.option("--influx-recreate-db", help="Recreate the desintation DB before writing", is_flag=True, default=False)
+@click.option("--forward-resampled-sensors", help="forward the resampled sensor values", is_flag=True, default=False)
+@click.option("--n-retries", help="Time client should retry failed predictions", type=int, default=5)
 @click.option(
-    "--influx-recreate-db",
-    help="Recreate the desintation DB before writing",
-    is_flag=True,
-    default=False,
-)
-@click.option(
-    "--forward-resampled-sensors",
-    help="forward the resampled sensor values",
-    is_flag=True,
-    default=False,
-)
-@click.option(
-    "--n-retries",
-    help="Time client should retry failed predictions",
-    type=int,
-    default=5,
-)
-@click.option(
-    "--parquet/--no-parquet",
-    help="Use parquet serialization when sending and receiving data from server",
-    default=True,
+    "--parquet/--no-parquet", help="Use parquet serialization when sending and receiving data from server", default=True
 )
 @click.pass_context
 def predict(
@@ -161,11 +137,7 @@ def predict(
 
 
 @click.command("metadata")
-@click.option(
-    "--output-file",
-    type=click.File(mode="w"),
-    help="Optional output file to save metadata",
-)
+@click.option("--output-file", type=click.File(mode="w"), help="Optional output file to save metadata")
 @click.option(
     "--target",
     help="A list of machines to target. If not provided then target all machines in the project",
@@ -173,11 +145,7 @@ def predict(
     multiple=True,
 )
 @click.pass_context
-def metadata(
-    ctx: click.Context,
-    output_file: Optional[IO[str]],
-    target: List[str],
-):
+def metadata(ctx: click.Context, output_file: Optional[IO[str]], target: List[str]):
     """Get metadata from a given endpoint."""
     client = Client(*ctx.obj["args"], **ctx.obj["kwargs"])
     target_metadata = {
