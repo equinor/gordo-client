@@ -5,7 +5,7 @@ import typing
 import click
 import yaml
 from dateutil import parser
-from gordo_dataset.dataset import _get_dataset  # noqa: WPS450, I001
+from gordo_dataset.data_provider.providers import GordoBaseDataProvider
 from gordo_dataset.exceptions import ConfigException
 
 
@@ -23,7 +23,7 @@ class DataProviderParam(click.ParamType):
             config = yaml.safe_load(value)
 
         try:
-            provider = _get_dataset(config)
+            provider = GordoBaseDataProvider.from_dict(config)
         except ConfigException as e:
             self.fail(str(e))
         return provider
