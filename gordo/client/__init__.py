@@ -1,4 +1,3 @@
-
 from pkgutil import extend_path
 
 from pkg_resources import DistributionNotFound, get_distribution
