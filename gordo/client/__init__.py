@@ -8,6 +8,9 @@ from gordo.client.utils import influx_client_from_uri
 try:
     __version__ = get_distribution("gordo.client").version
 except DistributionNotFound:
+    # TODO try to find a better solution for fixing this issue
+    # This exception appears if gordo.client is not installed as a package
+    # for example in a development environment
     __version__ = "0.0.0"
 
 # Denote a package as a namespace package.
