@@ -4,10 +4,8 @@ import typing
 
 import click
 import yaml
-
-import importlib
 from dateutil import parser
-from gordo_dataset.dataset import _get_dataset
+from gordo_dataset.dataset import _get_dataset  # noqa: WPS450, I001
 from gordo_dataset.exceptions import ConfigException
 
 
