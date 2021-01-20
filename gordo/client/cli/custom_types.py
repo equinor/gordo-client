@@ -4,8 +4,11 @@ import typing
 
 import click
 import yaml
+
+import importlib
 from dateutil import parser
-from gordo_dataset.data_provider import providers
+from gordo_dataset.dataset import _get_dataset
+from gordo_dataset.exceptions import ConfigException
 
 
 class DataProviderParam(click.ParamType):
@@ -17,19 +20,15 @@ class DataProviderParam(click.ParamType):
         """Convert the value for data provider."""
         if os.path.isfile(value):
             with open(value) as f:
-                kwargs = yaml.safe_load(f)
+                config = yaml.safe_load(f)
         else:
-            kwargs = yaml.safe_load(value)
+            config = yaml.safe_load(value)
 
-        if "type" not in kwargs:
-            self.fail("Cannot create DataProvider without 'type' key defined")
-
-        kind = kwargs.pop("type")
-
-        provider_class = getattr(providers, kind, None)
-        if provider_class is None:
-            self.fail(f"No DataProvider named '{kind}'")
-        return provider_class(**kwargs)
+        try:
+            provider = _get_dataset(config)
+        except ConfigException as e:
+            self.fail(str(e))
+        return provider
 
 
 class IsoFormatDateTime(click.ParamType):
