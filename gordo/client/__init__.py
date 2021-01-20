@@ -1,6 +1,7 @@
+
 from pkgutil import extend_path
 
-from pkg_resources import get_distribution, DistributionNotFound
+from pkg_resources import DistributionNotFound, get_distribution
 
 from gordo.client.client import Client
 from gordo.client.utils import influx_client_from_uri
