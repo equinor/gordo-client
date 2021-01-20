@@ -8,7 +8,7 @@ from gordo.client.utils import influx_client_from_uri
 try:
     __version__ = get_distribution("gordo.client").version
 except DistributionNotFound:
-    __version__ = '0.0.0'
+    __version__ = "0.0.0"
 
 # Denote a package as a namespace package.
 # https://www.python.org/dev/peps/pep-0420/#namespace-packages-today
