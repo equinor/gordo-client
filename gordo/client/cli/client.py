@@ -1,5 +1,6 @@
 """Gordo-client click command."""
 import json
+import logging
 import os
 import pickle  # noqa:S403
 import sys
@@ -43,9 +44,22 @@ from gordo.client.forwarders import ForwardPredictionsIntoInflux
     help="Config json/yaml to set on the requests.Session object. Useful when needing to supply"
     + "authentication parameters such as header keys. ie. --session-config {'headers': {'API-KEY': 'foo-bar'}}",
 )
+@click.option(
+    "--log-level",
+    type=str,
+    default="INFO",
+    help="Run client with custom log-level.",
+    envvar="GORDO_LOG_LEVEL",
+)
 @click.pass_context
 def gordo_client(ctx: click.Context, *args, session_config=None, **kwargs):
     """Entry sub-command for client related activities."""
+    # Set log level, defaulting to INFO
+    logging.basicConfig(
+        level=getattr(logging, str(ctx.params.get("log_level")).upper()),
+        format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
+    )
+
     if session_config:
         session = Session()
         for key, value in session_config.items():
