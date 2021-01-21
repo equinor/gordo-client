@@ -1,9 +1,9 @@
 """Gordo-client click command."""
 import json
+import logging
 import os
 import pickle  # noqa:S403
 import sys
-import logging
 from datetime import datetime
 from pprint import pprint
 from typing import Iterable, List, Optional, Tuple, Union
@@ -54,7 +54,6 @@ from gordo.client.forwarders import ForwardPredictionsIntoInflux
 @click.pass_context
 def gordo_client(ctx: click.Context, *args, session_config=None, **kwargs):
     """Entry sub-command for client related activities."""
-
     # Set log level, defaulting to INFO
     logging.basicConfig(
         level=getattr(logging, str(ctx.params.get("log_level")).upper()),
