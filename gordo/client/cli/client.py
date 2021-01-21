@@ -47,7 +47,6 @@ from gordo.client.forwarders import ForwardPredictionsIntoInflux
 @click.option(
     "--log-level",
     type=str,
-    default="INFO",
     help="Run client with custom log-level.",
     envvar="GORDO_LOG_LEVEL",
 )
@@ -55,10 +54,12 @@ from gordo.client.forwarders import ForwardPredictionsIntoInflux
 def gordo_client(ctx: click.Context, *args, session_config=None, **kwargs):
     """Entry sub-command for client related activities."""
     # Set log level, defaulting to INFO
-    logging.basicConfig(
-        level=getattr(logging, str(ctx.params.get("log_level")).upper()),
-        format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
-    )
+    log_level = ctx.params.get("log_level")
+    if log_level:
+        logging.basicConfig(
+            level=logging.getLevelName(log_level),
+            format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
+        )
 
     if session_config:
         session = Session()
