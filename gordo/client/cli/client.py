@@ -67,8 +67,7 @@ def gordo_client(ctx: click.Context, *args, session_config=None, **kwargs):
         for key, value in session_config.items():
             setattr(session, key, value)
         kwargs["session"] = session
-    if "log_level" in kwargs:
-        del kwargs["log_level"]
+    kwargs.pop("log_level", None)
 
     ctx.obj = {"args": args, "kwargs": kwargs}
 
