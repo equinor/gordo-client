@@ -4,6 +4,7 @@ import logging
 import os
 import pickle  # noqa:S403
 import sys
+from copy import copy
 from datetime import datetime
 from pprint import pprint
 from typing import Iterable, List, Optional, Tuple, Union
@@ -53,7 +54,6 @@ from gordo.client.forwarders import ForwardPredictionsIntoInflux
 @click.pass_context
 def gordo_client(ctx: click.Context, *args, session_config=None, **kwargs):
     """Entry sub-command for client related activities."""
-    # Set log level, defaulting to INFO
     log_level = ctx.params.get("log_level")
     if log_level:
         logging.basicConfig(
@@ -61,11 +61,14 @@ def gordo_client(ctx: click.Context, *args, session_config=None, **kwargs):
             format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
         )
 
+    kwargs = copy(kwargs)
     if session_config:
         session = Session()
         for key, value in session_config.items():
             setattr(session, key, value)
         kwargs["session"] = session
+    if "log_level" in kwargs:
+        del kwargs["log_level"]
 
     ctx.obj = {"args": args, "kwargs": kwargs}
 
