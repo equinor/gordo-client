@@ -485,7 +485,7 @@ class Client:
         config = machine.dataset
         config.update({"data_provider": self.data_provider, "train_start_date": start, "train_end_date": end})
 
-        _, config_class = parse_module_path(config["time"])
+        _, config_class = parse_module_path(config["type"])
         if config_class in self.enforced_dataset_kwargs:
             config.update(self.enforced_dataset_kwargs[config_class])
 
