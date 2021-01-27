@@ -27,16 +27,20 @@ from gordo.client.utils import PredictionResult, parse_module_path
 
 logger = logging.getLogger(__name__)
 
+_TIMESERIES_DATASET_KWARGS = {
+    "row_filter_buffer_size": 0,
+    "n_samples_threshold": 0,
+    "known_filter_periods": [],
+    "filter_periods": {},
+    "low_threshold": None,
+    "high_threshold": None,
+    "process_metadata": False,
+}
+
+
 DEFAULT_ENFORCED_DATASET_KWARGS = {
-    "TimeSeriesDataset": {
-        "row_filter_buffer_size": 0,
-        "n_samples_threshold": 0,
-        "known_filter_periods": [],
-        "filter_periods": {},
-        "low_threshold": None,
-        "high_threshold": None,
-        "process_metadata": False,
-    }
+    (None, "TimeSeriesDataset"): _TIMESERIES_DATASET_KWARGS,
+    ("gordo_dataset.datasets", "TimeSeriesDataset"): _TIMESERIES_DATASET_KWARGS,
 }
 
 
@@ -485,8 +489,8 @@ class Client:
         config = machine.dataset
         config.update({"data_provider": self.data_provider, "train_start_date": start, "train_end_date": end})
 
-        _, config_class = parse_module_path(config["type"])
-        if config_class in self.enforced_dataset_kwargs:
+        parsed_type = parse_module_path(config["type"])
+        if parsed_type in self.enforced_dataset_kwargs:
             config.update(self.enforced_dataset_kwargs[config_class])
 
         return GordoBaseDataset.from_dict(config)
