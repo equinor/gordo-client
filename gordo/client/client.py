@@ -491,7 +491,7 @@ class Client:
 
         parsed_type = parse_module_path(config["type"])
         if parsed_type in self.enforced_dataset_kwargs:
-            config.update(self.enforced_dataset_kwargs[config_class])
+            config.update(self.enforced_dataset_kwargs[parsed_type])
 
         return GordoBaseDataset.from_dict(config)
 
