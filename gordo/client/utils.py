@@ -77,3 +77,11 @@ def influx_client_from_uri(
         client.drop_database(db_name)
         client.create_database(db_name)
     return client
+
+
+def parse_module_path(module_path) -> Tuple[Optional[str], str]:
+    module_paths = module_path.split(".")
+    if len(module_paths) == 1:
+        return None, module_paths[0]
+    else:
+        return ".".join(module_paths[:-1]), module_paths[-1]

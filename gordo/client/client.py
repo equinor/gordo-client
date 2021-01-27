@@ -23,7 +23,7 @@ from gordo.client.dataframe import (
 )
 from gordo.client.io import BadGordoRequest, HttpUnprocessableEntity, NotFound, ResourceGone, _handle_response
 from gordo.client.schemas import Machine, Metadata
-from gordo.client.utils import PredictionResult
+from gordo.client.utils import PredictionResult, parse_module_path
 
 logger = logging.getLogger(__name__)
 
@@ -484,8 +484,10 @@ class Client:
         # data provider and changing the dates of data we want.
         config = machine.dataset
         config.update({"data_provider": self.data_provider, "train_start_date": start, "train_end_date": end})
-        if config["type"] in self.enforced_dataset_kwargs:
-            config.update(self.enforced_dataset_kwargs[config["type"]])
+
+        _, config_class = parse_module_path(config["type"])
+        if config_class in self.enforced_dataset_kwargs:
+            config.update(self.enforced_dataset_kwargs[config_class])
 
         return GordoBaseDataset.from_dict(config)
 
