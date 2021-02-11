@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gordo.client"
-version = "0.2.4"
+version = "0.2.13"
 description = "Gordo client"
 authors = ["Equinor ASA <fg_gpl@equinor.com>"]
 license = "AGPL-3.0"
@@ -32,7 +32,7 @@ requests = "~=2.20"
 influxdb = "^5.3.0"
 pyarrow = "^0.17.1"
 numpy = "~=1.18"
-gordo-dataset = "~=2.4.0"
+gordo-dataset = "^2.4.1"
 simplejson = "^3.17.2"
 click = "^7.1.2"
 
