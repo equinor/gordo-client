@@ -66,7 +66,7 @@ class Client:
         n_retries: int = 5,
         use_parquet: bool = False,
         session: Optional[requests.Session] = None,
-        enforced_dataset_kwargs: Optional[Dict[str, Dict[str, Any]]] = None,
+        enforced_dataset_kwargs: Optional[Dict[Tuple[Optional[str], str], Dict[str, Any]]] = None,
     ):
         """
 
@@ -292,14 +292,13 @@ class Client:
               1st element is the dataframe of the predictions; complete with a DateTime index.
               2nd element is a list of error messages (if any) for running the predictions
         """
-
-        revision = revision or self._get_latest_revision()
-        machines = self._get_machines(revision=revision, machine_names=targets)
+        rev = revision or self._get_latest_revision()
+        machines = self._get_machines(revision=rev, machine_names=targets)
 
         # For every machine, start making predictions for the time range
         with ThreadPoolExecutor(max_workers=self.parallelism) as executor:
             jobs = executor.map(
-                lambda ep: self.predict_single_machine(machine=ep, start=start, end=end, revision=revision), machines
+                lambda ep: self.predict_single_machine(machine=ep, start=start, end=end, revision=rev), machines
             )
             return [(j.name, j.predictions, j.error_messages) for j in jobs]
 

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "gordo.client"
+name = "gordo-client"
 version = "0.3.0"
 description = "Gordo client"
 authors = ["Equinor ASA <fg_gpl@equinor.com>"]
@@ -51,7 +51,7 @@ safety = "^1.9.0"
 wemake-python-styleguide = "^0.14.1"
 
 [tool.poetry.scripts]
-gordo-client = 'gordo.client.cli.client:gordo_client'
+gordo-client = 'gordo_client.cli.client:gordo_client'
 
 [tool.isort]
 line_length = 120

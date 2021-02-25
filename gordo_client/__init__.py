@@ -12,7 +12,3 @@ except DistributionNotFound:
     # This exception appears if gordo_client is not installed as a package
     # for example in a development environment
     __version__ = "0.0.0"
-
-# Denote a package as a namespace package.
-# https://www.python.org/dev/peps/pep-0420/#namespace-packages-today
-__path__ = extend_path(__path__, __name__)
