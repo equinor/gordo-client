@@ -8,8 +8,8 @@ from typing import Any, Dict, Optional
 import numpy as np
 import pandas as pd
 
-from gordo.client.schemas import Machine
-from gordo.client.utils import influx_client_from_uri
+from gordo_client.schemas import Machine
+from gordo_client.utils import influx_client_from_uri
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 class PredictionForwarder(metaclass=abc.ABCMeta):
 
     """
-    Definition of a callable which the :class:`gordo.client.Client`
+    Definition of a callable which the :class:`gordo_client.Client`
     will call after each successful prediction response::
 
         def my_forwarder(

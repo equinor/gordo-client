@@ -7,7 +7,7 @@ license = "AGPL-3.0"
 readme = "README.md"
 homepage = "https://github.com/equinor/gordo-client"
 repository = "https://github.com/equinor/gordo-client"
-keywords = ["gordo.client"]
+keywords = ["gordo-client"]
 classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: GNU Affero General Public License v3",
@@ -18,7 +18,7 @@ include = [
     "LICENSE",
 ]
 packages = [
-    { include = "gordo/client" }
+    { include = "gordo_client" }
 ]
 
 [tool.poetry.dependencies]

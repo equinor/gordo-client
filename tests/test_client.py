@@ -7,9 +7,9 @@ from typing import Dict, Optional, Union
 import pytest
 from pytz import UTC
 
-from gordo.client.io import ResourceGone
-from gordo.client.schemas import Machine
-from gordo.client.utils import PredictionResult
+from gordo_client.io import ResourceGone
+from gordo_client.schemas import Machine
+from gordo_client.utils import PredictionResult
 
 
 @dataclass
