@@ -15,15 +15,15 @@ from gordo_dataset.base import GordoBaseDataset
 from gordo_dataset.data_provider.base import GordoBaseDataProvider
 from sklearn.base import BaseEstimator
 
-from gordo.client.dataframe import (
+from gordo_client.dataframe import (
     dataframe_from_dict,
     dataframe_from_parquet_bytes,
     dataframe_into_parquet_bytes,
     dataframe_to_dict,
 )
-from gordo.client.io import BadGordoRequest, HttpUnprocessableEntity, NotFound, ResourceGone, _handle_response
-from gordo.client.schemas import Machine, Metadata
-from gordo.client.utils import PredictionResult, parse_module_path
+from gordo_client.io import BadGordoRequest, HttpUnprocessableEntity, NotFound, ResourceGone, _handle_response
+from gordo_client.schemas import Machine, Metadata
+from gordo_client.utils import PredictionResult, parse_module_path
 
 logger = logging.getLogger(__name__)
 

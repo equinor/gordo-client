@@ -8,8 +8,8 @@ import responses
 from gordo_dataset.data_provider import providers
 from gordo_dataset.sensor_tag import SensorTag, to_list_of_strings
 
-from gordo.client import Client
-from gordo.client.schemas import Machine
+from gordo_client import Client
+from gordo_client.schemas import Machine
 from tests.utils import InfluxDB, wait_for_influx
 
 logger = logging.getLogger(__name__)

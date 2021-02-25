@@ -7,8 +7,8 @@ from click.exceptions import BadParameter
 from click.testing import CliRunner
 from gordo_dataset.data_provider import providers
 
-from gordo.client.cli.client import gordo_client
-from gordo.client.cli.custom_types import DataProviderParam, IsoFormatDateTime
+from gordo_client.cli.client import gordo_client
+from gordo_client.cli.custom_types import DataProviderParam, IsoFormatDateTime
 
 
 @pytest.fixture

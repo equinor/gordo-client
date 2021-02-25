@@ -1,4 +1,4 @@
-"""Tests for gordo.client."""
+"""Tests for gordo_client."""
 
 import logging
 from typing import List
@@ -9,9 +9,9 @@ import pandas as pd
 import pytest
 from gordo_dataset import sensor_tag
 
-from gordo.client.forwarders import ForwardPredictionsIntoInflux
-from gordo.client.schemas import Machine
-from gordo.client.utils import influx_client_from_uri
+from gordo_client.forwarders import ForwardPredictionsIntoInflux
+from gordo_client.schemas import Machine
+from gordo_client.utils import influx_client_from_uri
 
 
 @pytest.fixture

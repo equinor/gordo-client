@@ -38,7 +38,7 @@ def test(ctx):
     """Run tests."""
     # Note: use commandline arguments instead of using `adopts` in `setup.cfg`,
     # since pytest-cov breaks Intellij IDEA debugger.
-    ctx.run("poetry run pytest --cov=gordo.client -vv .", pty=True)
+    ctx.run("poetry run pytest --cov=gordo_client -vv .", pty=True)
 
 
 @task
