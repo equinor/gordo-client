@@ -17,9 +17,9 @@ import yaml
 from gordo_dataset.data_provider import providers
 from requests import Session
 
-from gordo.client import Client, __version__
-from gordo.client.cli.custom_types import DataProviderParam, IsoFormatDateTime, key_value_par
-from gordo.client.forwarders import ForwardPredictionsIntoInflux
+from gordo_client import Client, __version__
+from gordo_client.cli.custom_types import DataProviderParam, IsoFormatDateTime, key_value_par
+from gordo_client.forwarders import ForwardPredictionsIntoInflux
 
 
 @click.group("client")

@@ -12,10 +12,10 @@ Client for [Gordo](https://github.com/equinor/gordo) project.
 In order to install or uninstall this library run following commands.
 ```bash
 # Install
-pip install gordo.client
+pip install gordo-client
 
 # Uninstall
-pip uninstall gordo.client
+pip uninstall gordo-client
 ```
 After installation client can be accessed as a library or by command line.
 ```bash
