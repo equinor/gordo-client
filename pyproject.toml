@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "gordo.client"
-version = "0.2.13"
+name = "gordo-client"
+version = "0.3.0"
 description = "Gordo client"
 authors = ["Equinor ASA <fg_gpl@equinor.com>"]
 license = "AGPL-3.0"
 readme = "README.md"
 homepage = "https://github.com/equinor/gordo-client"
 repository = "https://github.com/equinor/gordo-client"
-keywords = ["gordo.client"]
+keywords = ["gordo-client"]
 classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: GNU Affero General Public License v3",
@@ -18,7 +18,7 @@ include = [
     "LICENSE",
 ]
 packages = [
-    { include = "gordo/client" }
+    { include = "gordo_client" }
 ]
 
 [tool.poetry.dependencies]
@@ -51,7 +51,7 @@ safety = "^1.9.0"
 wemake-python-styleguide = "^0.14.1"
 
 [tool.poetry.scripts]
-gordo-client = 'gordo.client.cli.client:gordo_client'
+gordo-client = 'gordo_client.cli.client:gordo_client'
 
 [tool.isort]
 line_length = 120
