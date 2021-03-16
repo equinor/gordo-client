@@ -67,6 +67,7 @@ class Client:
         use_parquet: bool = False,
         session: Optional[requests.Session] = None,
         enforced_dataset_kwargs: Optional[Dict[Tuple[Optional[str], str], Dict[str, Any]]] = None,
+        all_columns: bool = False,
     ):
         """
 
@@ -109,6 +110,8 @@ class Client:
             The http session object to use for making requests.
         enforced_dataset_kwargs: Optional[Dict[str, Dict[str, Any]]]
             Enforce this kwargs arguments for dataset. Nested dict with the dataset type at the top level, and kwargs at the second level
+        all_columns: bool
+            Return all columns for prediction. Including `smooth-..` columns
         """
 
         self.base_url = f"{scheme}://{host}:{port}"
@@ -130,6 +133,7 @@ class Client:
         if enforced_dataset_kwargs is None:
             enforced_dataset_kwargs = DEFAULT_ENFORCED_DATASET_KWARGS.copy()
         self.enforced_dataset_kwargs = enforced_dataset_kwargs
+        self.all_columns = all_columns
 
     @wrapt.synchronized
     @cached(TTLCache(maxsize=1, ttl=5))
@@ -394,10 +398,11 @@ class Client:
         ResourceGone
             If the sever returns a 410, most likely because the revision is too old
         """
-
+        params = {"format": self.format, "revision": revision}
+        if self.all_columns:
+            params["all_columns"] = "true"
         kwargs: Dict[str, Any] = dict(
-            url=f"{self.base_url}/gordo/v0/{self.project_name}/{machine.name}{self.prediction_path}",
-            params={"format": self.format, "revision": revision},
+            url=f"{self.base_url}/gordo/v0/{self.project_name}/{machine.name}{self.prediction_path}", params=params
         )
 
         # We're going to serialize the data as either JSON or Arrow
