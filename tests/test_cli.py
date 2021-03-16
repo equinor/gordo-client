@@ -30,10 +30,7 @@ def test_version(runner):
 
 @pytest.mark.parametrize(
     "config",
-    (
-        '{"type": "RandomDataProvider", "max_size": 200}',
-        '{"type": "InfluxDataProvider", "measurement": "value"}',
-    ),
+    ('{"type": "RandomDataProvider", "max_size": 200}', '{"type": "InfluxDataProvider", "measurement": "value"}'),
 )
 def test_data_provider_click_param(config, sensors_str):
     """
@@ -52,27 +49,13 @@ def test_data_provider_click_param(config, sensors_str):
         assert isinstance(provider, getattr(providers, expected_provider_type))
 
 
-@pytest.mark.parametrize(
-    "date",
-    (
-        "2020-01-01",
-        "2020-01-01T12:00:00+00:00",
-        "2020-01-01T08:00:00.0",
-    ),
-)
+@pytest.mark.parametrize("date", ("2020-01-01", "2020-01-01T12:00:00+00:00", "2020-01-01T08:00:00.0"))
 def test_iso_date_click_param(date):
     result = IsoFormatDateTime()(date)
     assert type(result) == datetime
 
 
-@pytest.mark.parametrize(
-    "date",
-    (
-        "",
-        "test",
-        "2018-01-02 test",
-    ),
-)
+@pytest.mark.parametrize("date", ("", "test", "2018-01-02 test"))
 def test_iso_date_click_param_not_date(date):
     with pytest.raises(BadParameter):
         IsoFormatDateTime()(date)
