@@ -64,8 +64,12 @@ def machine():
 
 
 @pytest.fixture
-def client():
-    data_provider = providers.RandomDataProvider(min_size=10)
+def data_provider():
+    return providers.RandomDataProvider(min_size=10)
+
+
+@pytest.fixture
+def client(data_provider):
     client = Client(project="gordo-test", data_provider=data_provider)
     return client
 
@@ -144,13 +148,7 @@ def base_influxdb(sensors, influxdb_name, influxdb_user, influxdb_password, infl
         logger.info(f"Started influx DB: {influx.name}")
 
         # Create the interface to the running instance, set default state, and yield it.
-        db = InfluxDB(
-            sensors,
-            influxdb_name,
-            influxdb_user,
-            influxdb_password,
-            influxdb_measurement,
-        )
+        db = InfluxDB(sensors, influxdb_name, influxdb_user, influxdb_password, influxdb_measurement)
         db.reset()
         logger.info("STARTED INFLUX INSTANCE")
         yield db

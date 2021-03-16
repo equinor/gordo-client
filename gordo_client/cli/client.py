@@ -46,6 +46,12 @@ from gordo_client.forwarders import ForwardPredictionsIntoInflux
     + "authentication parameters such as header keys. ie. --session-config {'headers': {'API-KEY': 'foo-bar'}}",
 )
 @click.option("--log-level", type=str, help="Run client with custom log-level.", envvar="GORDO_LOG_LEVEL")
+@click.option(
+    "--all-columns",
+    is_flag=True,
+    default=False,
+    help="Return all columns for prediction. Including 'smooth-..' columns",
+)
 @click.pass_context
 def gordo_client(ctx: click.Context, *args, session_config=None, **kwargs):
     """Entry sub-command for client related activities."""
