@@ -29,6 +29,10 @@ jobs:
           virtualenvs-in-project: false
           virtualenvs-path: ~/.virtualenvs
 
+      - name: Upgrade pip
+        run: |
+          poetry run pip install --upgrade pip
+
       - name: Cache Poetry virtualenv
         uses: actions/cache@v2
         id: cached-poetry-dependencies

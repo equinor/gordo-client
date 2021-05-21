@@ -35,7 +35,6 @@ def machine():
             "interpolation_method": "linear_interpolation",
             "interpolation_limit": "8H",
             "filter_periods": {},
-            "tag_normalizer": "default",
             "train_start_date": "2015-01-01T00:00:00+00:00",
             "train_end_date": "2015-06-01T00:00:00+00:00",
             "tag_list": ["TRC1", "TRC2"],
