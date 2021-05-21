@@ -10,6 +10,7 @@ from pytz import UTC
 from gordo_client.io import ResourceGone
 from gordo_client.schemas import Machine
 from gordo_client.utils import PredictionResult
+from gordo_client import Client
 
 
 @dataclass
@@ -96,11 +97,7 @@ def test_get_machine_names(revision, client, mocked_responses):
 
 
 @pytest.mark.parametrize(
-    "revision, targets",
-    [
-        (None, None),
-        ("1604861479899", ["07136c88-d39f-41f3-af31-369115a9eb3f-9999"]),
-    ],
+    "revision, targets", [(None, None), ("1604861479899", ["07136c88-d39f-41f3-af31-369115a9eb3f-9999"])]
 )
 def test_download_model(revision, targets, client, mocked_responses):
     if revision is None:
@@ -114,17 +111,11 @@ def test_download_model(revision, targets, client, mocked_responses):
 
     response = client.download_model(revision=revision, targets=targets)
 
-    assert response == {
-        "07136c88-d39f-41f3-af31-369115a9eb3f-9999": "test",
-    }
+    assert response == {"07136c88-d39f-41f3-af31-369115a9eb3f-9999": "test"}
 
 
 @pytest.mark.parametrize(
-    "revision, targets",
-    [
-        (None, None),
-        ("1604861479899", ["07136c88-d39f-41f3-af31-369115a9eb3f-9999"]),
-    ],
+    "revision, targets", [(None, None), ("1604861479899", ["07136c88-d39f-41f3-af31-369115a9eb3f-9999"])]
 )
 def test_get_metadata(revision, targets, client, mocked_responses):
     if revision is None:
@@ -150,6 +141,23 @@ def test_predict_single_machine(client, mocked_responses, machine):
     _mock_response(
         mocked_responses,
         "/gordo/v0/gordo-test/gordo-test/anomaly/prediction?format=json&revision=1604861479899",
+        "anomaly",
+    )
+
+    response = client.predict_single_machine(start=start, end=end, revision=revision, machine=machine)
+
+    assert isinstance(response, PredictionResult)
+
+
+def test_predict_single_machine_all_columns(data_provider, mocked_responses, machine):
+    client = Client(project="gordo-test", data_provider=data_provider, all_columns=True)
+
+    revision = "1604861479899"
+    end = datetime.now(tz=UTC)
+    start = end - timedelta(days=7)
+    _mock_response(
+        mocked_responses,
+        "/gordo/v0/gordo-test/gordo-test/anomaly/prediction?format=json&revision=1604861479899&all_columns=true",
         "anomaly",
     )
 

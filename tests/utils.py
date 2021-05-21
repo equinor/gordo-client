@@ -58,14 +58,7 @@ class InfluxDB:
     Simple interface to a running influx.
     """
 
-    def __init__(
-        self,
-        sensors: List[SensorTag],
-        db_name: str,
-        user: str,
-        password: str,
-        measurement: str,
-    ):
+    def __init__(self, sensors: List[SensorTag], db_name: str, user: str, password: str, measurement: str):
         self.sensors = sensors
         self.db_name = db_name
         self.user = user
@@ -78,12 +71,7 @@ class InfluxDB:
         """
         # Seed database with some records
         influx_client = InfluxDBClient(
-            "localhost",
-            8086,
-            self.user,
-            self.password,
-            self.db_name,
-            proxies={"http": "", "https": ""},
+            "localhost", 8086, self.user, self.password, self.db_name, proxies={"http": "", "https": ""}
         )
 
         # Drop and re-create the database
