@@ -174,10 +174,10 @@ class ForwardPredictionsIntoInflux(PredictionForwarder):
         """
         logger.info(f"Writing {len(df)} points to Influx for measurement: {measurement}")
 
+        df = ForwardPredictionsIntoInflux._stack_to_name_value_columns(df)
+
         for current_attempt in itertools.count(start=1):
             try:
-                df = ForwardPredictionsIntoInflux._stack_to_name_value_columns(df)
-
                 self.dataframe_client.write_points(
                     dataframe=df,
                     measurement=measurement,
