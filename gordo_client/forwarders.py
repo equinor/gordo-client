@@ -202,7 +202,7 @@ class ForwardPredictionsIntoInflux(PredictionForwarder):
                 else:
                     msg = f"Failed to forward data to influx. Error: {exc}"
                     logger.error(msg)
-                    break
+                    raise exc
             else:
                 break
 
