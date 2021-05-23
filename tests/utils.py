@@ -1,4 +1,5 @@
 import logging
+import math
 import time
 from threading import Lock
 from typing import List
@@ -41,7 +42,7 @@ def wait_for_influx(max_wait=120, influx_host="localhost:8086"):
         try:
             code = requests.get(healtcheck_endpoint, timeout=1, proxies={"https": "", "http": ""}).status_code
             logger.debug(f"Influx gave code {code}")
-            influx_ok = code == 200
+            influx_ok = math.floor(code / 100) == 2     # 2xx
         except requests.exceptions.ConnectionError:
             influx_ok = False
         time.sleep(0.5)
