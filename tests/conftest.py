@@ -131,7 +131,7 @@ def base_influxdb(sensors, influxdb_name, influxdb_user, influxdb_password, infl
     influx = None
     try:
         influx = client.containers.run(
-            image="influxdb:1.7-alpine",
+            image="influxdb:1.8.5-alpine",
             environment={
                 "INFLUXDB_DB": influxdb_name,
                 "INFLUXDB_ADMIN_USER": influxdb_user,
@@ -147,7 +147,13 @@ def base_influxdb(sensors, influxdb_name, influxdb_user, influxdb_password, infl
         logger.info(f"Started influx DB: {influx.name}")
 
         # Create the interface to the running instance, set default state, and yield it.
-        db = InfluxDB(sensors, influxdb_name, influxdb_user, influxdb_password, influxdb_measurement)
+        db = InfluxDB(
+            sensors=sensors,
+            db_name=influxdb_name,
+            user=influxdb_user,
+            password=influxdb_password,
+            measurement=influxdb_measurement,
+        )
         db.reset()
         logger.info("STARTED INFLUX INSTANCE")
         yield db
