@@ -27,15 +27,18 @@ def test_write_to_influx_with_retries(mock_influx_dataframe_client, caplog):
                 return True
         return False
 
-    with patch.object(
-        ForwardPredictionsIntoInflux, "_stack_to_name_value_columns"
-    ) as _stack_to_name_value_columns, patch("time.sleep"), caplog.at_level(logging.INFO):
-        _stack_to_name_value_columns.side_effect = lambda v: v
-        df = pd.DataFrame()
-        mock_influx_dataframe_client.write_points.side_effect = OSError("Connection refused")
-        forwarder = ForwardPredictionsIntoInflux(destination_influx_uri="root:root@localhost:8086/testdb", n_retries=2)
-        forwarder.dataframe_client = mock_influx_dataframe_client
-        forwarder._write_to_influx_with_retries(df, "start")
+    with pytest.raises(OSError):
+        with patch.object(
+            ForwardPredictionsIntoInflux, "_stack_to_name_value_columns"
+        ) as _stack_to_name_value_columns, patch("time.sleep"), caplog.at_level(logging.INFO):
+            _stack_to_name_value_columns.side_effect = lambda v: v
+            df = pd.DataFrame()
+            mock_influx_dataframe_client.write_points.side_effect = OSError("Connection refused")
+            forwarder = ForwardPredictionsIntoInflux(
+                destination_influx_uri="root:root@localhost:8086/testdb", n_retries=2
+            )
+            forwarder.dataframe_client = mock_influx_dataframe_client
+            forwarder._write_to_influx_with_retries(df, "start")
         find_caplog_record(
             "WARNING",
             "Failed to forward data to influx on attempt 1 out of 2.\nError: Connection refused.\nSleeping 8 seconds and trying again.",
