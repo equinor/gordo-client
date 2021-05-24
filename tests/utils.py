@@ -42,7 +42,7 @@ def wait_for_influx(max_wait=120, influx_host="localhost:8086"):
         try:
             code = requests.get(healtcheck_endpoint, timeout=1, proxies={"https": "", "http": ""}).status_code
             logger.debug(f"Influx gave code {code}")
-            influx_ok = math.floor(code / 100) == 2     # 2xx
+            influx_ok = math.floor(code / 100) == 2  # 2xx
         except requests.exceptions.ConnectionError:
             influx_ok = False
         time.sleep(0.5)

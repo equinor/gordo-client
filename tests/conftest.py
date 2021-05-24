@@ -147,7 +147,13 @@ def base_influxdb(sensors, influxdb_name, influxdb_user, influxdb_password, infl
         logger.info(f"Started influx DB: {influx.name}")
 
         # Create the interface to the running instance, set default state, and yield it.
-        db = InfluxDB(sensors=sensors, db_name=influxdb_name, user=influxdb_user, password=influxdb_password, measurement=influxdb_measurement)
+        db = InfluxDB(
+            sensors=sensors,
+            db_name=influxdb_name,
+            user=influxdb_user,
+            password=influxdb_password,
+            measurement=influxdb_measurement,
+        )
         db.reset()
         logger.info("STARTED INFLUX INSTANCE")
         yield db
