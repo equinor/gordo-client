@@ -25,7 +25,7 @@ packages = [
 python = "^3.7"
 pandas = "~=1.0"
 wrapt = "~=1.11"
-cachetools = "~=4.0"
+cachetools = "~4.1"
 scikit-learn = "~=0.23"
 pydantic = "^1.7.3"
 requests = "~=2.20"
