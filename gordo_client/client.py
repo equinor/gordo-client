@@ -27,22 +27,6 @@ from gordo_client.utils import PredictionResult, parse_module_path
 
 logger = logging.getLogger(__name__)
 
-_TIMESERIES_DATASET_KWARGS = {
-    "row_filter_buffer_size": 0,
-    "n_samples_threshold": 0,
-    "known_filter_periods": [],
-    "filter_periods": {},
-    "low_threshold": None,
-    "high_threshold": None,
-    "process_metadata": False,
-}
-
-
-DEFAULT_ENFORCED_DATASET_KWARGS = {
-    (None, "TimeSeriesDataset"): _TIMESERIES_DATASET_KWARGS,
-    ("gordo_dataset.datasets", "TimeSeriesDataset"): _TIMESERIES_DATASET_KWARGS,
-}
-
 
 class Client:
     """
@@ -66,7 +50,6 @@ class Client:
         n_retries: int = 5,
         use_parquet: bool = False,
         session: Optional[requests.Session] = None,
-        enforced_dataset_kwargs: Optional[Dict[Tuple[Optional[str], str], Dict[str, Any]]] = None,
         all_columns: bool = False,
     ):
         """
@@ -108,8 +91,6 @@ class Client:
             is used for sending the data back and forth.
         session: Optional[requests.Session]
             The http session object to use for making requests.
-        enforced_dataset_kwargs: Optional[Dict[str, Dict[str, Any]]]
-            Enforce this kwargs arguments for dataset. Nested dict with the dataset type at the top level, and kwargs at the second level
         all_columns: bool
             Return all columns for prediction. Including `smooth-..` columns
         """
@@ -130,9 +111,6 @@ class Client:
         self.n_retries = n_retries
         self.format = "parquet" if use_parquet else "json"
         self.session = session or requests.Session()
-        if enforced_dataset_kwargs is None:
-            enforced_dataset_kwargs = DEFAULT_ENFORCED_DATASET_KWARGS.copy()
-        self.enforced_dataset_kwargs = enforced_dataset_kwargs
         self.all_columns = all_columns
 
     @wrapt.synchronized
@@ -493,11 +471,12 @@ class Client:
         config = machine.dataset
         config.update({"data_provider": self.data_provider, "train_start_date": start, "train_end_date": end})
 
-        parsed_type = parse_module_path(config["type"])
-        if parsed_type in self.enforced_dataset_kwargs:
-            config.update(self.enforced_dataset_kwargs[parsed_type])
-
         return GordoBaseDataset.from_dict(config)
+
+    @staticmethod
+    def _extract_build_metadata(machine: Machine) -> dict:
+        metadata = machine.metadata
+        return metadata.build_metadata.dict()
 
     def _raw_data(self, machine: Machine, start: datetime, end: datetime) -> Tuple[pd.DataFrame, pd.DataFrame]:
         """
@@ -516,7 +495,8 @@ class Client:
             The dataframes representing X and y.
         """
         dataset = self._get_dataset(machine, start, end)
-        return dataset.get_data()
+        build_metadata = self._extract_build_metadata(machine)
+        return dataset.get_client_data(build_metadata)
 
     @staticmethod
     def _adjust_for_offset(dt: datetime, resolution: str, n_intervals: int = 100):

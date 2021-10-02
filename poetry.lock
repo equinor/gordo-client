@@ -489,7 +489,7 @@ typing-extensions = {version = ">=3.7.4.0", markers = "python_version < \"3.8\""
 
 [[package]]
 name = "gordo-dataset"
-version = "2.7.2"
+version = "3.0.0.dev1"
 description = "Gordo datasets and data providers"
 category = "main"
 optional = false
@@ -502,11 +502,13 @@ azure-storage-file-datalake = ">=12.1.2,<13.0.0"
 cachetools = ">=4.1.0,<5.0.0"
 cryptography = ">=3.4.0,<4.0.0"
 influxdb = ">=5.3.0,<6.0.0"
+Inject = "4.2.0"
 marshmallow = ">=3.3.0,<4.0.0"
 numexpr = ">=2.7.1,<3.0.0"
 numpy = "1.19.5"
 pandas = ">=1.0.3,<2.0.0"
 pyarrow = ">=0.17.1,<0.18.0"
+pydantic = ">=1.8.2,<2.0.0"
 PyYAML = ">=5.3.1,<6.0.0"
 scikit-learn = ">=0.23.2,<0.24.0"
 typing_extensions = ">=3.7.4,<4.0.0"
@@ -559,6 +561,14 @@ name = "iniconfig"
 version = "1.1.1"
 description = "iniconfig: brain-dead simple config-ini parsing"
 category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "inject"
+version = "4.2.0"
+description = "Python dependency injection framework"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -1318,7 +1328,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "5ddfdc9c675e7f077508c38cf75130c171e83b1a0d9e82bc4a0947df3baf4404"
+content-hash = "7fbf5f21bd98dde344c43e0d2d33ba7f7be09612ed07b1a7325673fb4295e5fc"
 
 [metadata.files]
 adal = [
@@ -1575,8 +1585,8 @@ gitpython = [
     {file = "GitPython-3.1.18.tar.gz", hash = "sha256:b838a895977b45ab6f0cc926a9045c8d1c44e2b653c1fcc39fe91f42c6e8f05b"},
 ]
 gordo-dataset = [
-    {file = "gordo-dataset-2.7.2.tar.gz", hash = "sha256:8ac8ceff5dbb39f767da32053835765ce7a5769439a34f5609db5a7994bd4389"},
-    {file = "gordo_dataset-2.7.2-py3-none-any.whl", hash = "sha256:4e88fe20ed7f0ebd402508caddd0fdf193eb8b7d79f423dc36f4297937efeae2"},
+    {file = "gordo-dataset-3.0.0.dev1.tar.gz", hash = "sha256:18c2a2c36ecf86af6f6224f2fcf6a79463b41731d8ba05d75f620a5910eba3fc"},
+    {file = "gordo_dataset-3.0.0.dev1-py3-none-any.whl", hash = "sha256:b61904bd30824f1dab30f93490e86fd6a7e8c48a4fa7b8c296a63d1938b14db6"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
@@ -1593,6 +1603,9 @@ influxdb = [
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
     {file = "iniconfig-1.1.1.tar.gz", hash = "sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32"},
+]
+inject = [
+    {file = "Inject-4.2.0.tar.gz", hash = "sha256:1fcb04077a619d470d205782fcb532ef1117b729aba1607d2db573e1dd3aab54"},
 ]
 invoke = [
     {file = "invoke-1.5.0-py2-none-any.whl", hash = "sha256:da7c2d0be71be83ffd6337e078ef9643f41240024d6b2659e7b46e0b251e339f"},
