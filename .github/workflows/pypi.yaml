@@ -20,6 +20,9 @@ jobs:
         id: vars
         run: echo ::set-output name=tag::${GITHUB_REF:11}
 
+      - name: Check version
+        run: bash ci/check_version.sh ${{ steps.vars.outputs.tag }}
+
       - name : Set up Python 3.7
         uses: actions/setup-python@v1
         with:
