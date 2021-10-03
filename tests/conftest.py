@@ -5,14 +5,29 @@ import logging
 import docker
 import pytest
 import responses
+import inject
+
+from unittest.mock import MagicMock
+
 from gordo_dataset.data_provider import providers
 from gordo_dataset.sensor_tag import SensorTag, to_list_of_strings
+from gordo_dataset.assets_config import AssetsConfig
 
 from gordo_client import Client
 from gordo_client.schemas import Machine
 from tests.utils import InfluxDB, wait_for_influx
 
 logger = logging.getLogger(__name__)
+
+
+@pytest.fixture
+def mock_assets_config():
+    return MagicMock(spec=AssetsConfig)
+
+
+@pytest.fixture(autouse=True)
+def configure_inject(mock_assets_config):
+    inject.clear_and_configure(lambda b: b.bind(AssetsConfig, mock_assets_config))
 
 
 @pytest.fixture
@@ -52,7 +67,17 @@ def machine():
                     "model_training_duration_sec": None,
                     "model_meta": {},
                 },
-                "dataset": {"query_duration_sec": None, "dataset_meta": {}},
+                "dataset": {
+                    "query_duration_sec": None,
+                    "dataset_meta": {
+                        "tag_loading_metadata": {
+                            "tags": {
+                                "TRC1": {"name": "TRC1", "asset": "asset"},
+                                "TRC2": {"name": "TRC2", "asset": "asset"},
+                            }
+                        }
+                    },
+                },
             },
         },
         "runtime": {"reporters": []},
