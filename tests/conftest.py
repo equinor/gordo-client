@@ -27,9 +27,7 @@ def mock_assets_config():
 
 @pytest.fixture(autouse=True)
 def configure_inject(mock_assets_config):
-    inject.clear_and_configure(
-        lambda b: b.bind(AssetsConfig, mock_assets_config)
-    )
+    inject.clear_and_configure(lambda b: b.bind(AssetsConfig, mock_assets_config))
 
 
 @pytest.fixture
@@ -74,17 +72,11 @@ def machine():
                     "dataset_meta": {
                         "tag_loading_metadata": {
                             "tags": {
-                                "TRC1": {
-                                    "name": "TRC1",
-                                    "asset": "asset"
-                                },
-                                "TRC2": {
-                                    "name": "TRC2",
-                                    "asset": "asset"
-                                }
+                                "TRC1": {"name": "TRC1", "asset": "asset"},
+                                "TRC2": {"name": "TRC2", "asset": "asset"},
                             }
                         }
-                    }
+                    },
                 },
             },
         },
