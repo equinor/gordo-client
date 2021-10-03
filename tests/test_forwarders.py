@@ -68,21 +68,21 @@ def test_influx_forwarder(influxdb, influxdb_uri, sensors, sensors_str):
     Test that the forwarder creates correct points from a
     multi-indexed series
     """
-    with patch.object(sensor_tag, "_asset_from_tag_name", return_value="default"):
-        machine = Machine(
-            **{
-                "name": "some-target-name",
-                "dataset": {
-                    "tag_list": sensors_str,
-                    "target_tag_list": sensors_str,
-                    "train_start_date": "2016-01-01T00:00:00Z",
-                    "train_end_date": "2016-01-05T00:00:00Z",
-                    "resolution": "10T",
-                },
-                "model": {"sklearn.linear_model.LinearRegression": {}},
-                "project_name": "test-project",
-            }
-        )
+    tag_list = [sensor_tag.SensorTag(name, "default") for name in sensors_str]
+    machine = Machine(
+        **{
+            "name": "some-target-name",
+            "dataset": {
+                "tag_list": tag_list,
+                "target_tag_list": tag_list,
+                "train_start_date": "2016-01-01T00:00:00Z",
+                "train_end_date": "2016-01-05T00:00:00Z",
+                "resolution": "10T",
+            },
+            "model": {"sklearn.linear_model.LinearRegression": {}},
+            "project_name": "test-project",
+        }
+    )
 
     # Feature outs which match length of tags
     # These should then be re-mapped to the sensor tag names
