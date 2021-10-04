@@ -4,7 +4,6 @@ import logging
 import os
 import pickle  # noqa:S403
 import sys
-import inject
 from copy import copy
 from datetime import datetime
 from pprint import pprint
@@ -12,17 +11,17 @@ from typing import Iterable, List, Optional, Tuple, Union
 from typing.io import IO
 
 import click
+import inject
 import pandas as pd
 import simplejson
 import yaml
+from gordo_dataset import config
 from gordo_dataset.data_provider import providers
 from requests import Session
 
 from gordo_client import Client, __version__
 from gordo_client.cli.custom_types import DataProviderParam, IsoFormatDateTime, key_value_par
 from gordo_client.forwarders import ForwardPredictionsIntoInflux
-
-from gordo_dataset import config
 
 
 @click.group("client")
