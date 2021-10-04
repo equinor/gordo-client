@@ -4,6 +4,7 @@ import logging
 import os
 import pickle  # noqa:S403
 import sys
+import inject
 from copy import copy
 from datetime import datetime
 from pprint import pprint
@@ -20,6 +21,8 @@ from requests import Session
 from gordo_client import Client, __version__
 from gordo_client.cli.custom_types import DataProviderParam, IsoFormatDateTime, key_value_par
 from gordo_client.forwarders import ForwardPredictionsIntoInflux
+
+from gordo_dataset import config
 
 
 @click.group("client")
@@ -69,6 +72,8 @@ def gordo_client(ctx: click.Context, *args, session_config=None, **kwargs):
             setattr(session, key, value)
         kwargs["session"] = session
     kwargs.pop("log_level", None)
+
+    inject.configure_once(config, bind_in_runtime=False)
 
     ctx.obj = {"args": args, "kwargs": kwargs}
 
