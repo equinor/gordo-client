@@ -476,7 +476,7 @@ class Client:
     @staticmethod
     def _extract_build_metadata(machine: Machine) -> dict:
         metadata = machine.metadata
-        return metadata.build_metadata.dict()
+        return metadata.build_metadata.dataset.dict()
 
     def _raw_data(self, machine: Machine, start: datetime, end: datetime) -> Tuple[pd.DataFrame, pd.DataFrame]:
         """
