@@ -489,7 +489,7 @@ typing-extensions = {version = ">=3.7.4.0", markers = "python_version < \"3.8\""
 
 [[package]]
 name = "gordo-dataset"
-version = "3.0.0.dev3"
+version = "3.0.0rc1"
 description = "Gordo datasets and data providers"
 category = "main"
 optional = false
@@ -1328,7 +1328,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "739687e235fdf8b97f0060c1ce54f922b683bf412da339fd4cca4c409519f8ba"
+content-hash = "5532c144447b39584ab4caefec7e88ace8426726e4b339828df6c2eadf86ad3c"
 
 [metadata.files]
 adal = [
@@ -1585,8 +1585,8 @@ gitpython = [
     {file = "GitPython-3.1.18.tar.gz", hash = "sha256:b838a895977b45ab6f0cc926a9045c8d1c44e2b653c1fcc39fe91f42c6e8f05b"},
 ]
 gordo-dataset = [
-    {file = "gordo-dataset-3.0.0.dev3.tar.gz", hash = "sha256:45eb360a5aca16197de739df28b4020ca770498539b8bbe1365ddd88f2a14198"},
-    {file = "gordo_dataset-3.0.0.dev3-py3-none-any.whl", hash = "sha256:3844cada0278f34dfbeef8b3c6698bc3c126b1ff9c9e360d0ffca339171c5031"},
+    {file = "gordo-dataset-3.0.0rc1.tar.gz", hash = "sha256:14ff4455bcdeb2e16be5be70fb4944145f1490d665834ed7d7fafd8c7959e514"},
+    {file = "gordo_dataset-3.0.0rc1-py3-none-any.whl", hash = "sha256:4963b23e385d7c452fc36ab5ea921908b5c07daac8a64ebd283e4d41ce229c68"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
