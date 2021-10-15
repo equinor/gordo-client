@@ -183,7 +183,7 @@ class Client:
         _machine_names: List[str] = machine_names or self.get_machine_names(revision=revision)
         with ThreadPoolExecutor(max_workers=self.parallelism) as executor:
             machines = executor.map(
-                lambda machine: self._machine_from_server(
+                lambda machine: self.machine_from_server(
                     name=machine, revision=revision or self._get_latest_revision()
                 ),
                 _machine_names,
@@ -191,8 +191,8 @@ class Client:
             return list(machines)
 
     @wrapt.synchronized
-    @cached(LRUCache(maxsize=25000))
-    def _machine_from_server(self, name: str, revision: str) -> Machine:
+    @cached(TTLCache(maxsize=32, ttl=600))
+    def machine_from_server(self, name: str, revision: str) -> Machine:
         resp = self.session.get(
             f"{self.base_url}/gordo/v0/{self.project_name}/{name}/metadata", params={"revision": revision}
         )
