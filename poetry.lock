@@ -92,7 +92,7 @@ six = ">=1.12.0"
 
 [[package]]
 name = "azure-storage-blob"
-version = "12.8.1"
+version = "12.9.0"
 description = "Microsoft Azure Blob Storage Client Library for Python"
 category = "main"
 optional = false
@@ -101,7 +101,7 @@ python-versions = "*"
 [package.dependencies]
 azure-core = ">=1.10.0,<2.0.0"
 cryptography = ">=2.1.4"
-msrest = ">=0.6.18"
+msrest = ">=0.6.21"
 
 [[package]]
 name = "azure-storage-file-datalake"
@@ -489,7 +489,7 @@ typing-extensions = {version = ">=3.7.4.0", markers = "python_version < \"3.8\""
 
 [[package]]
 name = "gordo-dataset"
-version = "3.0.0rc3"
+version = "3.0.0"
 description = "Gordo datasets and data providers"
 category = "main"
 optional = false
@@ -498,7 +498,7 @@ python-versions = ">=3.7,<4.0"
 [package.dependencies]
 azure-datalake-store = ">=0.0.51,<0.0.52"
 azure-identity = ">=1.4.0,<2.0.0"
-azure-storage-file-datalake = ">=12.3.0,<13.0.0"
+azure-storage-file-datalake = ">=12.3.0,<12.4.0"
 cachetools = ">=4.1.0,<5.0.0"
 cryptography = ">=3.4.0,<4.0.0"
 influxdb = ">=5.3.0,<6.0.0"
@@ -1328,7 +1328,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "e1c3b418fb6a172f7988a5ab9ef59ba5a7a016a4d9142964d3057440d3b9cbc8"
+content-hash = "0e829b35271e7fde307e8fa2c0d792cb763ca1a5a5d7a5f0a0afd13e7dc513d3"
 
 [metadata.files]
 adal = [
@@ -1364,8 +1364,8 @@ azure-identity = [
     {file = "azure_identity-1.6.0-py2.py3-none-any.whl", hash = "sha256:87f63bf1f3f10b67a3e6689f06d0cf6cacdcd8e375c6da12ea71c111cfe58457"},
 ]
 azure-storage-blob = [
-    {file = "azure-storage-blob-12.8.1.zip", hash = "sha256:eb37b50ddfb6e558b29f6c8c03b0666514e55d6170bf4624e7261a3af93c6401"},
-    {file = "azure_storage_blob-12.8.1-py2.py3-none-any.whl", hash = "sha256:e74c2c49fd04b80225f5b9734f1dbd417d89f280abfedccced3ac21509e1659d"},
+    {file = "azure-storage-blob-12.9.0.zip", hash = "sha256:cff66a115c73c90e496c8c8b3026898a3ce64100840276e9245434e28a864225"},
+    {file = "azure_storage_blob-12.9.0-py2.py3-none-any.whl", hash = "sha256:859195b4850dcfe77ffafbe53500abb74b001e52e77fe6d9492fa73639a22127"},
 ]
 azure-storage-file-datalake = [
     {file = "azure-storage-file-datalake-12.3.1.zip", hash = "sha256:362e9b2f6eb76a2b628bbddddf163628e73ca00cc3ebf68c5aee838b04fd975f"},
@@ -1585,8 +1585,8 @@ gitpython = [
     {file = "GitPython-3.1.18.tar.gz", hash = "sha256:b838a895977b45ab6f0cc926a9045c8d1c44e2b653c1fcc39fe91f42c6e8f05b"},
 ]
 gordo-dataset = [
-    {file = "gordo-dataset-3.0.0rc3.tar.gz", hash = "sha256:7cb95be1392accef0f9b147b2fa882a2541bdc2698c09a62277fb6ae1860214b"},
-    {file = "gordo_dataset-3.0.0rc3-py3-none-any.whl", hash = "sha256:8d2f24ec1c8cecad8709af2511ba0d69fb6ed0e0767b507dab282877fe11d03d"},
+    {file = "gordo-dataset-3.0.0.tar.gz", hash = "sha256:c2fa4f06e35915bc150646f8fa9f96ba4b2d9d2d28c1362de6928b7eb7bf76b4"},
+    {file = "gordo_dataset-3.0.0-py3-none-any.whl", hash = "sha256:b46d9c4caf539855cf3d2b2aacf3c81f6abe003c5c89702ec2fbf7aa08a60287"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
