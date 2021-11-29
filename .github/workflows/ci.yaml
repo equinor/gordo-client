@@ -29,6 +29,10 @@ jobs:
           virtualenvs-in-project: false
           virtualenvs-path: ~/.virtualenvs
 
+      - name: Auth for pypi
+        run: |
+          poetry config http-basic.omnia-prevent ${{ secret.PIP_USERNAME }} ${{ secret.PIP_PASSWORD }}
+
       - name: Upgrade pip
         run: |
           poetry run pip install --upgrade pip
