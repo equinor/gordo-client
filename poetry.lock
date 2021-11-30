@@ -694,7 +694,7 @@ reference = "omnia-prevent"
 
 [[package]]
 name = "gordo-dataset"
-version = "3.2.0.dev1"
+version = "3.2.0"
 description = "Gordo datasets and data providers"
 category = "main"
 optional = false
@@ -707,7 +707,7 @@ azure-storage-file-datalake = ">=12.3.0,<12.4.0"
 cachetools = ">=4.1.0,<5.0.0"
 cryptography = ">=3.4.0,<4.0.0"
 influxdb = ">=5.3.0,<6.0.0"
-Inject = "4.2.0"
+Inject = ">=4.2.0,<4.4.0"
 marshmallow = ">=3.3.0,<4.0.0"
 numexpr = ">=2.7.1,<3.0.0"
 numpy = "1.19.5"
@@ -1880,7 +1880,7 @@ reference = "omnia-prevent"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "696967aa3f6bb3c4d7494360912862690ff7762b5297632ed148c542ae23b778"
+content-hash = "713c64940dd4e8094ea11e0df2f72b999588f58b6d99b25ba4eb97ad5c1eb1be"
 
 [metadata.files]
 adal = [
@@ -2151,7 +2151,7 @@ gitpython = [
     {file = "GitPython-3.1.18.tar.gz", hash = "sha256:b838a895977b45ab6f0cc926a9045c8d1c44e2b653c1fcc39fe91f42c6e8f05b"},
 ]
 gordo-dataset = [
-    {file = "gordo_dataset-3.2.0.dev1-py3-none-any.whl", hash = "sha256:b49592a56ff34fe635f07cd9126f2061c35a6941617dbe344ff6b69f4881ec15"},
+    {file = "gordo_dataset-3.2.0-py3-none-any.whl", hash = "sha256:cf9a5e58fb7c2e31b30184cafde1e742c06b477b12cb19b47207087e1bc3ab8b"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
