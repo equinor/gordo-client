@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*'
+
 jobs:
   publish-to-pypi:
     runs-on: ubuntu-latest
@@ -15,12 +16,8 @@ jobs:
           # Fetch all commits
           fetch-depth: 0
 
-      - name: Set tag version
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF:11}
-
       - name: Check version
-        run: bash ci/check_version.sh ${{ steps.vars.outputs.tag }}
+        run: bash ci/check_version.sh ${GITHUB_REF#refs/tags/}
 
       - name : Set up Python 3.7
         uses: actions/setup-python@v1
@@ -36,16 +33,18 @@ jobs:
 
       - name: Cache Poetry virtualenv
         uses: actions/cache@v2
-        id: cached-poetry-dependencies
         with:
           path: ~/.virtualenvs
           key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
 
-      - name: Set tag version
-        run: poetry version ${{ steps.vars.outputs.tag }}
-
+      - name: Install twine
+        run: |
+          pip install twine
+      
       - name: Build
-        run: poetry build
+        run: |
+          poetry build -f wheel
 
       - name: Pypi Publish
-        run: poetry publish -u __token__ -p ${{ secrets.PYPI_TOKEN }}
+        run: |
+          twine upload --skip-existing --repository-url "${{ secrets.PYPI_REPOSITORY }}" -u "${{ secrets.PYPI_USERNAME }}" -p "${{ secrets.PYPI_PASSWORD }}" dist/*
