@@ -4,7 +4,6 @@ on:
   push:
     tags:
       - 'v*'
-  pull_request:
 
 jobs:
   publish-to-pypi:
@@ -16,6 +15,9 @@ jobs:
         with:
           # Fetch all commits
           fetch-depth: 0
+
+      - name: Check version
+        run: bash ci/check_version.sh ${GITHUB_REF#refs/tags/}
 
       - name : Set up Python 3.7
         uses: actions/setup-python@v1
@@ -45,4 +47,4 @@ jobs:
 
       - name: Pypi Publish
         run: |
-          twine upload --skip-existing --repository-url "${{ secrets.PYPI_REPOSITORY }}" -u gordo -p "${{ secrets.PYPI_PASSWORD }}" dist/*
+          twine upload --skip-existing --repository-url "${{ secrets.PYPI_REPOSITORY }}" -u "${{ secrets.PYPI_USERNAME }}"-p "${{ secrets.PYPI_PASSWORD }}" dist/*
