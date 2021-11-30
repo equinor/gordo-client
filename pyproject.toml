@@ -92,3 +92,4 @@ build-backend = "poetry.core.masonry.api"
 [[tool.poetry.source]]
 name = "omnia-prevent"
 url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple/"
+default = true
