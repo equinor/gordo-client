@@ -31,7 +31,7 @@ jobs:
 
       - name: Auth for pypi
         run: |
-          poetry config http-basic.omnia-prevent ${{ secrets.PIP_USERNAME }} ${{ secret.PIP_PASSWORD }}
+          poetry config http-basic.omnia-prevent ${{ secrets.PIP_USERNAME }} ${{ secrets.PIP_PASSWORD }}
 
       - name: Upgrade pip
         run: |
