@@ -47,4 +47,4 @@ jobs:
 
       - name: Pypi Publish
         run: |
-          twine upload --skip-existing --repository-url "${{ secrets.PYPI_REPOSITORY }}" -u "${{ secrets.PYPI_USERNAME }}"-p "${{ secrets.PYPI_PASSWORD }}" dist/*
+          twine upload --skip-existing --repository-url "${{ secrets.PYPI_REPOSITORY }}" -u "${{ secrets.PYPI_USERNAME }}" -p "${{ secrets.PYPI_PASSWORD }}" dist/*
