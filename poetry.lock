@@ -12,11 +12,6 @@ PyJWT = ">=1.0.0,<3"
 python-dateutil = ">=2.1.0,<3"
 requests = ">=2.0.0,<3"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "appdirs"
 version = "1.4.4"
@@ -24,11 +19,6 @@ description = "A small Python module for determining appropriate platform-specif
 category = "dev"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "astor"
@@ -38,11 +28,6 @@ category = "dev"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "atomicwrites"
 version = "1.4.0"
@@ -50,11 +35,6 @@ description = "Atomic file writes."
 category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "attrs"
@@ -70,11 +50,6 @@ docs = ["furo", "sphinx", "zope.interface", "sphinx-notfound-page"]
 tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface"]
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "azure-core"
 version = "1.15.0"
@@ -86,11 +61,6 @@ python-versions = "*"
 [package.dependencies]
 requests = ">=2.18.4"
 six = ">=1.11.0"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "azure-datalake-store"
@@ -104,11 +74,6 @@ python-versions = "*"
 adal = ">=0.4.2"
 cffi = "*"
 requests = ">=2.20.0"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "azure-identity"
@@ -125,11 +90,6 @@ msal = ">=1.7.0,<2.0.0"
 msal-extensions = ">=0.3.0,<0.4.0"
 six = ">=1.12.0"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "azure-storage-blob"
 version = "12.9.0"
@@ -143,11 +103,6 @@ azure-core = ">=1.10.0,<2.0.0"
 cryptography = ">=2.1.4"
 msrest = ">=0.6.21"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "azure-storage-file-datalake"
 version = "12.3.1"
@@ -160,11 +115,6 @@ python-versions = "*"
 azure-core = ">=1.10.0,<2.0.0"
 azure-storage-blob = ">=12.8.0b1,<13.0.0"
 msrest = ">=0.6.18"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "bandit"
@@ -181,11 +131,6 @@ PyYAML = ">=5.3.1"
 six = ">=1.10.0"
 stevedore = ">=1.20.0"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "black"
 version = "20.8b1"
@@ -197,21 +142,16 @@ python-versions = ">=3.6"
 [package.dependencies]
 appdirs = "*"
 click = ">=7.1.2"
-mypy_extensions = ">=0.4.3"
+mypy-extensions = ">=0.4.3"
 pathspec = ">=0.6,<1"
 regex = ">=2020.1.8"
 toml = ">=0.10.1"
 typed-ast = ">=1.4.0"
-typing_extensions = ">=3.7.4"
+typing-extensions = ">=3.7.4"
 
 [package.extras]
 colorama = ["colorama (>=0.4.3)"]
 d = ["aiohttp (>=3.3.2)", "aiohttp-cors"]
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "cachetools"
@@ -221,11 +161,6 @@ category = "main"
 optional = false
 python-versions = "~=3.5"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "certifi"
 version = "2021.5.30"
@@ -233,11 +168,6 @@ description = "Python package for providing Mozilla's CA Bundle."
 category = "main"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "cffi"
@@ -250,11 +180,6 @@ python-versions = "*"
 [package.dependencies]
 pycparser = "*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "chardet"
 version = "4.0.0"
@@ -262,11 +187,6 @@ description = "Universal encoding detector for Python 2 and 3"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "click"
@@ -276,11 +196,6 @@ category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "colorama"
 version = "0.4.4"
@@ -288,11 +203,6 @@ description = "Cross-platform colored terminal text."
 category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "coverage"
@@ -304,11 +214,6 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 
 [package.extras]
 toml = ["toml"]
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "cryptography"
@@ -329,11 +234,6 @@ sdist = ["setuptools-rust (>=0.11.4)"]
 ssh = ["bcrypt (>=3.1.5)"]
 test = ["pytest (>=6.0)", "pytest-cov", "pytest-subtests", "pytest-xdist", "pretend", "iso8601", "pytz", "hypothesis (>=1.11.4,!=3.79.2)"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "darglint"
 version = "1.8.0"
@@ -341,11 +241,6 @@ description = "A utility for ensuring Google-style docstrings stay up to date wi
 category = "dev"
 optional = false
 python-versions = ">=3.6,<4.0"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "docker"
@@ -365,11 +260,6 @@ websocket-client = ">=0.32.0"
 ssh = ["paramiko (>=2.4.2)"]
 tls = ["pyOpenSSL (>=17.5.0)", "cryptography (>=1.3.4)", "idna (>=2.0.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "docutils"
 version = "0.17.1"
@@ -377,11 +267,6 @@ description = "Docutils -- Python Documentation Utilities"
 category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "dparse"
@@ -399,11 +284,6 @@ toml = "*"
 [package.extras]
 pipenv = ["pipenv"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "eradicate"
 version = "1.0"
@@ -411,11 +291,6 @@ description = "Removes commented-out code."
 category = "dev"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "flake8"
@@ -431,11 +306,6 @@ mccabe = ">=0.6.0,<0.7.0"
 pycodestyle = ">=2.7.0,<2.8.0"
 pyflakes = ">=2.3.0,<2.4.0"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "flake8-bandit"
 version = "2.1.2"
@@ -450,11 +320,6 @@ flake8 = "*"
 flake8-polyfill = "*"
 pycodestyle = "*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "flake8-broken-line"
 version = "0.2.1"
@@ -465,11 +330,6 @@ python-versions = ">=3.6,<4.0"
 
 [package.dependencies]
 flake8 = ">=3.5,<4.0"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "flake8-bugbear"
@@ -483,11 +343,6 @@ python-versions = ">=3.5"
 attrs = "*"
 flake8 = ">=3.0.0"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "flake8-commas"
 version = "2.0.0"
@@ -498,11 +353,6 @@ python-versions = "*"
 
 [package.dependencies]
 flake8 = ">=2,<4.0.0"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "flake8-comprehensions"
@@ -516,11 +366,6 @@ python-versions = ">=3.6"
 flake8 = ">=3.0,<3.2.0 || >3.2.0,<4"
 importlib-metadata = {version = "*", markers = "python_version < \"3.8\""}
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "flake8-debugger"
 version = "3.2.1"
@@ -532,11 +377,6 @@ python-versions = "*"
 [package.dependencies]
 flake8 = ">=1.5"
 pycodestyle = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "flake8-docstrings"
@@ -550,11 +390,6 @@ python-versions = "*"
 flake8 = ">=3"
 pydocstyle = ">=2.1"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "flake8-eradicate"
 version = "0.3.0"
@@ -567,11 +402,6 @@ python-versions = ">=3.6,<4.0"
 attrs = "*"
 eradicate = ">=1.0,<2.0"
 flake8 = ">=3.5,<4.0"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "flake8-isort"
@@ -589,11 +419,6 @@ testfixtures = ">=6.8.0,<7"
 [package.extras]
 test = ["pytest (>=4.0.2,<6)"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "flake8-polyfill"
 version = "1.0.2"
@@ -605,11 +430,6 @@ python-versions = "*"
 [package.dependencies]
 flake8 = "*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "flake8-quotes"
 version = "2.1.2"
@@ -620,11 +440,6 @@ python-versions = "*"
 
 [package.dependencies]
 flake8 = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "flake8-rst-docstrings"
@@ -638,11 +453,6 @@ python-versions = "*"
 flake8 = ">=3.0.0"
 restructuredtext_lint = "*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "flake8-string-format"
 version = "0.2.3"
@@ -653,11 +463,6 @@ python-versions = "*"
 
 [package.dependencies]
 flake8 = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "gitdb"
@@ -670,11 +475,6 @@ python-versions = ">=3.4"
 [package.dependencies]
 smmap = ">=3.0.1,<5"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "gitpython"
 version = "3.1.18"
@@ -686,11 +486,6 @@ python-versions = ">=3.6"
 [package.dependencies]
 gitdb = ">=4.0.1,<5"
 typing-extensions = {version = ">=3.7.4.0", markers = "python_version < \"3.8\""}
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "gordo-dataset"
@@ -721,8 +516,8 @@ xarray = ">=0.16.2,<0.17.0"
 
 [package.source]
 type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
+url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/gordo/pypi/simple"
+reference = "gordo"
 
 [[package]]
 name = "idna"
@@ -731,11 +526,6 @@ description = "Internationalized Domain Names in Applications (IDNA)"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "importlib-metadata"
@@ -752,11 +542,6 @@ zipp = ">=0.5"
 [package.extras]
 docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "packaging", "pep517", "pyfakefs", "flufl.flake8", "pytest-black (>=0.3.7)", "pytest-mypy", "importlib-resources (>=1.3)"]
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "influxdb"
@@ -776,11 +561,6 @@ six = ">=1.10.0"
 [package.extras]
 test = ["nose", "nose-cov", "mock", "requests-mock"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "iniconfig"
 version = "1.1.1"
@@ -788,11 +568,6 @@ description = "iniconfig: brain-dead simple config-ini parsing"
 category = "dev"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "inject"
@@ -802,11 +577,6 @@ category = "main"
 optional = false
 python-versions = "*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "invoke"
 version = "1.5.0"
@@ -814,11 +584,6 @@ description = "Pythonic task execution"
 category = "dev"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "isodate"
@@ -830,11 +595,6 @@ python-versions = "*"
 
 [package.dependencies]
 six = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "isort"
@@ -853,11 +613,6 @@ pyproject = ["toml"]
 requirements = ["pipreqs", "pip-api"]
 xdg_home = ["appdirs (>=1.4.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "joblib"
 version = "1.0.1"
@@ -865,11 +620,6 @@ description = "Lightweight pipelining with Python functions"
 category = "main"
 optional = false
 python-versions = ">=3.6"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "marshmallow"
@@ -885,11 +635,6 @@ docs = ["sphinx (==4.0.0)", "sphinx-issues (==1.2.0)", "alabaster (==0.7.12)", "
 lint = ["mypy (==0.812)", "flake8 (==3.9.2)", "flake8-bugbear (==21.4.3)", "pre-commit (>=2.4,<3.0)"]
 tests = ["pytest", "pytz", "simplejson"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "mccabe"
 version = "0.6.1"
@@ -897,11 +642,6 @@ description = "McCabe checker, plugin for flake8"
 category = "dev"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "mock"
@@ -916,11 +656,6 @@ build = ["twine", "wheel", "blurb"]
 docs = ["sphinx"]
 test = ["pytest (<5.4)", "pytest-cov"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "msal"
 version = "1.12.0"
@@ -933,11 +668,6 @@ python-versions = "*"
 cryptography = ">=0.6,<4"
 PyJWT = {version = ">=1.0.0,<3", extras = ["crypto"]}
 requests = ">=2.0.0,<3"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "msal-extensions"
@@ -954,11 +684,6 @@ portalocker = [
     {version = ">=1.6,<2.0", markers = "platform_system == \"Windows\""},
 ]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "msgpack"
 version = "1.0.2"
@@ -966,11 +691,6 @@ description = "MessagePack (de)serializer."
 category = "main"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "msrest"
@@ -989,11 +709,6 @@ requests-oauthlib = ">=0.5.0"
 [package.extras]
 async = ["aiohttp (>=3.0)", "aiodns"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "mypy"
 version = "0.790"
@@ -1010,11 +725,6 @@ typing-extensions = ">=3.7.4"
 [package.extras]
 dmypy = ["psutil (>=4.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "mypy-extensions"
 version = "0.4.3"
@@ -1022,11 +732,6 @@ description = "Experimental type system extensions for programs checked with the
 category = "dev"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "numexpr"
@@ -1039,11 +744,6 @@ python-versions = "*"
 [package.dependencies]
 numpy = ">=1.7"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "numpy"
 version = "1.19.5"
@@ -1051,11 +751,6 @@ description = "NumPy is the fundamental package for array computing with Python.
 category = "main"
 optional = false
 python-versions = ">=3.6"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "oauthlib"
@@ -1070,11 +765,6 @@ rsa = ["cryptography (>=3.0.0,<4)"]
 signals = ["blinker (>=1.4.0)"]
 signedtoken = ["cryptography (>=3.0.0,<4)", "pyjwt (>=2.0.0,<3)"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "packaging"
 version = "20.9"
@@ -1085,11 +775,6 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [package.dependencies]
 pyparsing = ">=2.0.2"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "pandas"
@@ -1107,11 +792,6 @@ pytz = ">=2017.2"
 [package.extras]
 test = ["pytest (>=4.0.2)", "pytest-xdist", "hypothesis (>=3.58)"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "pathspec"
 version = "0.8.1"
@@ -1120,11 +800,6 @@ category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "pbr"
 version = "5.6.0"
@@ -1132,11 +807,6 @@ description = "Python Build Reasonableness"
 category = "dev"
 optional = false
 python-versions = ">=2.6"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "pep8-naming"
@@ -1148,11 +818,6 @@ python-versions = "*"
 
 [package.dependencies]
 flake8-polyfill = ">=1.0.2,<2"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "pluggy"
@@ -1167,11 +832,6 @@ importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 
 [package.extras]
 dev = ["pre-commit", "tox"]
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "portalocker"
@@ -1188,11 +848,6 @@ pywin32 = {version = "!=226", markers = "platform_system == \"Windows\""}
 docs = ["sphinx (>=1.7.1)"]
 tests = ["pytest (>=4.6.9)", "pytest-cov (>=2.8.1)", "sphinx (>=1.8.5)", "pytest-flake8 (>=1.0.5)"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "py"
 version = "1.10.0"
@@ -1200,11 +855,6 @@ description = "library with cross-python path, ini-parsing, io, code, log facili
 category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "pyarrow"
@@ -1217,11 +867,6 @@ python-versions = ">=3.5"
 [package.dependencies]
 numpy = ">=1.14"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "pycodestyle"
 version = "2.7.0"
@@ -1230,11 +875,6 @@ category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "pycparser"
 version = "2.20"
@@ -1242,11 +882,6 @@ description = "C parser in Python"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "pydantic"
@@ -1263,11 +898,6 @@ typing-extensions = ">=3.7.4.3"
 dotenv = ["python-dotenv (>=0.10.4)"]
 email = ["email-validator (>=1.0.3)"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "pydocstyle"
 version = "6.1.1"
@@ -1282,11 +912,6 @@ snowballstemmer = "*"
 [package.extras]
 toml = ["toml"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "pyflakes"
 version = "2.3.1"
@@ -1295,11 +920,6 @@ category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "pygments"
 version = "2.9.0"
@@ -1307,11 +927,6 @@ description = "Pygments is a syntax highlighting package written in Python."
 category = "dev"
 optional = false
 python-versions = ">=3.5"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "pyjwt"
@@ -1330,11 +945,6 @@ dev = ["sphinx", "sphinx-rtd-theme", "zope.interface", "cryptography (>=3.3.1,<4
 docs = ["sphinx", "sphinx-rtd-theme", "zope.interface"]
 tests = ["pytest (>=6.0.0,<7.0.0)", "coverage[toml] (==5.0.4)"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "pyparsing"
 version = "2.4.7"
@@ -1342,11 +952,6 @@ description = "Python parsing module"
 category = "dev"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "pytest"
@@ -1370,11 +975,6 @@ toml = "*"
 [package.extras]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "pytest-cov"
 version = "2.12.1"
@@ -1391,11 +991,6 @@ toml = "*"
 [package.extras]
 testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtualenv"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "pytest-mock"
 version = "3.6.1"
@@ -1410,11 +1005,6 @@ pytest = ">=5.0"
 [package.extras]
 dev = ["pre-commit", "tox", "pytest-asyncio"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "python-dateutil"
 version = "2.8.1"
@@ -1426,11 +1016,6 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 [package.dependencies]
 six = ">=1.5"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "pytz"
 version = "2021.1"
@@ -1438,11 +1023,6 @@ description = "World timezone definitions, modern and historical"
 category = "main"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "pywin32"
@@ -1452,11 +1032,6 @@ category = "main"
 optional = false
 python-versions = "*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "pyyaml"
 version = "5.4.1"
@@ -1465,11 +1040,6 @@ category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "regex"
 version = "2021.4.4"
@@ -1477,11 +1047,6 @@ description = "Alternative regular expression module, to replace re."
 category = "dev"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "requests"
@@ -1501,11 +1066,6 @@ urllib3 = ">=1.21.1,<1.27"
 security = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)"]
 socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "requests-oauthlib"
 version = "1.3.0"
@@ -1520,11 +1080,6 @@ requests = ">=2.0.0"
 
 [package.extras]
 rsa = ["oauthlib[signedtoken] (>=3.0.0)"]
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "responses"
@@ -1542,11 +1097,6 @@ urllib3 = ">=1.25.10"
 [package.extras]
 tests = ["coverage (>=3.7.1,<6.0.0)", "pytest-cov", "pytest-localserver", "flake8", "pytest (>=4.6,<5.0)", "pytest (>=4.6)", "mypy"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "restructuredtext-lint"
 version = "1.3.2"
@@ -1557,11 +1107,6 @@ python-versions = "*"
 
 [package.dependencies]
 docutils = ">=0.11,<1.0"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "safety"
@@ -1577,11 +1122,6 @@ dparse = ">=0.5.1"
 packaging = "*"
 requests = "*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "scikit-learn"
 version = "0.23.2"
@@ -1596,10 +1136,8 @@ numpy = ">=1.13.3"
 scipy = ">=0.19.1"
 threadpoolctl = ">=2.0.0"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
+[package.extras]
+alldeps = ["numpy (>=1.13.3)", "scipy (>=0.19.1)"]
 
 [[package]]
 name = "scipy"
@@ -1612,11 +1150,6 @@ python-versions = ">=3.7"
 [package.dependencies]
 numpy = ">=1.16.5"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "simplejson"
 version = "3.17.2"
@@ -1624,11 +1157,6 @@ description = "Simple, fast, extensible JSON encoder/decoder for Python"
 category = "main"
 optional = false
 python-versions = ">=2.5, !=3.0.*, !=3.1.*, !=3.2.*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "six"
@@ -1638,11 +1166,6 @@ category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "smmap"
 version = "4.0.0"
@@ -1651,11 +1174,6 @@ category = "dev"
 optional = false
 python-versions = ">=3.5"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "snowballstemmer"
 version = "2.1.0"
@@ -1663,11 +1181,6 @@ description = "This package provides 29 stemmers for 28 languages generated from
 category = "dev"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "stevedore"
@@ -1680,11 +1193,6 @@ python-versions = ">=3.6"
 [package.dependencies]
 importlib-metadata = {version = ">=1.7.0", markers = "python_version < \"3.8\""}
 pbr = ">=2.0.0,<2.1.0 || >2.1.0"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "testfixtures"
@@ -1699,11 +1207,6 @@ build = ["setuptools-git", "wheel", "twine"]
 docs = ["sphinx", "zope.component", "sybil", "twisted", "mock", "django (<2)", "django"]
 test = ["pytest (>=3.6)", "pytest-cov", "pytest-django", "zope.component", "sybil", "twisted", "mock", "django (<2)", "django"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "threadpoolctl"
 version = "2.1.0"
@@ -1711,11 +1214,6 @@ description = "threadpoolctl"
 category = "main"
 optional = false
 python-versions = ">=3.5"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "toml"
@@ -1725,11 +1223,6 @@ category = "dev"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "typed-ast"
 version = "1.4.3"
@@ -1738,11 +1231,6 @@ category = "dev"
 optional = false
 python-versions = "*"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "typing-extensions"
 version = "3.10.0.0"
@@ -1750,11 +1238,6 @@ description = "Backported and Experimental Type Hints for Python 3.5+"
 category = "main"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "urllib3"
@@ -1769,11 +1252,6 @@ brotli = ["brotlipy (>=0.6.0)"]
 secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "websocket-client"
 version = "1.1.0"
@@ -1781,11 +1259,6 @@ description = "WebSocket client for Python with low level API options"
 category = "dev"
 optional = false
 python-versions = ">=3.6"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "wemake-python-styleguide"
@@ -1817,11 +1290,6 @@ pep8-naming = ">=0.9.1,<0.10.0"
 pygments = ">=2.4,<3.0"
 typing_extensions = ">=3.6,<4.0"
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "wrapt"
 version = "1.12.1"
@@ -1829,11 +1297,6 @@ description = "Module for decorators, wrappers and monkey patching."
 category = "main"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
 
 [[package]]
 name = "xarray"
@@ -1855,11 +1318,6 @@ io = ["netcdf4", "h5netcdf", "scipy", "pydap", "zarr", "fsspec", "cftime", "rast
 parallel = ["dask"]
 viz = ["matplotlib", "seaborn", "nc-time-axis"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [[package]]
 name = "zipp"
 version = "3.4.1"
@@ -1872,15 +1330,10 @@ python-versions = ">=3.6"
 docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "pytest-enabler", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
-[package.source]
-type = "legacy"
-url = "https://pkgs.dev.azure.com/EquinorASA/OMNIA.prevent/_packaging/omnia-prevent-pypi/pypi/simple"
-reference = "omnia-prevent"
-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "713c64940dd4e8094ea11e0df2f72b999588f58b6d99b25ba4eb97ad5c1eb1be"
+content-hash = "e3a14ecea6ea1046848c5c8d53fd6b9f3e655d72a4b6721cbff9399c83e45b1b"
 
 [metadata.files]
 adal = [
@@ -1955,36 +1408,24 @@ cffi = [
     {file = "cffi-1.14.5-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:48e1c69bbacfc3d932221851b39d49e81567a4d4aac3b21258d9c24578280058"},
     {file = "cffi-1.14.5-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:69e395c24fc60aad6bb4fa7e583698ea6cc684648e1ffb7fe85e3c1ca131a7d5"},
     {file = "cffi-1.14.5-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:9e93e79c2551ff263400e1e4be085a1210e12073a31c2011dbbda14bda0c6132"},
-    {file = "cffi-1.14.5-cp36-cp36m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:24ec4ff2c5c0c8f9c6b87d5bb53555bf267e1e6f70e52e5a9740d32861d36b6f"},
-    {file = "cffi-1.14.5-cp36-cp36m-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:3c3f39fa737542161d8b0d680df2ec249334cd70a8f420f71c9304bd83c3cbed"},
-    {file = "cffi-1.14.5-cp36-cp36m-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:681d07b0d1e3c462dd15585ef5e33cb021321588bebd910124ef4f4fb71aef55"},
     {file = "cffi-1.14.5-cp36-cp36m-win32.whl", hash = "sha256:58e3f59d583d413809d60779492342801d6e82fefb89c86a38e040c16883be53"},
     {file = "cffi-1.14.5-cp36-cp36m-win_amd64.whl", hash = "sha256:005a36f41773e148deac64b08f233873a4d0c18b053d37da83f6af4d9087b813"},
     {file = "cffi-1.14.5-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:2894f2df484ff56d717bead0a5c2abb6b9d2bf26d6960c4604d5c48bbc30ee73"},
     {file = "cffi-1.14.5-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:0857f0ae312d855239a55c81ef453ee8fd24136eaba8e87a2eceba644c0d4c06"},
     {file = "cffi-1.14.5-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:cd2868886d547469123fadc46eac7ea5253ea7fcb139f12e1dfc2bbd406427d1"},
     {file = "cffi-1.14.5-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:35f27e6eb43380fa080dccf676dece30bef72e4a67617ffda586641cd4508d49"},
-    {file = "cffi-1.14.5-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:06d7cd1abac2ffd92e65c0609661866709b4b2d82dd15f611e602b9b188b0b69"},
-    {file = "cffi-1.14.5-cp37-cp37m-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:0f861a89e0043afec2a51fd177a567005847973be86f709bbb044d7f42fc4e05"},
-    {file = "cffi-1.14.5-cp37-cp37m-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:cc5a8e069b9ebfa22e26d0e6b97d6f9781302fe7f4f2b8776c3e1daea35f1adc"},
     {file = "cffi-1.14.5-cp37-cp37m-win32.whl", hash = "sha256:9ff227395193126d82e60319a673a037d5de84633f11279e336f9c0f189ecc62"},
     {file = "cffi-1.14.5-cp37-cp37m-win_amd64.whl", hash = "sha256:9cf8022fb8d07a97c178b02327b284521c7708d7c71a9c9c355c178ac4bbd3d4"},
     {file = "cffi-1.14.5-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:8b198cec6c72df5289c05b05b8b0969819783f9418e0409865dac47288d2a053"},
     {file = "cffi-1.14.5-cp38-cp38-manylinux1_i686.whl", hash = "sha256:ad17025d226ee5beec591b52800c11680fca3df50b8b29fe51d882576e039ee0"},
     {file = "cffi-1.14.5-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:6c97d7350133666fbb5cf4abdc1178c812cb205dc6f41d174a7b0f18fb93337e"},
     {file = "cffi-1.14.5-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:8ae6299f6c68de06f136f1f9e69458eae58f1dacf10af5c17353eae03aa0d827"},
-    {file = "cffi-1.14.5-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:04c468b622ed31d408fea2346bec5bbffba2cc44226302a0de1ade9f5ea3d373"},
-    {file = "cffi-1.14.5-cp38-cp38-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:06db6321b7a68b2bd6df96d08a5adadc1fa0e8f419226e25b2a5fbf6ccc7350f"},
-    {file = "cffi-1.14.5-cp38-cp38-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:293e7ea41280cb28c6fcaaa0b1aa1f533b8ce060b9e701d78511e1e6c4a1de76"},
     {file = "cffi-1.14.5-cp38-cp38-win32.whl", hash = "sha256:b85eb46a81787c50650f2392b9b4ef23e1f126313b9e0e9013b35c15e4288e2e"},
     {file = "cffi-1.14.5-cp38-cp38-win_amd64.whl", hash = "sha256:1f436816fc868b098b0d63b8920de7d208c90a67212546d02f84fe78a9c26396"},
     {file = "cffi-1.14.5-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:1071534bbbf8cbb31b498d5d9db0f274f2f7a865adca4ae429e147ba40f73dea"},
     {file = "cffi-1.14.5-cp39-cp39-manylinux1_i686.whl", hash = "sha256:9de2e279153a443c656f2defd67769e6d1e4163952b3c622dcea5b08a6405322"},
     {file = "cffi-1.14.5-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:6e4714cc64f474e4d6e37cfff31a814b509a35cb17de4fb1999907575684479c"},
     {file = "cffi-1.14.5-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:158d0d15119b4b7ff6b926536763dc0714313aa59e320ddf787502c70c4d4bee"},
-    {file = "cffi-1.14.5-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:1bf1ac1984eaa7675ca8d5745a8cb87ef7abecb5592178406e55858d411eadc0"},
-    {file = "cffi-1.14.5-cp39-cp39-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:df5052c5d867c1ea0b311fb7c3cd28b19df469c056f7fdcfe88c7473aa63e333"},
-    {file = "cffi-1.14.5-cp39-cp39-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:24a570cd11895b60829e941f2613a4f79df1a27344cbbb82164ef2e0116f09c7"},
     {file = "cffi-1.14.5-cp39-cp39-win32.whl", hash = "sha256:afb29c1ba2e5a3736f1c301d9d0abe3ec8b86957d04ddfa9d7a6a42b9367e396"},
     {file = "cffi-1.14.5-cp39-cp39-win_amd64.whl", hash = "sha256:f2d45f97ab6bb54753eab54fffe75aaf3de4ff2341c9daee1987ee1837636f1d"},
     {file = "cffi-1.14.5.tar.gz", hash = "sha256:fd78e5fee591709f32ef6edb9a015b4aa1a5022598e36227500c8f4e02328d9c"},
@@ -2065,10 +1506,8 @@ cryptography = [
     {file = "cryptography-3.4.7-cp36-abi3-win_amd64.whl", hash = "sha256:de4e5f7f68220d92b7637fc99847475b59154b7a1b3868fb7385337af54ac9ca"},
     {file = "cryptography-3.4.7-pp36-pypy36_pp73-manylinux2010_x86_64.whl", hash = "sha256:26965837447f9c82f1855e0bc8bc4fb910240b6e0d16a664bb722df3b5b06873"},
     {file = "cryptography-3.4.7-pp36-pypy36_pp73-manylinux2014_x86_64.whl", hash = "sha256:eb8cc2afe8b05acbd84a43905832ec78e7b3873fb124ca190f574dca7389a87d"},
-    {file = "cryptography-3.4.7-pp37-pypy37_pp73-macosx_10_10_x86_64.whl", hash = "sha256:b01fd6f2737816cb1e08ed4807ae194404790eac7ad030b34f2ce72b332f5586"},
     {file = "cryptography-3.4.7-pp37-pypy37_pp73-manylinux2010_x86_64.whl", hash = "sha256:7ec5d3b029f5fa2b179325908b9cd93db28ab7b85bb6c1db56b10e0b54235177"},
     {file = "cryptography-3.4.7-pp37-pypy37_pp73-manylinux2014_x86_64.whl", hash = "sha256:ee77aa129f481be46f8d92a1a7db57269a2f23052d5f2433b4621bb457081cc9"},
-    {file = "cryptography-3.4.7-pp37-pypy37_pp73-win_amd64.whl", hash = "sha256:bf40af59ca2465b24e54f671b2de2c59257ddc4f7e5706dbd6930e26823668d3"},
     {file = "cryptography-3.4.7.tar.gz", hash = "sha256:3d10de8116d25649631977cb37da6cbdd2d6fa0e0281d014a5b7d337255ca713"},
 ]
 darglint = [
@@ -2513,26 +1952,18 @@ pyyaml = [
     {file = "PyYAML-5.4.1-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:bb4191dfc9306777bc594117aee052446b3fa88737cd13b7188d0e7aa8162185"},
     {file = "PyYAML-5.4.1-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:6c78645d400265a062508ae399b60b8c167bf003db364ecb26dcab2bda048253"},
     {file = "PyYAML-5.4.1-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:4e0583d24c881e14342eaf4ec5fbc97f934b999a6828693a99157fde912540cc"},
-    {file = "PyYAML-5.4.1-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:72a01f726a9c7851ca9bfad6fd09ca4e090a023c00945ea05ba1638c09dc3347"},
-    {file = "PyYAML-5.4.1-cp36-cp36m-manylinux2014_s390x.whl", hash = "sha256:895f61ef02e8fed38159bb70f7e100e00f471eae2bc838cd0f4ebb21e28f8541"},
     {file = "PyYAML-5.4.1-cp36-cp36m-win32.whl", hash = "sha256:3bd0e463264cf257d1ffd2e40223b197271046d09dadf73a0fe82b9c1fc385a5"},
     {file = "PyYAML-5.4.1-cp36-cp36m-win_amd64.whl", hash = "sha256:e4fac90784481d221a8e4b1162afa7c47ed953be40d31ab4629ae917510051df"},
     {file = "PyYAML-5.4.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:5accb17103e43963b80e6f837831f38d314a0495500067cb25afab2e8d7a4018"},
     {file = "PyYAML-5.4.1-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:e1d4970ea66be07ae37a3c2e48b5ec63f7ba6804bdddfdbd3cfd954d25a82e63"},
-    {file = "PyYAML-5.4.1-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:cb333c16912324fd5f769fff6bc5de372e9e7a202247b48870bc251ed40239aa"},
-    {file = "PyYAML-5.4.1-cp37-cp37m-manylinux2014_s390x.whl", hash = "sha256:fe69978f3f768926cfa37b867e3843918e012cf83f680806599ddce33c2c68b0"},
     {file = "PyYAML-5.4.1-cp37-cp37m-win32.whl", hash = "sha256:dd5de0646207f053eb0d6c74ae45ba98c3395a571a2891858e87df7c9b9bd51b"},
     {file = "PyYAML-5.4.1-cp37-cp37m-win_amd64.whl", hash = "sha256:08682f6b72c722394747bddaf0aa62277e02557c0fd1c42cb853016a38f8dedf"},
     {file = "PyYAML-5.4.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:d2d9808ea7b4af864f35ea216be506ecec180628aced0704e34aca0b040ffe46"},
     {file = "PyYAML-5.4.1-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:8c1be557ee92a20f184922c7b6424e8ab6691788e6d86137c5d93c1a6ec1b8fb"},
-    {file = "PyYAML-5.4.1-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:fd7f6999a8070df521b6384004ef42833b9bd62cfee11a09bda1079b4b704247"},
-    {file = "PyYAML-5.4.1-cp38-cp38-manylinux2014_s390x.whl", hash = "sha256:bfb51918d4ff3d77c1c856a9699f8492c612cde32fd3bcd344af9be34999bfdc"},
     {file = "PyYAML-5.4.1-cp38-cp38-win32.whl", hash = "sha256:fa5ae20527d8e831e8230cbffd9f8fe952815b2b7dae6ffec25318803a7528fc"},
     {file = "PyYAML-5.4.1-cp38-cp38-win_amd64.whl", hash = "sha256:0f5f5786c0e09baddcd8b4b45f20a7b5d61a7e7e99846e3c799b05c7c53fa696"},
     {file = "PyYAML-5.4.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:294db365efa064d00b8d1ef65d8ea2c3426ac366c0c4368d930bf1c5fb497f77"},
     {file = "PyYAML-5.4.1-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:74c1485f7707cf707a7aef42ef6322b8f97921bd89be2ab6317fd782c2d53183"},
-    {file = "PyYAML-5.4.1-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:d483ad4e639292c90170eb6f7783ad19490e7a8defb3e46f97dfe4bacae89122"},
-    {file = "PyYAML-5.4.1-cp39-cp39-manylinux2014_s390x.whl", hash = "sha256:fdc842473cd33f45ff6bce46aea678a54e3d21f1b61a7750ce3c498eedfe25d6"},
     {file = "PyYAML-5.4.1-cp39-cp39-win32.whl", hash = "sha256:49d4cdd9065b9b6e206d0595fee27a96b5dd22618e7520c33204a4a3239d5b10"},
     {file = "PyYAML-5.4.1-cp39-cp39-win_amd64.whl", hash = "sha256:c20cfa2d49991c8b4147af39859b167664f2ad4561704ee74c1de03318e898db"},
     {file = "PyYAML-5.4.1.tar.gz", hash = "sha256:607774cbba28732bfa802b54baa7484215f530991055bb562efbed5b2f20a45e"},
@@ -2587,6 +2018,7 @@ requests = [
 requests-oauthlib = [
     {file = "requests-oauthlib-1.3.0.tar.gz", hash = "sha256:b4261601a71fd721a8bd6d7aa1cc1d6a8a93b4a9f5e96626f8e4d91e8beeaa6a"},
     {file = "requests_oauthlib-1.3.0-py2.py3-none-any.whl", hash = "sha256:7f71572defaecd16372f9006f33c2ec8c077c3cfa6f5911a9a90202beb513f3d"},
+    {file = "requests_oauthlib-1.3.0-py3.7.egg", hash = "sha256:fa6c47b933f01060936d87ae9327fead68768b69c6c9ea2109c48be30f2d4dbc"},
 ]
 responses = [
     {file = "responses-0.13.3-py2.py3-none-any.whl", hash = "sha256:b54067596f331786f5ed094ff21e8d79e6a1c68ef625180a7d34808d6f36c11b"},
