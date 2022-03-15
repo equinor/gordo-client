@@ -83,7 +83,8 @@ def check_safety(ctx):
     ignores = " ".join(f"--ignore { n }" for n in SAFETY_IGNORE)
     if SAFETY_IGNORE:
         print("WARNING: Ignored issues:", ", ".join(SAFETY_IGNORE), file=sys.stderr)
-    ctx.run(f"poetry run safety check --full-report { ignores }")
+    # TODO remove safety ignores when moved to Python 3.8
+    ctx.run(f"poetry run safety check -i 44716 -i 44717 -i 44715 --full-report { ignores }")
 
 
 @task(help={"diff": "Check only the changed files."})
