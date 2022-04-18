@@ -4,7 +4,7 @@ from typing import List
 
 from invoke import Exit, Failure, Result, UnexpectedExit, task
 
-SAFETY_IGNORE = ("38834", "43975")  # Remove after urllib3>=1.25.9  # Remove after urllib3>=1.26.5
+SAFETY_IGNORE = ("38834", "43975")  # Remove after deprecating azure-datalake-store
 
 
 class _CollectFailures:
