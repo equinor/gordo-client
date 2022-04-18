@@ -25,15 +25,15 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
+gordo-dataset = "^4.1.0"
 wrapt = "~1.11"
 requests = "~2.20"
-gordo-dataset = "^4.1.0"
 simplejson = "^3.17.2"
 
 
 [tool.poetry.dev-dependencies]
-black = {version = "^20.8b1", allow-prereleases = true}
 mypy = "^0.790"
+black = ">=22.1.0,<23.0.0"
 isort = "<5"
 pytest = "^6.1.2"
 pytest-cov = "^2.10.1"
