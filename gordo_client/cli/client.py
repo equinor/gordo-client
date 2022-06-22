@@ -14,7 +14,6 @@ import click
 import pandas as pd
 import simplejson
 import yaml
-from gordo_dataset import config
 from gordo_dataset.data_provider import providers
 from requests import Session
 
