@@ -6,22 +6,14 @@ import docker
 import pytest
 import responses
 
-from unittest.mock import MagicMock
-
 from gordo_dataset.data_providers import providers
 from gordo_dataset.sensor_tag import SensorTag, to_list_of_strings
-from gordo_dataset.assets_config import AssetsConfig
 
 from gordo_client import Client
 from gordo_client.schemas import Machine
 from tests.utils import InfluxDB, wait_for_influx
 
 logger = logging.getLogger(__name__)
-
-
-@pytest.fixture
-def mock_assets_config():
-    return MagicMock(spec=AssetsConfig)
 
 
 @pytest.fixture
