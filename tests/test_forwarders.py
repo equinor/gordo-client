@@ -68,7 +68,7 @@ def test_influx_forwarder(influxdb, influxdb_uri, sensors, sensors_str):
     Test that the forwarder creates correct points from a
     multi-indexed series
     """
-    tag_list = [sensor_tag.SensorTag(name, "default") for name in sensors_str]
+    tag_list = [sensor_tag.SensorTag(name) for name in sensors_str]
     machine = Machine(
         **{
             "name": "some-target-name",
