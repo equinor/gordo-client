@@ -12,7 +12,7 @@ import requests
 import wrapt
 from cachetools import LRUCache, TTLCache, cached
 from gordo_dataset.base import GordoBaseDataset
-from gordo_dataset.data_provider.base import GordoBaseDataProvider
+from gordo_dataset.data_providers.base import GordoBaseDataProvider
 from sklearn.base import BaseEstimator
 
 from gordo_client.dataframe import (

@@ -11,12 +11,10 @@ from typing import Iterable, List, Optional, Tuple, Union
 from typing.io import IO
 
 import click
-import inject
 import pandas as pd
 import simplejson
 import yaml
-from gordo_dataset import config
-from gordo_dataset.data_provider import providers
+from gordo_dataset.data_providers import providers
 from requests import Session
 
 from gordo_client import Client, __version__
@@ -71,8 +69,6 @@ def gordo_client(ctx: click.Context, *args, session_config=None, **kwargs):
             setattr(session, key, value)
         kwargs["session"] = session
     kwargs.pop("log_level", None)
-
-    inject.configure_once(config, bind_in_runtime=False)
 
     ctx.obj = {"args": args, "kwargs": kwargs}
 
