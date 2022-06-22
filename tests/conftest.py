@@ -5,7 +5,6 @@ import logging
 import docker
 import pytest
 import responses
-import inject
 
 from unittest.mock import MagicMock
 
@@ -23,11 +22,6 @@ logger = logging.getLogger(__name__)
 @pytest.fixture
 def mock_assets_config():
     return MagicMock(spec=AssetsConfig)
-
-
-@pytest.fixture(autouse=True)
-def configure_inject(mock_assets_config):
-    inject.clear_and_configure(lambda b: b.bind(AssetsConfig, mock_assets_config))
 
 
 @pytest.fixture
