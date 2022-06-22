@@ -8,7 +8,7 @@ import responses
 
 from unittest.mock import MagicMock
 
-from gordo_dataset.data_provider import providers
+from gordo_dataset.data_providers import providers
 from gordo_dataset.sensor_tag import SensorTag, to_list_of_strings
 from gordo_dataset.assets_config import AssetsConfig
 
