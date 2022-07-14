@@ -5,13 +5,13 @@ import pickle
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from time import sleep
-from typing import Any, Callable, Dict, Iterable, List, Optional, Tuple, Union
+from typing import Any, Callable, Dict, Iterable, List, Optional, Tuple, Union, cast
 
 import pandas as pd
 import requests
 import wrapt
-from cachetools import LRUCache, TTLCache, cached
-from gordo_dataset.base import GordoBaseDataset
+from cachetools import TTLCache, cached
+from gordo_dataset.base import GordoBaseDataset, DatasetWithProvider, import_dataset, create_with_provider
 from gordo_dataset.data_providers.base import GordoBaseDataProvider
 from sklearn.base import BaseEstimator
 
@@ -23,7 +23,7 @@ from gordo_client.dataframe import (
 )
 from gordo_client.io import BadGordoRequest, HttpUnprocessableEntity, NotFound, ResourceGone, _handle_response
 from gordo_client.schemas import Machine, Metadata
-from gordo_client.utils import PredictionResult, parse_module_path
+from gordo_client.utils import PredictionResult
 
 logger = logging.getLogger(__name__)
 
@@ -469,9 +469,24 @@ class Client:
         # Re-create the machine's dataset but updating to use the client's
         # data provider and changing the dates of data we want.
         config = machine.dataset
-        config.update({"data_provider": self.data_provider, "train_start_date": start, "train_end_date": end})
+        config.update({"train_start_date": start, "train_end_date": end})
 
-        return GordoBaseDataset.from_dict(config)
+        dataset_type = config.pop("type", None)
+        if dataset_type is None:
+            raise ValueError("dataset.type is empty")
+        dataset_cls = import_dataset(dataset_type)
+        if self.data_provider is not None:
+            if not issubclass(dataset_cls, DatasetWithProvider):
+                raise ValueError("Unable to apply custom data_provider for non DatasetWithProvider class")
+            config["data_provider"] = self.data_provider
+            dataset = create_with_provider(dataset_cls, config)
+        else:
+            try:
+                dataset = cast(Callable[..., GordoBaseDataset], dataset_cls)(**config)
+            except TypeError as e:
+                location = dataset_cls.__module__ + "." + dataset_cls.__name__
+                raise ValueError(f'Unable to create dataset "{location}": {str(e)}')
+        return dataset
 
     @staticmethod
     def _extract_build_metadata(machine: Machine) -> dict:
