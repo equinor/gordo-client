@@ -25,8 +25,8 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-gordo-dataset = "^5.0.0rc5"
-wrapt = "~1.11"
+gordo-dataset = "^5.0.0rc6"
+wrapt = "^1.11.0"
 requests = "^2.20"
 simplejson = "^3.17.2"
 click = "^8.0.0"
