@@ -11,7 +11,13 @@ import pandas as pd
 import requests
 import wrapt
 from cachetools import TTLCache, cached
-from gordo_dataset.base import GordoBaseDataset, DatasetWithProvider, import_dataset, create_with_provider
+from gordo_dataset.base import (
+    GordoBaseDataset,
+    DatasetWithProvider,
+    import_dataset,
+    create_with_provider,
+    create_dataset,
+)
 from gordo_dataset.data_providers.base import GordoBaseDataProvider
 from sklearn.base import BaseEstimator
 
@@ -477,15 +483,11 @@ class Client:
         dataset_cls = import_dataset(dataset_type)
         if self.data_provider is not None:
             if not issubclass(dataset_cls, DatasetWithProvider):
-                raise ValueError("Unable to apply custom data_provider for non DatasetWithProvider class")
+                raise ValueError("Unable to apply custom data_provider for non DatasetWithProvider dataset class")
             config["data_provider"] = self.data_provider
             dataset = create_with_provider(dataset_cls, config)
         else:
-            try:
-                dataset = cast(Callable[..., GordoBaseDataset], dataset_cls)(**config)
-            except TypeError as e:
-                location = dataset_cls.__module__ + "." + dataset_cls.__name__
-                raise ValueError(f'Unable to create dataset "{location}": {str(e)}')
+            dataset = create_dataset(dataset_cls, config)
         return dataset
 
     @staticmethod
