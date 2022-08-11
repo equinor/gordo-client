@@ -493,7 +493,7 @@ gitdb = ">=4.0.1,<5"
 
 [[package]]
 name = "gordo-dataset"
-version = "5.0.0rc6"
+version = "5.0.0"
 description = "Gordo datasets and data providers"
 category = "main"
 optional = false
@@ -1026,7 +1026,7 @@ python-versions = "*"
 name = "pywin32"
 version = "227"
 description = "Python for Window Extensions"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -1325,7 +1325,7 @@ viz = ["matplotlib", "seaborn", "nc-time-axis"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "c91386b1e49ccea79c2eb141d6b03fdc889f716556f3cc0641bfd64d5f6652e2"
+content-hash = "f6d423ae6355b82c8e5498ca12b4a73f7d85be4e276327eaa157dc2da24eef57"
 
 [metadata.files]
 adal = [
@@ -1413,7 +1413,7 @@ gitdb = [
 ]
 gitpython = []
 gordo-dataset = [
-    {file = "gordo_dataset-5.0.0rc6-py3-none-any.whl", hash = "sha256:afc456192d5897682c151a28b62069d9fb9255f635207304c4196b569f529e55"},
+    {file = "gordo_dataset-5.0.0-py3-none-any.whl", hash = "sha256:aa742dc8b8a5f6f97cebab18b21aa0a7ed03569d307bd74872ac708ece7424a9"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
