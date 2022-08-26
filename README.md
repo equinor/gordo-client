@@ -1,6 +1,7 @@
 # Gordo client
 Client for [Gordo](https://github.com/equinor/gordo) project.
 
+---
 * [Installation.](#Installation)
 * [Developers Instructions.](#Developers-Instructions)
     * [Setup.](#Setup)
@@ -16,7 +17,7 @@ pip install gordo-client
 pip uninstall gordo-client
 ```
 After installation client can be accessed as a library or by command line.
-```bash
+```
 Usage: gordo-client [OPTIONS] COMMAND [ARGS]...
 
   Entry sub-command for client related activities.
