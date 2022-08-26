@@ -136,3 +136,12 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Additional ignores
+.vscode/
+*.pkl
+/gordo_client/_version.py
+.python-version
+*.DS_Store
+.idea
+*.iml
