@@ -1,7 +1,8 @@
 # Gordo client
 Client for [Gordo](https://github.com/equinor/gordo) project.
 
----
+## Table of Contents
+
 * [Installation.](#Installation)
 * [Developers Instructions.](#Developers-Instructions)
     * [Setup.](#Setup)
