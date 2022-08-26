@@ -9,6 +9,9 @@ Client for [Gordo](https://github.com/equinor/gordo) project.
     * [Run tests.](#Run-tests)
     
 ## Installation
+
+Python 3.9 need to be installed in the system first.
+
 In order to install or uninstall this library run following commands.
 ```bash
 # Install
