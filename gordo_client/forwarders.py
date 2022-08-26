@@ -10,7 +10,7 @@ import pandas as pd
 
 from gordo_client.schemas import Machine
 from gordo_client.utils import influx_client_from_uri
-from gordo_dataset.sensor_tag import extract_tag_name
+from gordo_core.sensor_tag import extract_tag_name
 
 logger = logging.getLogger(__name__)
 

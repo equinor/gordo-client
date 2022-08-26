@@ -7,7 +7,7 @@ from typing import List
 import numpy as np
 import pandas as pd
 import requests
-from gordo_dataset.sensor_tag import SensorTag
+from gordo_core.sensor_tag import SensorTag
 from influxdb import InfluxDBClient
 
 logger = logging.getLogger(__name__)

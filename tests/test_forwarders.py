@@ -7,7 +7,7 @@ from unittest.mock import MagicMock, patch
 import numpy as np
 import pandas as pd
 import pytest
-from gordo_dataset import sensor_tag
+from gordo_core import sensor_tag
 
 from gordo_client.forwarders import ForwardPredictionsIntoInflux
 from gordo_client.schemas import Machine
