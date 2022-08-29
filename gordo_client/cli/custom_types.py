@@ -5,8 +5,8 @@ import typing
 import click
 import yaml
 from dateutil import parser
-from gordo_dataset.data_providers.base import GordoBaseDataProvider
-from gordo_dataset.exceptions import ConfigException
+from gordo_core.data_providers.base import GordoBaseDataProvider
+from gordo_core.exceptions import ConfigException
 
 
 class DataProviderParam(click.ParamType):

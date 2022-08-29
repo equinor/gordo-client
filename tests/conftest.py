@@ -6,14 +6,23 @@ import docker
 import pytest
 import responses
 
-from gordo_dataset.data_providers import providers
-from gordo_dataset.sensor_tag import SensorTag, to_list_of_strings
+from gordo_core.data_providers import providers
+from gordo_core.sensor_tag import SensorTag, to_list_of_strings
 
 from gordo_client import Client
 from gordo_client.schemas import Machine
 from tests.utils import InfluxDB, wait_for_influx
 
 logger = logging.getLogger(__name__)
+
+
+def pytest_collection_modifyitems(items):
+    """
+    Update all tests which use influxdb to be marked as a dockertest
+    """
+    for item in items:
+        if hasattr(item, "fixturenames") and "influxdb" in item.fixturenames:
+            item.add_marker(pytest.mark.dockertest)
 
 
 @pytest.fixture

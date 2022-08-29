@@ -10,14 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          # Fetch all commits
-          fetch-depth: 0
+      - uses: actions/checkout@v2
 
       - name: Check version
-        run: bash ci/check_version.sh ${GITHUB_REF#refs/tags/}
+        run: bash scripts/prepare_version.sh -v "${GITHUB_REF#refs/tags/}" -p gordo_client/_version.py
 
       - name : Set up Python 3.9
         uses: actions/setup-python@v1
@@ -28,19 +24,13 @@ jobs:
       - name: Install Poetry
         uses: snok/install-poetry@v1.1.1
         with:
-          version: 1.1.13
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-
-      - name: Cache Poetry virtualenv
-        uses: actions/cache@v2
-        with:
-          path: ~/.virtualenvs
-          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+          version: 1.1.14
+          virtualenvs-in-project: false
+          virtualenvs-path: ~/.virtualenvs
 
       - name: Install twine
         run: |
-          pip install twine
+          pip install "twine>=4.0.1,<5.0.0"
       
       - name: Build
         run: |
@@ -48,4 +38,4 @@ jobs:
 
       - name: Pypi Publish
         run: |
-          twine upload --skip-existing --repository-url "${{ secrets.PYPI_REPOSITORY }}" -u "${{ secrets.PYPI_USERNAME }}" -p "${{ secrets.PYPI_PASSWORD }}" dist/*
+          twine upload --skip-existing -u "${{ secrets.PYPI_USER }}" -p "${{ secrets.PYPI_PASSWORD }}" dist/*

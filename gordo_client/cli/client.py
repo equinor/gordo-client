@@ -14,7 +14,7 @@ import click
 import pandas as pd
 import simplejson
 import yaml
-from gordo_dataset.data_providers import providers
+from gordo_core.data_providers import providers
 from requests import Session
 
 from gordo_client import Client, __version__

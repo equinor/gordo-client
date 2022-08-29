@@ -11,14 +11,14 @@ import pandas as pd
 import requests
 import wrapt
 from cachetools import TTLCache, cached
-from gordo_dataset.base import (
+from gordo_core.base import (
     GordoBaseDataset,
     DatasetWithProvider,
     import_dataset,
     create_with_provider,
     create_dataset,
 )
-from gordo_dataset.data_providers.base import GordoBaseDataProvider
+from gordo_core.data_providers.base import GordoBaseDataProvider
 from sklearn.base import BaseEstimator
 
 from gordo_client.dataframe import (
