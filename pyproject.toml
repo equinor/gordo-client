@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gordo-client"
-version = "6.0.0"
+version = "6.0.0.post2"
 description = "Gordo client"
 authors = ["Equinor ASA <fg_gpl@equinor.com>"]
 license = "AGPL-3.0"
