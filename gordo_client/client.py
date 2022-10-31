@@ -199,11 +199,9 @@ class Client:
     @wrapt.synchronized
     @cached(TTLCache(maxsize=32, ttl=600))
     def machine_from_server(self, name: str, revision: str) -> Machine:
-        url = f"{self.base_url}/gordo/v0/{self.project_name}/{name}/metadata"
         resp = self.session.get(
             f"{self.base_url}/gordo/v0/{self.project_name}/{name}/metadata", params={"revision": revision}
         )
-        logger.debug("%s response: %s", url, vars(resp))
         metadata = _handle_response(resp=resp, resource_name=f"Machine metadata for {name}")
         if isinstance(metadata, dict) and metadata.get("metadata", None):
             return Machine(**metadata.get("metadata", None))
