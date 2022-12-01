@@ -2,6 +2,8 @@
 import itertools
 import logging
 import pickle
+import copy
+
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from time import sleep
@@ -250,7 +252,7 @@ class Client:
         """
         #  Value expression in dictionary comprehension has incompatible type "Optional[Metadata]"; expected type "Metadata"
         machines = self._get_machines(revision=revision, machine_names=targets)
-        return {ep.name: ep.metadata for ep in machines}
+        return {ep.name: copy.copy(ep.metadata) for ep in machines}
 
     def predict(
         self, start: datetime, end: datetime, targets: Optional[List[str]] = None, revision: Optional[str] = None
@@ -474,10 +476,10 @@ class Client:
 
         # Re-create the machine's dataset but updating to use the client's
         # data provider and changing the dates of data we want.
-        config = machine.dataset
+        config = copy.copy(machine.dataset)
         config.update({"train_start_date": start, "train_end_date": end})
 
-        dataset_type = config.pop("type", None)
+        dataset_type = config.get("type")
         if dataset_type is None:
             raise ValueError("dataset.type is empty")
         dataset_cls = import_dataset(dataset_type)
