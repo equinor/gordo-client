@@ -479,7 +479,7 @@ class Client:
         config = copy.copy(machine.dataset)
         config.update({"train_start_date": start, "train_end_date": end})
 
-        dataset_type = config.get("type")
+        dataset_type = config.pop("type", None)
         if dataset_type is None:
             raise ValueError("dataset.type is empty")
         dataset_cls = import_dataset(dataset_type)
