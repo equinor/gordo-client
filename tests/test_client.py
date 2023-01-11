@@ -64,7 +64,7 @@ def test_azure_login_page(client, mocked_responses):
         url="https://localhost:443/gordo/v0/gordo-test/revisions",
         body="<title>Sign in to your account</title>",
         status=200,
-        content_type='text/html; charset=utf-8',
+        content_type="text/html; charset=utf-8",
     )
 
     with pytest.raises(BadGordoRequest):
