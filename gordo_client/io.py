@@ -43,9 +43,6 @@ class BadGordoResponse(Exception):
     def __reduce__(self):
         return self.__class__, (self.msg, self.content, self.status_code, self.content_type)
 
-    def __repr__(self):
-        return f"BadGordoResponse({self.msg!r}, {self.content!r}, {self.status_code!r}, {self.content_type!r})"
-
 
 class NotFound(Exception):
     """

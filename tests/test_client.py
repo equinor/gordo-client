@@ -78,10 +78,10 @@ def test_bad_gordo_response(client, mocked_responses):
     assert e.content_type == "text/html; charset=utf-8"
 
 
-def test_bad_gordo_response_special_methods():
+def test_bad_gordo_response_reduce():
     e = BadGordoResponse("msg", b"content", 201, "text/html")
-    assert repr(e) == "BadGordoResponse('msg', b'content', 201, 'text/html')"
     e1 = pickle.loads(pickle.dumps(e))
+    assert str(e1) == "msg"
     assert e1.content == b"content"
     assert e1.status_code == 201
     assert e1.content_type == "text/html"
