@@ -58,7 +58,7 @@ def _mock_response(mocked_responses, url, response_name):
     return client_response
 
 
-def test_azure_login_page(client, mocked_responses):
+def test_bad_gordo_response(client, mocked_responses):
     mocked_responses.add(
         method="GET",
         url="https://localhost:443/gordo/v0/gordo-test/revisions",

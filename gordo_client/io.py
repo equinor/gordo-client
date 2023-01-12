@@ -78,7 +78,7 @@ def _handle_response(resp: requests.Response, resource_name: Optional[str] = Non
             return resp.content
         elif _is_json_response(resp):
             return resp.json()
-        resource_msg =  f"while fetching resource: {resource_name}" if resource_name else ""
+        resource_msg = f" while fetching resource: {resource_name}" if resource_name else ""
         raise BadGordoResponse(f"Bad gordo response found{resource_msg}.", resp.content)
 
     if resource_name:
