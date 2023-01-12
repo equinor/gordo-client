@@ -33,9 +33,18 @@ class BadGordoResponse(Exception):
     Represents a general bad response (not json or model)
     """
 
-    def __init__(self, msg: str, content: bytes):
+    def __init__(self, msg: str, content: bytes, status_code: int = 200, content_type: Optional[str] = None):
+        self.msg = msg
         self.content = content
+        self.status_code = status_code
+        self.content_type = content_type
         super().__init__(msg)
+
+    def __reduce__(self):
+        return self.__class__, (self.msg, self.content, self.status_code, self.content_type)
+
+    def __repr__(self):
+        return f"BadGordoResponse({self.msg!r}, {self.content!r}, {self.status_code!r}, {self.content_type!r})"
 
 
 class NotFound(Exception):
@@ -83,7 +92,9 @@ def _handle_response(resp: requests.Response, resource_name: Optional[str] = Non
         elif _is_json_response(resp):
             return resp.json()
         resource_msg = f" while fetching resource: {resource_name}" if resource_name else ""
-        raise BadGordoResponse(f"Bad gordo response found{resource_msg}.", resp.content)
+        raise BadGordoResponse(
+            f"Bad gordo response found{resource_msg}.", resp.content, resp.status_code, resp.headers.get("content-type")
+        )
 
     if resource_name:
         msg = (
@@ -105,8 +116,8 @@ def _handle_response(resp: requests.Response, resource_name: Optional[str] = Non
 
 
 def _is_json_response(response) -> bool:
-    return response.headers["content-type"] == "application/json"
+    return response.headers.get("content-type") == "application/json"
 
 
 def _is_model_response(response) -> bool:
-    return response.headers["content-type"] == "application/x-tar"
+    return response.headers.get("content-type") == "application/x-tar"

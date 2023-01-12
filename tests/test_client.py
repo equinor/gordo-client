@@ -1,4 +1,5 @@
 import json
+import pickle
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -70,10 +71,22 @@ def test_bad_gordo_response(client, mocked_responses):
     with pytest.raises(BadGordoResponse) as exc:
         client.get_revisions()
 
+    e = exc.value
     assert (
-        str(exc.value) == "Bad gordo response found while fetching resource: List of available revisions from server."
+        str(e) == "Bad gordo response found while fetching resource: List of available revisions from server."
     )
-    assert exc.value.content == b"<title>Sign in to your account</title>"
+    assert e.content == b"<title>Sign in to your account</title>"
+    assert e.status_code == 200
+    assert e.content_type == "text/html; charset=utf-8"
+
+
+def test_bad_gordo_response_special_methods():
+    e = BadGordoResponse("msg", b'content', 201, "text/html")
+    assert repr(e) == "BadGordoResponse('msg', b'content', 201, 'text/html')"
+    e1 = pickle.loads(pickle.dumps(e))
+    assert e1.content == b'content'
+    assert e1.status_code == 201
+    assert e1.content_type == "text/html"
 
 
 def test_get_revisions(client, mocked_responses):
