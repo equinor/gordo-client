@@ -53,7 +53,6 @@ class NotFound(Exception):
 def _handle_response(resp: requests.Response, resource_name: Optional[str] = None) -> Union[dict, bytes]:
     """
     Handle the response from the server.
-
     Either returning the parsed json (if it is json), the pure bytestream of the content, or raise an exception
     if something went wrong.
 
@@ -72,6 +71,8 @@ def _handle_response(resp: requests.Response, resource_name: Optional[str] = Non
 
     Raises
     ------
+    BadGordoResponse
+        Bad response (not json or model)
     HttpUnprocessableEntitys
         In case of a 422 from the server
     ResourceGone
