@@ -3,8 +3,6 @@ from typing import Optional, Union
 
 import requests
 
-AZURE_LOGIN_MESSAGE = "Sign in to your account"
-
 
 class HttpUnprocessableEntity(Exception):
     """
@@ -12,8 +10,6 @@ class HttpUnprocessableEntity(Exception):
     Used in our case for calling /anomaly/prediction on a model which does not
     support anomaly behavior.
     """
-
-    pass
 
 
 class ResourceGone(Exception):
@@ -25,23 +21,27 @@ class ResourceGone(Exception):
     Used in our case for calling the server with a revision which is no longer used.
     """
 
-    pass
-
 
 class BadGordoRequest(Exception):
     """
     Represents a general 4xx bad request
     """
 
-    pass
+
+class BadGordoResponse(Exception):
+    """
+    Represents a general bad response (not json or model)
+    """
+
+    def __init__(self, msg: str, content: bytes):
+        self.content = content
+        super().__init__(msg)
 
 
 class NotFound(Exception):
     """
     Represents a 404
     """
-
-    pass
 
 
 def _handle_response(resp: requests.Response, resource_name: Optional[str] = None) -> Union[dict, bytes]:
@@ -78,11 +78,12 @@ def _handle_response(resp: requests.Response, resource_name: Optional[str] = Non
         In case of network or IO errors
     """
     if 200 <= resp.status_code <= 299:
-        if _is_json_response(resp):
+        if _is_model_response(resp):
+            return resp.content
+        elif _is_json_response(resp):
             return resp.json()
-        elif _is_azure_login_response(resp):
-            raise BadGordoRequest(f"Azure login page response found while fetching resource: {resource_name}.")
-        return resp.content
+        resource_msg = f" while fetching resource: {resource_name}" if resource_name else ""
+        raise BadGordoResponse(f"Bad gordo response found{resource_msg}.", resp.content)
 
     if resource_name:
         msg = (
@@ -107,5 +108,5 @@ def _is_json_response(response) -> bool:
     return response.headers["content-type"] == "application/json"
 
 
-def _is_azure_login_response(response) -> bool:
-    return response.text.find(AZURE_LOGIN_MESSAGE) != -1
+def _is_model_response(response) -> bool:
+    return response.headers["content-type"] == "application/x-tar"

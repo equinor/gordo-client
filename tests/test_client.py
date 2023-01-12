@@ -7,7 +7,7 @@ from typing import Dict, Optional, Union
 import pytest
 from pytz import UTC
 
-from gordo_client.io import BadGordoRequest, ResourceGone
+from gordo_client.io import BadGordoResponse, ResourceGone
 from gordo_client.schemas import Machine
 from gordo_client.utils import PredictionResult
 from gordo_client import Client
@@ -58,7 +58,7 @@ def _mock_response(mocked_responses, url, response_name):
     return client_response
 
 
-def test_azure_login_page(client, mocked_responses):
+def test_bad_gordo_response(client, mocked_responses):
     mocked_responses.add(
         method="GET",
         url="https://localhost:443/gordo/v0/gordo-test/revisions",
@@ -67,8 +67,13 @@ def test_azure_login_page(client, mocked_responses):
         content_type="text/html; charset=utf-8",
     )
 
-    with pytest.raises(BadGordoRequest):
+    with pytest.raises(BadGordoResponse) as exc:
         client.get_revisions()
+
+    assert (
+        str(exc.value) == "Bad gordo response found while fetching resource: List of available revisions from server."
+    )
+    assert exc.value.content == b"<title>Sign in to your account</title>"
 
 
 def test_get_revisions(client, mocked_responses):
