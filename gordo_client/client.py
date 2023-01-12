@@ -134,8 +134,7 @@ class Client:
             a list of all available revisions, and `latest` is the latest and default
             revision.
         """
-        req = requests.Request("GET", f"{self.base_url}/gordo/v0/{self.project_name}/revisions")
-        resp = self.session.send(req.prepare())
+        resp = self.session.get(f"{self.base_url}/gordo/v0/{self.project_name}/revisions")
         resp_json = _handle_response(resp=resp, resource_name="List of available revisions from server")
         return resp_json
 
@@ -145,10 +144,7 @@ class Client:
     @wrapt.synchronized
     @cached(TTLCache(maxsize=64, ttl=30))
     def _get_available_machines(self, revision):
-        req = requests.Request(
-            "GET", f"{self.base_url}/gordo/v0/{self.project_name}/models", params={"revision": revision}
-        )
-        resp = self.session.send(req.prepare())
+        resp = self.session.get(f"{self.base_url}/gordo/v0/{self.project_name}/models", params={"revision": revision})
         model_response = _handle_response(resp=resp, resource_name=f"Model name listing for revision {revision}")
         if "models" not in model_response:
             raise ValueError(f"Invalid response from server, key 'model' not found in: {model_response}")

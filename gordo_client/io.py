@@ -3,6 +3,8 @@ from typing import Optional, Union
 
 import requests
 
+AZURE_LOGIN_MESSAGE = "Sign in to your account"
+
 
 class HttpUnprocessableEntity(Exception):
     """
@@ -76,8 +78,11 @@ def _handle_response(resp: requests.Response, resource_name: Optional[str] = Non
         In case of network or IO errors
     """
     if 200 <= resp.status_code <= 299:
-        is_json = resp.headers["content-type"] == "application/json"
-        return resp.json() if is_json else resp.content
+        if _is_json_response(resp):
+            return resp.json()
+        elif _is_azure_login_response(resp):
+            raise BadGordoRequest(f"Azure login page response found while fetching resource: {resource_name}.")
+        return resp.content
 
     if resource_name:
         msg = (
@@ -96,3 +101,11 @@ def _handle_response(resp: requests.Response, resource_name: Optional[str] = Non
     elif 400 <= resp.status_code <= 499:
         raise BadGordoRequest(msg)
     raise IOError(msg)
+
+
+def _is_json_response(response) -> bool:
+    return response.headers["content-type"] == "application/json"
+
+
+def _is_azure_login_response(response) -> bool:
+    return response.text.find(AZURE_LOGIN_MESSAGE) != -1
