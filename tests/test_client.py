@@ -72,19 +72,17 @@ def test_bad_gordo_response(client, mocked_responses):
         client.get_revisions()
 
     e = exc.value
-    assert (
-        str(e) == "Bad gordo response found while fetching resource: List of available revisions from server."
-    )
+    assert str(e) == "Bad gordo response found while fetching resource: List of available revisions from server."
     assert e.content == b"<title>Sign in to your account</title>"
     assert e.status_code == 200
     assert e.content_type == "text/html; charset=utf-8"
 
 
 def test_bad_gordo_response_special_methods():
-    e = BadGordoResponse("msg", b'content', 201, "text/html")
+    e = BadGordoResponse("msg", b"content", 201, "text/html")
     assert repr(e) == "BadGordoResponse('msg', b'content', 201, 'text/html')"
     e1 = pickle.loads(pickle.dumps(e))
-    assert e1.content == b'content'
+    assert e1.content == b"content"
     assert e1.status_code == 201
     assert e1.content_type == "text/html"
 
