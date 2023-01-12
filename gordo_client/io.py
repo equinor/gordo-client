@@ -33,6 +33,10 @@ class BadGordoResponse(Exception):
     Represents a general bad response (not json or model)
     """
 
+    def __init__(self, msg: str, content: bytes):
+        self.content = content
+        super().__init__(msg)
+
 
 class NotFound(Exception):
     """

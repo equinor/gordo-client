@@ -67,8 +67,13 @@ def test_bad_gordo_response(client, mocked_responses):
         content_type="text/html; charset=utf-8",
     )
 
-    with pytest.raises(BadGordoResponse):
+    with pytest.raises(BadGordoResponse) as exc:
         client.get_revisions()
+
+    assert (
+        str(exc.value) == "Bad gordo response found while fetching resource: List of available revisions from server."
+    )
+    assert exc.value.content == b"<title>Sign in to your account</title>"
 
 
 def test_get_revisions(client, mocked_responses):
