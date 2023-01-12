@@ -13,8 +13,6 @@ class HttpUnprocessableEntity(Exception):
     support anomaly behavior.
     """
 
-    pass
-
 
 class ResourceGone(Exception):
     """
@@ -25,15 +23,11 @@ class ResourceGone(Exception):
     Used in our case for calling the server with a revision which is no longer used.
     """
 
-    pass
-
 
 class BadGordoRequest(Exception):
     """
     Represents a general 4xx bad request
     """
-
-    pass
 
 
 class BadGordoResponse(Exception):
@@ -41,15 +35,11 @@ class BadGordoResponse(Exception):
     Represents a general bad response (not json or model)
     """
 
-    pass
-
 
 class NotFound(Exception):
     """
     Represents a 404
     """
-
-    pass
 
 
 def _handle_response(resp: requests.Response, resource_name: Optional[str] = None) -> Union[dict, bytes]:
