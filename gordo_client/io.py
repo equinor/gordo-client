@@ -36,6 +36,14 @@ class BadGordoRequest(Exception):
     pass
 
 
+class BadGordoResponse(Exception):
+    """
+    Represents a general bad response (not json or model)
+    """
+
+    pass
+
+
 class NotFound(Exception):
     """
     Represents a 404
@@ -81,7 +89,7 @@ def _handle_response(resp: requests.Response, resource_name: Optional[str] = Non
         if _is_json_response(resp):
             return resp.json()
         elif _is_azure_login_response(resp):
-            raise BadGordoRequest(f"Azure login page response found while fetching resource: {resource_name}.")
+            raise BadGordoResponse(f"Azure login page response found while fetching resource: {resource_name}.")
         return resp.content
 
     if resource_name:

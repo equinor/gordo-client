@@ -7,7 +7,7 @@ from typing import Dict, Optional, Union
 import pytest
 from pytz import UTC
 
-from gordo_client.io import BadGordoRequest, ResourceGone
+from gordo_client.io import BadGordoResponse, ResourceGone
 from gordo_client.schemas import Machine
 from gordo_client.utils import PredictionResult
 from gordo_client import Client
@@ -67,7 +67,7 @@ def test_azure_login_page(client, mocked_responses):
         content_type="text/html; charset=utf-8",
     )
 
-    with pytest.raises(BadGordoRequest):
+    with pytest.raises(BadGordoResponse):
         client.get_revisions()
 
 
