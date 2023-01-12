@@ -116,4 +116,4 @@ def _is_json_response(response) -> bool:
 
 
 def _is_azure_login_response(response) -> bool:
-    return response.headers["content-type"].startswith("text/html") and response.text.find(AZURE_LOGIN_MESSAGE) != -1
+    return response.headers["content-type"].startswith("text/html") and AZURE_LOGIN_MESSAGE in response.text
