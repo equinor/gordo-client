@@ -118,4 +118,4 @@ def _is_json_response(response) -> bool:
 
 
 def _is_model_response(response) -> bool:
-    return response.headers.get("content-type") == "application/x-tar"
+    return response.headers.get("content-type") in ("application/x-tar", "application/octet-stream")
