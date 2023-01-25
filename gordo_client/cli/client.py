@@ -203,7 +203,7 @@ def download_model(ctx: click.Context, output_dir: str, target: List[str]):
     click.secho(f"Wrote all models to directory: {output_dir}", fg="green")
 
 
-def _dump_model(obj: object, dest_dir: Union[os.PathLike, str], model_metadata: dict = None):
+def _dump_model(obj: object, dest_dir: Union[os.PathLike, str], model_metadata: Optional[dict] = None):
     with open(os.path.join(dest_dir, "model.pkl"), "wb") as m:
         pickle.dump(obj, m)
     if model_metadata is not None:
