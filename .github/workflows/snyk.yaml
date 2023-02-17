@@ -17,4 +17,4 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: monitor
-          args: --all-projects
+          args: --remote-repo-url="gordo-client" --project-name=poetry
