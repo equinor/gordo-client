@@ -10,7 +10,7 @@ Client for [Gordo](https://github.com/equinor/gordo) project.
     
 ## Installation
 
-Python 3.9 need to be installed in the system first.
+At least python 3.9 need to be installed in the system first.
 
 In order to install or uninstall this library run following commands.
 ```bash
