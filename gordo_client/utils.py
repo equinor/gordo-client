@@ -50,11 +50,9 @@ def influx_client_from_uri(
     recreate
         Re/create the database named in the URI
     dataframe_client
-        Return a DataFrameClient instead of a standard InfluxDBClient
+        Return ``DataFrameClient`` instead of a standard ``InfluxDBClient``
     proxies
         A mapping of any proxies to pass to the influx client
-
-
     """
     username, password, host, port, path, db_name = _parse_influx_uri(uri)
 

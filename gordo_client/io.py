@@ -5,8 +5,8 @@ import requests
 
 class HttpUnprocessableEntity(Exception):
     """
-    Represents an error from an HTTP status code of 422: UnprocessableEntity.
-    Used in our case for calling /anomaly/prediction on a model which does not
+    Represents an error from an HTTP status code of ``422: UnprocessableEntity``.
+    Used in our case for calling ``/anomaly/prediction`` on a model which does not
     support anomaly behavior.
     """
 
