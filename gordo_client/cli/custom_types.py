@@ -1,4 +1,3 @@
-"""Custom click types."""
 import os
 import typing
 

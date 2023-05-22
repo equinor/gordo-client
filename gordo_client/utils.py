@@ -36,6 +36,9 @@ def influx_client_from_uri(
     """
     Get a ``InfluxDBClient`` or ``DataFrameClient`` from a ``SqlAlchemy`` like URI.
 
+    .. todo::
+        Remove this function. Use :class:`gordo_core.utils.influx_client_from_uri` instead.
+
     Parameters
     ----------
     uri
@@ -51,8 +54,7 @@ def influx_client_from_uri(
     proxies
         A mapping of any proxies to pass to the influx client
 
-    .. todo::
-        Remove this function. Use :class:`gordo_core.utils.influx_client_from_uri` instead.
+
     """
     username, password, host, port, path, db_name = _parse_influx_uri(uri)
 

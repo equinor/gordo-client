@@ -10,7 +10,6 @@ import os
 import datetime
 import importlib
 import inspect
-import traceback
 
 from gordo_client.dist import get_version
 
@@ -106,6 +105,7 @@ intersphinx_mapping = {
     "pyarrow": ("https://arrow.apache.org/docs/python/", None),
     "xarray": ("https://docs.xarray.dev/en/stable/user-guide/", None),
     "influxdb": ("https://influxdb-python.readthedocs.io/en/latest/", None),
+    "click": ("https://click.palletsprojects.com/en/", None)
 }
 
 autosectionlabel_prefix_document = True

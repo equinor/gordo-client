@@ -267,10 +267,9 @@ class Client:
 
         Returns
         -------
-            A list of tuples, where:
-              0th element is the target name
-              1st element is the dataframe of the predictions; complete with a DateTime index.
-              2nd element is a list of error messages (if any) for running the predictions
+            0th element is the target name
+            1st element is the dataframe of the predictions; complete with a DateTime index.
+            2nd element is a list of error messages (if any) for running the predictions
         """
         rev = revision or self._get_latest_revision()
         machines = self._get_machines(revision=rev, machine_names=targets)
@@ -299,7 +298,6 @@ class Client:
 
         Returns
         -------
-        dict
             Prediction response from ``/prediction`` GET
         """
 
