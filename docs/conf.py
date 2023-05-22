@@ -36,6 +36,7 @@ extensions = [
     "IPython.sphinxext.ipython_directive",
     "IPython.sphinxext.ipython_console_highlighting",
     "sphinx_copybutton",
+    "sphinx_click",
 ]
 
 root_doc = "index"
@@ -45,7 +46,9 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 code_url = f"https://github.com/equinor/{project}/blob/{commit}"
 
-_ignore_linkcode_infos = []
+_ignore_linkcode_infos = [
+    {'module': 'gordo_client.utils', 'fullname': 'PredictionResult'}
+]
 
 
 def linkcode_resolve(domain, info):
@@ -120,7 +123,7 @@ autodoc_inherit_docstrings = True
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 html_theme = "furo"
-html_static_path = ["_static"]
+html_static_path = []
 
 html_theme_options = {
     "footer_icons": [

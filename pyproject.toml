@@ -58,7 +58,7 @@ responses = "~0.10"
 gordo-client = 'gordo_client.cli.client:gordo_client'
 
 [tool.poetry.group.docs.dependencies]
-sphinx = "^7.0.1"
+sphinx = "^6.2.1"
 sphinx-autobuild = "^2021.3.14"
 sphinx-copybutton = "^0.5.2"
 furo = "^2023.5.20"

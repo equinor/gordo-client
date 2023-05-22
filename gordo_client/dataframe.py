@@ -1,4 +1,3 @@
-"""Gordo client dataframes methods."""
 import io
 
 import dateutil
@@ -13,9 +12,9 @@ def dataframe_into_parquet_bytes(df: pd.DataFrame, compression: str = "snappy") 
 
     Parameters
     ----------
-    df: pd.DataFrame
+    df
         DataFrame to be compressed
-    compression: str
+    compression
         Compression to use, passed to  :func:`pyarrow.parquet.write_table`
 
     Returns
@@ -34,9 +33,9 @@ def dataframe_from_parquet_bytes(buf: bytes) -> pd.DataFrame:
 
     Parameters
     ----------
-    buf: bytes
+    buf
         Bytes representing a parquet table. Can be the direct result from
-        `func`::gordo.server.utils.dataframe_into_parquet_bytes
+        ``gordo.server.utils.dataframe_into_parquet_bytes``
 
     Returns
     -------
@@ -55,17 +54,16 @@ def dataframe_to_dict(df: pd.DataFrame) -> dict:
     will be used.
 
     This allows :func:`json.dumps` to be performed, where :meth:`pandas.DataFrame.to_dict()`
-    would convert such a multi-level column dataframe into keys of ``tuple`` objects, which are
-    not json serializable. However this ends up working with :meth:`pandas.DataFrame.from_dict`
+    would convert such a multi-level column dataframe into keys of :func:`tuple` objects, which are
+    not json serializable. However this ends up working with :func:`pandas.DataFrame.from_dict`
 
     Parameters
     ----------
-    df: pandas.DataFrame
+    df
         Dataframe expected to have columns of type :class:`pandas.MultiIndex` 2 levels deep.
 
     Returns
     -------
-    List[dict]
         List of records representing the dataframe in a 'flattened' form.
 
 
@@ -106,20 +104,19 @@ def dataframe_to_dict(df: pd.DataFrame) -> dict:
 def dataframe_from_dict(data: dict) -> pd.DataFrame:
     """
     The inverse procedure done by :func:`.multi_lvl_column_dataframe_from_dict`
-    Reconstructed a MultiIndex column dataframe from a previously serialized one.
+    Reconstructed a ``pandas.MultiIndex`` column dataframe from a previously serialized one.
 
     Expects ``data`` to be a nested dictionary where each top level key has a value
-    capable of being loaded from :func:`pandas.core.DataFrame.from_dict`
+    capable of being loaded from :func:`pandas.DataFrame.from_dict`
 
     Parameters
     ----------
-    data: dict
+    data
         Data to be loaded into a MultiIndex column dataframe
 
     Returns
     -------
-    pandas.core.DataFrame
-        MultiIndex column dataframe.
+        ``MultiIndex`` column dataframe.
 
     Examples
     --------

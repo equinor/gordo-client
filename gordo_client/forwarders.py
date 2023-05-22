@@ -1,4 +1,3 @@
-"""Gordo client forwarders."""
 import abc
 import itertools
 import logging
@@ -18,9 +17,10 @@ logger = logging.getLogger(__name__)
 class PredictionForwarder(metaclass=abc.ABCMeta):
 
     """
-    Definition of a callable which the :class:`gordo_client.Client`
+    Definition of a callable which the :class:`gordo_client.client.Client`
     will call after each successful prediction response::
 
+    .. code-block:: python
         def my_forwarder(
             predictions: pd.DataFrame = None,
             machine: Machine = None,
@@ -63,12 +63,12 @@ class ForwardPredictionsIntoInflux(PredictionForwarder):
 
         Parameters
         ----------
-        destination_influx_uri: str
+        destination_influx_uri
             Connection string for destination influx -
-            format: <username>:<password>@<host>:<port>/<optional-path>/<db_name>
-        destination_influx_api_key: str
+            format: ``<username>:<password>@<host>:<port>/<optional-path>/<db_name>``
+        destination_influx_api_key
             API key if needed for destination db
-        destination_influx_recreate: bool
+        destination_influx_recreate
             Drop the database before filling it with data?
         """
         # Create df client if provided
@@ -114,11 +114,7 @@ class ForwardPredictionsIntoInflux(PredictionForwarder):
 
         Parameters
         ----------
-        df: pandas.DataFrame
-
-        Returns
-        -------
-        pandas.DataFrame
+        df
         """
         return df.replace([np.inf, -np.inf], np.nan).dropna()
 
@@ -132,14 +128,10 @@ class ForwardPredictionsIntoInflux(PredictionForwarder):
 
         Parameters
         ----------
-        predictions: pd.DataFrame
+        predictions
             Multi layed column dataframe, where top level names will be treated
             as the 'measurement' name in influx and 2nd level will be the fields
             under those measurements.
-
-        Returns
-        -------
-        None
         """
         # Setup tags; metadata (if any) and other key value pairs.
         tags = {"machine": f"{machine.name}"}
@@ -224,13 +216,12 @@ class ForwardPredictionsIntoInflux(PredictionForwarder):
 
         Parameters
         ----------
-        df: pd.DataFrame
+        df
             Source dataframe with individual columns for tags.
 
         Returns
         -------
-        df: pd.DataFrame
-            Stacked dataframe with columns `sensor_name` and `sensor_value`.
+            Stacked dataframe with columns ``sensor_name`` and ``sensor_value``.
         """
         # String column names are necessary for stacking
         # (as opposed to integers when df created from np.ndarray)
