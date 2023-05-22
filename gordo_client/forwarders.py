@@ -15,19 +15,19 @@ logger = logging.getLogger(__name__)
 
 
 class PredictionForwarder(metaclass=abc.ABCMeta):
-
     """
     Definition of a callable which the :class:`gordo_client.client.Client`
     will call after each successful prediction response::
 
     .. code-block:: python
-        def my_forwarder(
-            predictions: pd.DataFrame = None,
-            machine: Machine = None,
-            metadata: dict = dict(),
-            resampled_sensor_data: pd.DataFrame = None
-        ):
-            ...
+
+            def my_forwarder(
+                predictions: pd.DataFrame = None,
+                machine: Machine = None,
+                metadata: dict = dict(),
+                resampled_sensor_data: pd.DataFrame = None
+            ):
+                ...
     """
 
     @abc.abstractmethod
