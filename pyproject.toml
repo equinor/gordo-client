@@ -62,7 +62,6 @@ sphinx = "^6.2.1"
 sphinx-autobuild = "^2021.3.14"
 sphinx-copybutton = "^0.5.2"
 furo = "^2023.5.20"
-ipython = "^8.13.2"
 sphinx-click = "^4.4.0"
 
 [tool.black]
