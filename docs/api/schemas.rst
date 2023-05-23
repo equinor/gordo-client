@@ -1,5 +1,5 @@
-Schema
-------
+Schemas
+-------
 
 .. automodule:: gordo_client.schemas
     :members:

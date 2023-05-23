@@ -16,8 +16,8 @@ logger = logging.getLogger(__name__)
 
 class PredictionForwarder(metaclass=abc.ABCMeta):
     """
-    Definition of a callable which the :class:`gordo_client.client.Client`
-    will call after each successful prediction response::
+        Definition of a callable which the :class:`gordo_client.client.Client`
+        will call after each successful prediction response.
 
     .. code-block:: python
 
@@ -47,7 +47,7 @@ class ForwardPredictionsIntoInflux(PredictionForwarder):
     To be used as a 'forwarder' for the prediction client
 
     After instantiation, it is a coroutine which accepts prediction dataframes
-    which it will pass onto influx
+    which it will pass onto Influx
     """
 
     def __init__(
@@ -120,10 +120,10 @@ class ForwardPredictionsIntoInflux(PredictionForwarder):
 
     def forward_predictions(self, predictions: pd.DataFrame, machine: Machine, metadata: dict = dict()):
         """
-        Takes a multi-layed column dataframe and write points to influx where
+        Takes a multi-layed column dataframe and write points to Influx where
         each top level name is treated as the measurement name.
 
-        How the data is written via InfluxDB DataFrameClient in this method
+        How the data is written via InfluxDB ``DataFrameClient`` in this method
         determines the schema of the database.
 
         Parameters
@@ -163,7 +163,7 @@ class ForwardPredictionsIntoInflux(PredictionForwarder):
 
     def _write_to_influx_with_retries(self, df, measurement, tags: Dict[str, Any] = {}):
         """
-        Write data to influx with retries and exponential backof. Will sleep
+        Write data to Influx with retries and exponential backof. Will sleep
         exponentially longer between each retry, starting at 8 seconds, capped at 5 min.
         """
         logger.info(f"Writing {len(df)} points to Influx for measurement: {measurement}")
@@ -186,7 +186,7 @@ class ForwardPredictionsIntoInflux(PredictionForwarder):
                     # Sleep at most 5 min
                     time_to_sleep = min(2 ** (current_attempt + 2), 300)
                     logger.warning(
-                        f"Failed to forward data to influx on attempt "
+                        f"Failed to forward data to Influx on attempt "
                         f"{current_attempt} out of {self.n_retries}.\n"
                         f"Error: {exc}.\n"
                         f"Sleeping {time_to_sleep} seconds and trying again."
@@ -194,7 +194,7 @@ class ForwardPredictionsIntoInflux(PredictionForwarder):
                     time.sleep(time_to_sleep)
                     continue
                 else:
-                    msg = f"Failed to forward data to influx. Error: {exc}"
+                    msg = f"Failed to forward data to Influx. Error: {exc}"
                     logger.error(msg)
                     raise exc
             else:
@@ -202,12 +202,12 @@ class ForwardPredictionsIntoInflux(PredictionForwarder):
 
     def send_sensor_data(self, sensors: pd.DataFrame):
         """
-        Write sensor-data to influx
+        Write sensor-data to Influx
         """
-        # Write the per-sensor points to influx
+        # Write the per-sensor points to Influx
         logger.info(f"Writing {len(sensors)} sensor points to Influx")
         self._write_to_influx_with_retries(sensors, "resampled")
-        logger.debug("Done writing resampled sensor values to influx")
+        logger.debug("Done writing resampled sensor values to Influx")
 
     @staticmethod
     def _stack_to_name_value_columns(df: pd.DataFrame) -> pd.DataFrame:
