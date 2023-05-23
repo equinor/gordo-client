@@ -32,8 +32,6 @@ extensions = [
     "sphinx.ext.extlinks",
     "sphinx.ext.linkcode",
     "sphinx.ext.autosectionlabel",
-    "IPython.sphinxext.ipython_directive",
-    "IPython.sphinxext.ipython_console_highlighting",
     "sphinx_copybutton",
     "sphinx_click",
 ]
