@@ -1,4 +1,3 @@
-"""Gordo client."""
 import itertools
 import logging
 import pickle
@@ -64,42 +63,42 @@ class Client:
 
         Parameters
         ----------
-        project: str
+        project
             Name of the project.
-        host: str
+        host
             Host of where to find controller and other services.
-        port: int
+        port
             Port to communicate on.
-        scheme: str
+        scheme
             The request scheme to use, ie 'https'.
-        metadata: Optional[dict]
+        metadata
             Arbitrary mapping of key-value pairs to save to influx with
             prediction runs in 'tags' property
-        data_provider: Optional[GordoBaseDataProvider]
+        data_provider
             The data provider to use for the dataset. If not set, the client
-            will fall back to using the GET /prediction machine
-        prediction_forwarder: Optional[Callable[[pd.DataFrame, Machine, dict, pd.DataFrame], None]]
+            will fall back to using the ``GET /prediction`` machine
+        prediction_forwarder
             callable which will take a dataframe of predictions,
             ``Machine``, the metadata, and the dataframe of resampled sensor
             values and forward them somewhere.
-        batch_size: int
+        batch_size
             How many samples to send to the server, only applicable when data
             provider is supplied.
-        parallelism: int
+        parallelism
             The maximum number of tasks to run at a given time when
             running predictions
-        forward_resampled_sensors: bool
+        forward_resampled_sensors
             If true then forward resampled sensor values to the prediction_forwarder
-        n_retries: int
+        n_retries
             Number of times the client should attempt to retry a failed prediction request. Each time the client
             retires the time it sleeps before retrying is exponentially calculated.
-        use_parquet: bool
+        use_parquet
             Pass the data to the server using the parquet protocol. Default is True
             and recommended as it's more efficient for larger batch sizes. If False JSON
             is used for sending the data back and forth.
-        session: Optional[requests.Session]
+        session
             The http session object to use for making requests.
-        all_columns: bool
+        all_columns
             Return all columns for prediction. Including `smooth-..` columns
         """
 
@@ -129,9 +128,8 @@ class Client:
 
         Returns
         ------
-        dict
-            Dictionary with two keys, `available-revisions` and `latest`. The first is
-            a list of all available revisions, and `latest` is the latest and default
+            Dictionary with two keys, ``available-revisions`` and ``latest``. The first is
+            a list of all available revisions, and ``latest`` is the latest and default
             revision.
         """
         resp = self.session.get(f"{self.base_url}/gordo/v0/{self.project_name}/revisions")
@@ -152,10 +150,10 @@ class Client:
         return model_response
 
     def get_available_machines(self, revision: Optional[str] = None):
-        """Returns a dict representing the /models endpoint of the project for the given revision.
+        """Returns a dict representing the ``/models`` endpoint of the project for the given revision.
 
-        Contains at least a key `models` which contains the name of the models the
-        server can serve for that revision, and a key `revision` containing the
+        Contains at least a key ``models`` which contains the name of the models the
+        server can serve for that revision, and a key ``revision`` containing the
         revision."""
         return self._get_available_machines(revision=revision or self._get_latest_revision())
 
@@ -167,22 +165,21 @@ class Client:
 
     def _get_machines(self, revision: Optional[str] = None, machine_names: Optional[List[str]] = None) -> List[Machine]:
         """
-        Returns a list of :class:`gordo.workflow.config_elements.machine.Machine` elements served by the server for
+        Returns a list of :class:`gordo_client.schemas.Machine` elements served by the server for
         the provided machine names.
 
         Parameters
         ----------
-        revision: Optional[str]
+        revision
             Revision to fetch machines for. If None then the latest revision is fetched
             from the server.
-        machine_names: Optional[List[str]]
+        machine_names
             List of names of machines to fetch metadata for. If None then all machines
             for the given revision is fetched.
 
 
         Returns
         -------
-        List[Machine]
         """
         _machine_names: List[str] = machine_names or self.get_machine_names(revision=revision)
         with ThreadPoolExecutor(max_workers=self.parallelism) as executor:
@@ -208,11 +205,10 @@ class Client:
 
     def download_model(self, revision=None, targets: Optional[List[str]] = None) -> Dict[str, BaseEstimator]:
         """
-        Download the actual model(s) from the ML server /download-model.
+        Download the actual model(s) from the ML server ``/download-model``.
 
         Returns
         -------
-        Dict[str, BaseEstimator]
             Mapping of target name to the model
         """
         models = dict()
@@ -234,16 +230,15 @@ class Client:
 
         Parameters
         ----------
-        revision: Optional[str]
+        revision
             Revision to fetch machines for. If None then the latest revision is fetched
             from the server.
-        targets: Optional[List[str]]
+        targets
             List of names of machines to fetch metadata for. If None then all machines
             for the given revision is fetched.
 
         Returns
         -------
-        Dict[str, Metadata]
             Mapping of target names to their metadata
         """
         #  Value expression in dictionary comprehension has incompatible type "Optional[Metadata]"; expected type "Metadata"
@@ -258,11 +253,11 @@ class Client:
 
         Parameters
         ----------
-        start: datetime
-        end: datetime
-        targets: Optional[List[str]]
+        start
+        end
+        targets
             Optionally only target certain machines, referring to them by name.
-        revision: Optional[str]
+        revision
             Revision of the model to run predictions again, defaulting to latest.
 
         Raises
@@ -272,11 +267,9 @@ class Client:
 
         Returns
         -------
-        List[Tuple[str, pandas.core.DataFrame, List[str]]
-            A list of tuples, where:
-              0th element is the target name
-              1st element is the dataframe of the predictions; complete with a DateTime index.
-              2nd element is a list of error messages (if any) for running the predictions
+            0th element is the target name
+            1st element is the dataframe of the predictions; complete with a DateTime index.
+            2nd element is a list of error messages (if any) for running the predictions
         """
         rev = revision or self._get_latest_revision()
         machines = self._get_machines(revision=rev, machine_names=targets)
@@ -292,21 +285,20 @@ class Client:
         self, machine: Machine, start: datetime, end: datetime, revision: str
     ) -> PredictionResult:
         """
-        Get predictions based on the /prediction POST machine of Gordo ML Servers.
+        Get predictions based on the ``/prediction`` POST machine of Gordo ML Servers.
 
         Parameters
         ----------
-        machine: Machine
+        machine
             Named tuple which has 'machine' specifying the full url to the base ml server
-        start: datetime
-        end: datetime
-        revision: str
+        start
+        end
+        revision
             Revision of the model to use
 
         Returns
         -------
-        dict
-            Prediction response from /prediction GET
+            Prediction response from ``/prediction`` GET
         """
 
         # Fetch all of the raw data
@@ -359,17 +351,17 @@ class Client:
 
         Parameters
         ----------
-        X: pandas.core.DataFrame
+        X
             The data for the model, in pandas representation
-        chunk: slice
-            The slice to take from DataFrame.iloc for the batch size
-        machine: Machine
-        start: datetime
-        end: datetime
+        chunk
+            The slice to take from :func:`pandas.DataFrame.iloc` for the batch size
+        machine
+        start
+        end
 
         Notes
         -----
-        PredictionResult.predictions may be None if the prediction process fails
+        ``PredictionResult.predictions`` may be None if the prediction process fails
 
         Returns
         -------
@@ -453,14 +445,10 @@ class Client:
 
         Parameters
         ----------
-        machine: Machine
+        machine
             Named tuple representing the machine info from controller
-        start: datetime
-        end: datetime
-
-        Returns
-        -------
-        GordoBaseDataset
+        start
+        end
         """
         # We want to adjust for any model offset. If the model outputs less than it got in, it requires
         # extra data than what we're being asked to get predictions for.
@@ -495,18 +483,17 @@ class Client:
 
     def _raw_data(self, machine: Machine, start: datetime, end: datetime) -> Tuple[pd.DataFrame, pd.DataFrame]:
         """
-        Fetch the required raw data in this time range which would satisfy this machine's /prediction POST.
+        Fetch the required raw data in this time range which would satisfy this machine's ``POST /prediction``.
 
         Parameters
         ----------
-        machine: Machine
+        machine
             Named tuple representing the machine info from controller
-        start: datetime
-        end: datetime
+        start
+        end
 
         Returns
         -------
-        Tuple[pandas.core.DataFrame, pandas.core.DataFrame]
             The dataframes representing X and y.
         """
         dataset = self._get_dataset(machine, start, end)
@@ -523,11 +510,11 @@ class Client:
 
         Parameters
         ----------
-        dt: datetime
+        dt
             Initial datetime to adjust.
-        resolution: str
+        resolution
             A string code capable of being parsed by :meth::`pandas.Timedelta`.
-        n_intervals: int
+        n_intervals
             Number of resolution steps to take earlier than the given date.
 
         Returns
@@ -551,11 +538,11 @@ class Client:
         Convert response from server into dataframe.
 
         The response from the server, parsed as either JSON / dict or raw bytes,
-        of which would be expected to be loadable from :func:`server.utils.dataframe_from_parquet_bytes`
+        of which would be expected to be loadable from ``gordo.server.utils.dataframe_from_parquet_bytes``
 
         Parameters
         ----------
-        response: Union[dict, bytes]
+        response
             The parsed response from the ML server.
 
         Returns
@@ -578,16 +565,12 @@ def make_date_ranges(start: datetime, end: datetime, max_interval_days: int, fre
 
     Parameters
     ----------
-    start: datetime
-    end: datetime
-    max_interval_days: int
+    start
+    end
+    max_interval_days
         Maximum days between start and end before splitting into intervals
-    freq: str
+    freq
         String frequency parse-able by Pandas
-
-    Returns
-    -------
-    List[Tuple[datetime, datetime]]
     """
     if (end - start).days >= max_interval_days:
         # Split into 1hr data ranges

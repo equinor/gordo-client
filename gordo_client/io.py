@@ -1,4 +1,3 @@
-"""Gordo client io."""
 from typing import Optional, Union
 
 import requests
@@ -6,8 +5,8 @@ import requests
 
 class HttpUnprocessableEntity(Exception):
     """
-    Represents an error from an HTTP status code of 422: UnprocessableEntity.
-    Used in our case for calling /anomaly/prediction on a model which does not
+    Represents an error from an HTTP status code of ``422: UnprocessableEntity``.
+    Used in our case for calling ``/anomaly/prediction`` on a model which does not
     support anomaly behavior.
     """
 
@@ -59,10 +58,8 @@ def _handle_response(resp: requests.Response, resource_name: Optional[str] = Non
 
     Parameters
     ----------
-    resp:
-        The request to inspect for a result
-    resource_name:
-        An optional name to add to error messages. Should describe the resource we
+    resp        The request to inspect for a result
+    resource_name        An optional name to add to error messages. Should describe the resource we
         attempted to GET
 
     Returns

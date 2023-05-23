@@ -1,4 +1,3 @@
-"""Gordo client utils."""
 from collections import namedtuple
 from typing import Dict, Optional, Tuple, Union
 
@@ -14,12 +13,11 @@ def _parse_influx_uri(uri: str) -> Tuple[str, str, str, str, str, str]:
 
     Parameters
     ----------
-    uri: str
-        Format: <username>:<password>@<host>:<port>/<optional-path>/<db_name>
+    uri
+        Format: ``<username>:<password>@<host>:<port>/<optional-path>/<db_name>``
 
     Returns
     -------
-    (str, str, str, str, str, str)
         username, password, host, port, path, database
     """
     username, password, host, port, *path, db_name = uri.replace("/", ":").replace("@", ":").split(":")
@@ -36,26 +34,25 @@ def influx_client_from_uri(
     proxies: Dict[str, str] = {"https": "", "http": ""},
 ) -> Union[InfluxDBClient, DataFrameClient]:
     """
-    Get a InfluxDBClient or DataFrameClient from a SqlAlchemy like URI.
+    Get a ``InfluxDBClient`` or ``DataFrameClient`` from a ``SqlAlchemy`` like URI.
+
+    .. todo::
+        Remove this function. Use :class:`gordo_core.utils.influx_client_from_uri` instead.
 
     Parameters
     ----------
-    uri: str
-        Connection string format: <username>:<password>@<host>:<port>/<optional-path>/<db_name>
-    api_key: str
+    uri
+        Connection string format: ``<username>:<password>@<host>:<port>/<optional-path>/<db_name>``
+    api_key
         Any api key required for the client connection
-    api_key_header: str
+    api_key_header
         The name of the header the api key should be assigned
-    recreate: bool
+    recreate
         Re/create the database named in the URI
-    dataframe_client: bool
-        Return a DataFrameClient instead of a standard InfluxDBClient
-    proxies: dict
+    dataframe_client
+        Return ``DataFrameClient`` instead of a standard ``InfluxDBClient``
+    proxies
         A mapping of any proxies to pass to the influx client
-
-    Returns
-    -------
-    Union[InfluxDBClient, DataFrameClient]
     """
     username, password, host, port, path, db_name = _parse_influx_uri(uri)
 
