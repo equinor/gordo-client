@@ -401,13 +401,13 @@ sphinx-basic-ng = "*"
 
 [[package]]
 name = "gordo-core"
-version = "0.3.0"
+version = "0.3.2"
 description = "Gordo core library"
 category = "main"
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "gordo_core-0.3.0-py3-none-any.whl", hash = "sha256:634bb1d3085c9406813fa85d608dcf54a548bd262acf09c8c94d0b3a899e565b"},
+    {file = "gordo_core-0.3.2-py3-none-any.whl", hash = "sha256:e9e5ea3498aa3ec069d202d50506e13586d896173bde8c1270b0919bfff237b8"},
 ]
 
 [package.dependencies]
