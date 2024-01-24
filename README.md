@@ -1,4 +1,15 @@
 # Gordo client
+
+# Table of Contents
+* [Installation](#Installation)
+* [Developers Instructions](#Developers-Instructions)
+	* [Setup](#Setup)
+	* [Pre-commit](#Pre-commit)
+	* [Run tests](#Run-tests)
+* [Contributing](#Contributing)
+
+---
+
 Client for [Gordo](https://github.com/equinor/gordo) project.
 
 [Documentation is available on Read the Docs](https://gordo-client.readthedocs.io/)
@@ -54,3 +65,34 @@ Run docker-related tests:
 ```console
 > poetry run pytest -m "dockertest"
 ```
+
+## Contributing
+We welcome contributions to this project! To get started, please follow these steps:
+
+1. Fork this repository to your own GitHub account and then clone it to your local device.
+
+```
+git clone https://github.com/your-account/your-project.git
+```
+
+2. Create a new branch for your feature or bug fix.
+
+```
+git checkout -b your-feature-or-bugfix-branch
+```
+
+3. Make your changes and commit them with a descriptive message.
+
+```
+git commit -m "Add a new feature" -a
+```
+
+4. Push your changes to your forked repository.
+
+```
+git push origin your-feature-or-bugfix-branch
+```
+
+5. Open a pull request in this repository and describe the changes you made.
+
+We'll review your changes and work with you to get them merged into the main branch of the project.
