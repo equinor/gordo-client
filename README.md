@@ -1,3 +1,5 @@
+[![SCM Compliance](https://scm-compliance-api.radix.equinor.com/repos/equinor/117c00d4-fc77-4406-8e47-e616d0d84b62/badge)](https://scm-compliance-api.radix.equinor.com/repos/equinor/117c00d4-fc77-4406-8e47-e616d0d84b62/badge)
+
 # Gordo client
 
 # Table of Contents
