@@ -38,8 +38,7 @@ class PredictionForwarder(metaclass=abc.ABCMeta):
         machine: Optional[Machine] = None,
         metadata: dict = dict(),
         resampled_sensor_data: pd.DataFrame = None,
-    ):
-        ...
+    ): ...
 
 
 class ForwardPredictionsIntoInflux(PredictionForwarder):

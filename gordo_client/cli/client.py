@@ -1,4 +1,5 @@
 """Gordo-client click command."""
+
 import json
 import logging
 import os
@@ -141,7 +142,7 @@ def predict(
     # Loop over all error messages for each result and log them
     click.secho(f"\n{'-' * 20} Summary of failed predictions (if any) {'-' * 20}")
     exit_code = 0
-    for (_name, _df, error_messages) in predictions:
+    for _name, _df, error_messages in predictions:
         for err_msg in error_messages:
             # Any error message indicates we encountered at least one error
             exit_code = 1
@@ -149,7 +150,7 @@ def predict(
 
     # Shall we write the predictions out?
     if output_dir is not None:
-        for (name, prediction_df, _err_msgs) in predictions:
+        for name, prediction_df, _err_msgs in predictions:
             prediction_df.to_csv(os.path.join(output_dir, f"{name}.csv.gz"), compression="gzip")
     sys.exit(exit_code)
 
