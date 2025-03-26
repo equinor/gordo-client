@@ -16,6 +16,11 @@ Client for [Gordo](https://github.com/equinor/gordo) project.
 
 [Documentation is available on Read the Docs](https://gordo-client.readthedocs.io/)
 
+# Archival Notice
+**Date**: 26.03.2025
+
+**Reason**: This repository has been archived due to changes in the project's architecture. The current implementation is no longer maintained and developed.
+
 ## Installation
 
 At least python 3.9 need to be installed in the system first.
